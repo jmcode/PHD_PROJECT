@@ -1,0 +1,266 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Aitoc_Aitshopassist>
+            <version>1.0.17</version>
+        </Aitoc_Aitshopassist>
+    </modules>
+     <admin>
+        <routers>
+            <aitshopassist>
+                <use>admin</use>
+                <args>
+                    <module>Aitoc_Aitshopassist</module>
+                    <frontName>aitshopassist</frontName>
+                </args>
+            </aitshopassist>
+        </routers>
+    </admin>
+    <frontend>
+         <routers>
+            <aitshopassist>
+                <use>standard</use>
+                <args>
+                    <module>Aitoc_Aitshopassist</module>
+                    <frontName>aitshopassist</frontName>
+                </args>
+            </aitshopassist>
+        </routers>
+        <layout>
+            <updates>
+                <aitshopassist>
+                    <file>aitshopassist.xml</file>
+                </aitshopassist>
+            </updates>
+        </layout>
+    </frontend>
+	<adminhtml>
+        <menu>
+            <catalog>
+                <children>
+                    <aitshopassist translate="title" module="aitshopassist">
+                        <title>Shopping Assistant</title>
+                        <sort_order>100</sort_order>
+                        <action>aitshopassist/adminhtml_page</action>
+                    </aitshopassist>
+                </children>
+            </catalog>
+        </menu>
+		<acl>
+            <resources>
+                <admin>
+                    <children>
+            	        <catalog>
+                            <children>
+                                <aitshopassist translate="title">
+                                    <title>Shopping Assistant</title>
+                                    <sort_order>100</sort_order>
+                                </aitshopassist>
+                            </children>
+                        </catalog>
+                    </children>
+                </admin>
+            </resources>
+        </acl> 
+        <translate>
+            <modules>
+                <Aitoc_Aitshopassist>
+                    <files>
+                        <default>Aitoc_Aitshopassist.csv</default>
+                    </files>
+                </Aitoc_Aitshopassist>
+            </modules>
+        </translate>
+    </adminhtml>
+
+    <global>
+
+        <models>
+            <resources>
+                <aitshopassistant_write>
+                    <connection>
+                        <use>core_write</use>
+                    </connection>
+                </aitshopassistant_write>
+                <aitshopassistant_read>
+                    <connection>
+                        <use>core_read</use>
+                    </connection>
+                </aitshopassistant_read>
+            </resources>
+            <aitshopassist>
+                <class>Aitoc_Aitshopassist_Model</class>
+                <resourceModel>aitshopassist_mysql4</resourceModel>
+            </aitshopassist>
+            <aitshopassist_mysql4>
+                <class>Aitoc_Aitshopassist_Model_Mysql4</class>
+                <entities>
+                    <page>
+                        <table>aitoc_aitshopassist_page</table>
+                    </page>
+                    <page_text>
+                        <table>aitoc_aitshopassist_page_text</table>
+                    </page_text>
+                    <page_category>
+                        <table>aitoc_aitshopassist_page_category</table>
+                    </page_category>
+                    <question>
+                        <table>aitoc_aitshopassist_question</table>
+                    </question>
+                    <question_text>
+                        <table>aitoc_aitshopassist_question_text</table>
+                    </question_text>
+                    <answer>
+                        <table>aitoc_aitshopassist_answer</table>
+                    </answer>
+                    <answer_text>
+                        <table>aitoc_aitshopassist_answer_text</table>
+                    </answer_text>
+                    <question_dependence>
+                        <table>aitoc_aitshopassist_question_dependence</table>
+                    </question_dependence>
+                    <catalog_product_index_configurable>
+                        <table>adjnav_catalog_product_index_configurable</table>
+                    </catalog_product_index_configurable>
+                </entities>
+            </aitshopassist_mysql4>
+            <catalog_resource_eav_mysql4>
+                <rewrite>
+                    <product_collection>Aitoc_Aitshopassist_Model_Mysql4_Rewrite_ProductCollection</product_collection>
+                </rewrite>
+            </catalog_resource_eav_mysql4>
+			<catalog_resource>
+			    <rewrite>
+				    <layer_filter_price>Aitoc_Aitshopassist_Model_Mysql4_Rewrite_CatalogResourceLayerFilterPrice</layer_filter_price>
+				</rewrite>
+			</catalog_resource>
+            <catalog>
+                <rewrite>
+                    <product_action>Aitoc_Aitshopassist_Model_Rewrite_CatalogProductAction</product_action>
+                </rewrite>
+            </catalog>
+            <catalogrule>
+                <rewrite>
+                    <rule_condition_product>Aitoc_Aitshopassist_Model_Rewrite_CatalogruleRuleConditionProduct</rule_condition_product>
+                </rewrite>
+            </catalogrule>
+        </models>
+
+        <resources>
+            <aitshopassist_setup>
+                <setup>
+                    <module>Aitoc_Aitshopassist</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </aitshopassist_setup>
+            <aitshopassist_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </aitshopassist_write>
+            <aitshopassist_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </aitshopassist_read>
+        </resources>
+
+        <events>
+			<core_block_abstract_to_html_before>
+                <observers>
+                    <aitshopassist>
+                        <type>singleton</type>
+                        <class>aitshopassist/observer</class>
+                        <method>onCoreBlockAbstractToHtmlBefore</method>
+                    </aitshopassist>
+                </observers>			
+			</core_block_abstract_to_html_before>		
+            <catalog_product_collection_load_before>
+                <observers>
+                    <aitshopassist>
+                        <type>singleton</type>
+                        <class>aitshopassist/observer</class>
+                        <method>onCatalogProductCollectionLoadBefore</method>
+                    </aitshopassist>
+                </observers>
+            </catalog_product_collection_load_before>
+
+            <catalog_product_save_after>
+                <observers>
+                    <aitshopassist>
+                        <type>singleton</type>
+                        <class>aitshopassist/observer</class>
+                        <method>onCatalogProductSaveAfter</method>
+                    </aitshopassist>
+                </observers>
+            </catalog_product_save_after>
+            <catalog_product_attribute_update_after>
+                <observers>
+                    <aitshopassist>
+                        <type>singleton</type>
+                        <class>aitshopassist/observer</class>
+                        <method>onCatalogProductAttributeUpdateAfter</method>
+                    </aitshopassist>
+                </observers>
+            </catalog_product_attribute_update_after>
+        </events>
+
+        <blocks>
+            <aitshopassist>
+                <class>
+                    Aitoc_Aitshopassist_Block
+                </class>
+            </aitshopassist>
+			<adminhtml>
+			    <rewrite>
+				    <promo_catalog_edit>Aitoc_Aitshopassist_Block_Adminhtml_Rewrite_AdminhtmlPromoCatalogEdit</promo_catalog_edit>
+				</rewrite>
+			</adminhtml>
+        </blocks>
+
+        <helpers>
+            <aitshopassist>
+                <class>
+                    Aitoc_Aitshopassist_Helper
+                </class>
+            </aitshopassist>
+        </helpers>
+
+        <index>
+            <indexer>
+                <catalog_product_configurable>
+                    <model>aitshopassist/catalog_product_indexer_configurable</model>
+                </catalog_product_configurable>
+
+                <catalog_product_attribute>
+                    <depends>
+                        <catalog_product_configurable />
+                    </depends>
+                </catalog_product_attribute>
+            </indexer>
+        </index>
+
+    </global>
+
+    <default>
+        <general>
+            <aitshopassist>
+                <hide_assistant>1</hide_assistant>
+           </aitshopassist>  
+        </general>
+    </default>
+
+</config>
+<!--
+/**
+ * Shopping Assistant
+ *
+ * @category:    Aitoc
+ * @package:     Aitoc_Aitshopassist
+ * @version      1.0.17
+ * @license:     fEv8NRVUcfeWNj6fFopfiC6j0bkfeMCgY3lx8CzFS6
+ * @copyright:   Copyright (c) 2013 AITOC, Inc. (http://www.aitoc.com)
+ */
+-->

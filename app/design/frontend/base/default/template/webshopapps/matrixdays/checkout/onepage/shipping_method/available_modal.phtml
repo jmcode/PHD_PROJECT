@@ -1,0 +1,235 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2010 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ **/
+/** Matrixdays
+ *
+ * @category   Webshopapps
+ * @package    Webshopapps_matrixdays
+ * @copyright  Copyright (c) 2012 Zowta Ltd (http://www.webshopapps.com)
+ * @license    http://www.webshopapps.com/license/license.txt - Commercial license
+ */
+?>
+<?php 
+echo 'plop2';
+if(!($_shippingRateGroups = $this->getShippingRates())): ?>
+    <p><?php echo $this->__('Sorry, no quotes are available for this order at this time.') ?></p>
+<?php else: ?>
+    <dl class="sp-methods">
+    <?php $shippingCodePrice = array(); ?>
+ 	<?php $_gridType = $this->getGridType(); ?>
+    <?php $_sole = count($_shippingRateGroups) == 1; foreach ($_shippingRateGroups as $code => $_rates): ?>
+        <dt><?php echo $this->getCarrierName($code) ?></dt>
+  		<dd>      
+        <?php if ($code=='matrixdays' && $_gridType!='bullet' ): ?>
+        	<ul>
+        		<li>
+	        	<span class="no-display"><label for="pick_delivery">Please select a delivery date</label></span>
+				<input type="text" id="delivery_date" size="30" name="delivery_date" class="dialog"/>
+				<img onClick="$j('#modal_dialog').dialog('open')" src="<?php echo $this->getSkinUrl('images/wsa/calendar.gif') ?>">	
+				</li>
+				<li>
+				<div id="display_selected_date"></div>
+				</li>			
+			</ul>
+        <?php else: ?>
+	            <ul>
+	            <?php $_sole = $_sole && count($_rates) == 1; foreach ($_rates as $_rate): ?>
+	                <?php $shippingCodePrice[] = "'".$_rate->getCode()."':".(float)$_rate->getPrice(); ?>
+	                <li>
+	                   <?php if ($_rate->getErrorMessage()): ?>
+	                    <ul class="messages"><li class="error-msg"><ul><li><?php echo $_rate->getErrorMessage() ?></li></ul></li></ul>
+	                   <?php else: ?>
+	                        <?php if ($_sole) : ?>
+	                        <span class="no-display"><input name="shipping_method" type="radio" value="<?php echo $_rate->getCode() ?>" id="s_method_<?php echo $_rate->getCode() ?>" checked="checked" /></span>
+	                        <?php else: ?>
+	                        <input name="shipping_method" type="radio" value="<?php echo $_rate->getCode() ?>" id="s_method_<?php echo $_rate->getCode() ?>"<?php if($_rate->getCode()===$this->getAddressShippingMethod()) echo ' checked="checked"' ?> class="radio"/>
+	
+	                        <?php if ($_rate->getCode() === $this->getAddressShippingMethod()): ?>
+	                        <script type="text/javascript">
+	                            //<![CDATA[
+	                                lastPrice = <?php echo (float)$_rate->getPrice(); ?>;
+	                            //]]>
+	                        </script>
+	                        <?php endif; ?>
+	
+	                        <?php endif; ?>
+	                        <label for="s_method_<?php echo $_rate->getCode() ?>"><?php echo $_rate->getMethodTitle() ?>
+	                        <?php $_excl = $this->getShippingPrice($_rate->getPrice(), $this->helper('tax')->displayShippingPriceIncludingTax()); ?>
+	                        <?php $_incl = $this->getShippingPrice($_rate->getPrice(), true); ?>
+	                        <?php echo $_excl; ?>
+	                        <?php if ($this->helper('tax')->displayShippingBothPrices() && $_incl != $_excl): ?>
+	                            (<?php echo $this->__('Incl. Tax'); ?> <?php echo $_incl; ?>)
+	                        <?php endif; ?>
+	                        </label>
+	                   <?php endif ?>
+	                </li>
+	            <?php endforeach; ?>
+	            </ul>
+	     <?php endif; ?>
+ 	     </dd>
+    <?php endforeach; ?>
+    </dl>
+
+    
+<script type="text/javascript">
+//<![CDATA[
+    <?php if (!empty($shippingCodePrice)): ?>
+        var shippingCodePrice = {<?php echo implode(',',$shippingCodePrice); ?>};
+    <?php endif; ?>
+    
+
+    $$('input[type="radio"][name="shipping_method"]').each(function(el){
+        Event.observe(el, 'click', function(){
+            if (el.checked == true) {
+                var getShippingCode = el.getValue();
+                <?php if (!empty($shippingCodePrice)): ?>
+                    var newPrice = shippingCodePrice[getShippingCode];
+                    if (!lastPrice) {
+                        lastPrice = newPrice;
+                        quoteBaseGrandTotal += newPrice;
+                    }
+                    if (newPrice != lastPrice) {
+                        quoteBaseGrandTotal += (newPrice-lastPrice);
+                        lastPrice = newPrice;
+                    }
+                <?php endif; ?>
+                checkQuoteBaseGrandTotal = quoteBaseGrandTotal;
+                return false;
+            }
+       });
+    });
+    
+    $j('document').ready(function(){
+        
+  	  $j('#modal_dialog').dialog({
+  	        autoOpen: false,
+  	        width: 550,
+  	        height: 500,
+  	        resizable:true,
+  	        draggable: false,
+  	        buttons: [{
+            	text: 'Ok',
+            	click: function() { $j(this).dialog('close'); }
+  	        }],
+  	        modal: true,    	
+  	      });
+
+      $j('#delivery_date').click( function(e) {   
+        e.preventDefault();
+        $j('#modal_dialog').dialog('open');
+      });
+    });
+
+  	$j(function() {
+	    $j( '#modal_dialog' ).datepicker({
+	  	  numberOfMonths: 2, 
+	  	  beforeShowDay: nonWorkingDates,
+	  	  minDate: 0,
+	  	  maxDate: '+2M',
+	  	  altField: '.dialog', 
+	  	  altFormat: 'DD, d MM, yy',
+	  	  dateFormat: 'dd-mm-yy',
+	  	  onSelect: function(dateText, inst){
+	  		  $j.ajax({
+	  	          type: 'GET',
+	  	    	  dataType: 'json',
+	  	          url: '<?php echo $this->getUrl("matrixdays/tablegrid/getDayRate") ?>',
+	  	          data: 'date='+dateText,
+	  	          success: function(data) {
+		  	          changeShipOptions(data,dateText)
+	  	          }
+	  	     });
+	       }
+	    });
+	});
+
+  	$j('#modal_dialog').append("<hr/><p>Date Chosen: <label id='date_chosen'/></p><hr/><div id='ship_options'><div id='radio_choices'></div></div>");
+	//$j('#modal_dialog').datepicker( "option", "minDate", new Date(2012,04,15 ));
+
+
+  	function changeShipOptions(data,dateText) {
+		$('date_chosen').innerHTML=dateText;
+	    $('radio_choices').remove();
+	    var radOptions = new Element('rad',{id:'radio_choices'});
+	    $('ship_options').insert(radOptions);
+	    if (data=='') {
+		    return;
+	    }
+    	var radioText ='<ul>';
+    	for (code in data) {
+        	element = data[code];
+            radioIndText= '<li><input name="shipping_method_dialog" type="radio"  value='+code+' id="s_method_"'+code+' class="radio"/>\
+		    <label for="s_method_"'+code+'>'+element.method_title+' '+element.price+'</label></li>';
+    		radioText += radioIndText;
+    	};
+    	$('radio_choices').innerHTML=radioText+'</ul>';
+    	$j('input:radio[name=shipping_method_dialog]').change(function()  {
+    		$('display_selected_date').empty();
+    		var code = $j('input:radio[name=shipping_method_dialog]:checked').val();
+    		$('display_selected_date').innerHTML='<li><input name="shipping_method" type="radio" value=' + code + ' checked="checked" id="s_method_"'+code+' class="radio"/>\
+		    	<label for="s_method_"'+code+'>'+$j('input:radio[name=shipping_method_dialog]:checked +label').text()+'</label></li>';
+    	});	
+  	}
+    
+  	function nonWorkingDates(date){
+        var day = date.getDay();
+        if (day==0) { day=7; }
+        var closedDatesArr = <?php echo $this->getBlackoutDeliveryDates(); ?>;
+        var closedDaysArr 	= <?php echo $this->getBlackoutDeliveryDays(); ?>;
+
+        for (var i = 0; i < closedDaysArr.length; i++) {
+            if (day == closedDaysArr[i]) {
+                return [false];
+        	}
+        }
+
+        var month=date.getMonth();
+        var year=date.getFullYear();
+        var day=date.getDate();   
+        for (i = 0; i < closedDatesArr.length; i++) {
+            if (month == closedDatesArr[i][0][1] - 1 &&
+            	day == closedDatesArr[i][0][0] &&
+            	year == closedDatesArr[i][0][2]) {
+                return [false];
+            }
+        }
+        return [true];
+    }  
+//]]>
+</script>
+
+      
+ <div id='modal_dialog'>
+ 	<p>Select your desired delivery date from the calendar below</p>
+ </div> 
+	
+<?php endif; ?>
+
+	
+
+    
+
+
+

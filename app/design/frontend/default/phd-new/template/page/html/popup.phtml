@@ -1,0 +1,108 @@
+<?php $cookies = Mage::getModel('core/cookie');
+$cookieName = 'login-popup';
+//set return URL to homepage for create account redirect
+Mage::getSingleton('customer/session')->setBeforeAuthUrl(Mage::getUrl());
+?>
+
+<div style="display:none">
+    <div id="entrydiv">
+    <?php /* @var $this Mage_Customer_Block_Form_Register */ ?>
+    <div class="">
+        <div class="popup-logo"><img src="<?php echo $this->getSkinUrl('images/logo_popup.jpg') ?>" alt="PHD Cleanse"/></div>
+        <div class="page-title">
+            <h2><?php echo $this->__('Earn 5 Pure Health Rewards Points for signing up now...') ?></h2>
+        </div>
+        <div class="col2-set">
+            <div class="col-1 popup-col-1">
+                <h3><?php echo $this->__('Some ways to earn points:') ?></h3>
+                <ul class="popup-list">
+                    <li><?php echo $this->__('Simply by signing up you\'ll earn <span>5 points</span>') ?></li>
+                    <li><?php echo $this->__('Like our facebook page and earn <span>5 points</span> (first Like only)') ?></li>
+                    <li><?php echo $this->__('Earn points each time you order certain PHD Cleanse products') ?></li>
+                    <li><?php echo $this->__('Tweet our Twitter page and you\'ll earn <span>3 points</span> (first tweet only)') ?></li>
+                </ul>
+                <div class="cleanse-img">
+                    <img src="<?php echo $this->getSkinUrl('images/basic_cleanse_sml.jpg') ?>" alt="<?php echo $this->__('Basic Cleanse') ?>" />
+                </div>
+                <p class="a-center larger-custom-font"><?php echo $this->__('For more information on Pure Health Rewards ') ?><a href="/rewards"><?php echo $this->__('click here.') ?></a></p>
+            </div>
+            <div class="col-2 popup-col-2">
+                <h3><?php echo $this->__('Sign up here:') ?></h3>
+                <div class="signup-form">
+                    <form action="<?php echo $this->getPostActionUrl() ?>" method="post" id="form-validate">
+                        <div>
+                            <input type="hidden" name="success_url" value="<?php echo $this->getSuccessUrl() ?>" />
+                            <input type="hidden" name="error_url" value="<?php echo $this->getErrorUrl() ?>" />
+                            <ul class="form-list">
+                                <li class="fields">
+                                    <label class="required" for="firstname"><em>*</em><?php echo $this->__('First Name') ?></label>
+                                    <div class="input-box">
+                                        <input type="text" class="input-text required-entry" maxlength="255" title="<?php echo $this->__('First Name') ?>" value="" name="firstname" id="firstname">
+                                    </div>
+                                </li>
+                                <li>
+                                    <label class="required" for="lastname"><em>*</em><?php echo $this->__('Last Name') ?></label>
+                                    <div class="input-box">
+                                        <input type="text" class="input-text required-entry" maxlength="255" title="<?php echo $this->__('Last Name') ?>" value="" name="lastname" id="lastname">
+                                    </div>
+                                </li>
+                                <li>
+                                    <label for="email_address" class="required"><em>*</em><?php echo $this->__('Email Address') ?></label>
+                                    <div class="input-box">
+                                        <input type="text" name="email" id="email_address" value="<?php echo $this->escapeHtml($this->getFormData()->getEmail()) ?>" title="<?php echo $this->__('Email Address') ?>" class="input-text validate-email required-entry" />
+                                    </div>
+                                </li>
+                                <li>
+                                    <label for="password" class="required"><em>*</em><?php echo $this->__('Password') ?></label>
+                                    <div class="input-box">
+                                        <input type="password" name="password" id="password" title="<?php echo $this->__('Password') ?>" class="input-text required-entry validate-password" />
+                                    </div>
+                                </li>
+                                <li class="last">
+                                    <label for="confirmation" class="required"><em>*</em><?php echo $this->__('Confirm Password') ?></label>
+                                    <div class="input-box">
+                                        <input type="password" name="confirmation" title="<?php echo $this->__('Confirm Password') ?>" id="confirmation" class="input-text required-entry validate-cpassword" />
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="buttons-set">
+                            <button type="submit" title="<?php echo $this->__('Submit') ?>" class="button"><span><span><?php echo $this->__('Sign Up') ?></span></span></button>
+                        </div>
+
+                        <div class="buttons-set">
+                            <span class="label-text larger-custom-font"><?php echo $this->__('Already a member?') ?></span>
+                            <button type="button" title="<?php echo $this->__('Login') ?>" class="button btn-login" onclick="window.location='<?php echo Mage::helper('customer')->getLoginUrl() ?>';"><span><span><?php echo $this->__('Login') ?></span></span></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        <script type="text/javascript">
+            //<![CDATA[
+            var dataForm = new VarienForm('form-validate', true);
+            //]]>
+        </script>
+    </div>
+        
+    </div>
+</div>
+<?php  if(!$cookies->get($cookieName) && !Mage::getSingleton('customer/session')->isLoggedIn()): ?>
+	<?php  $cookies->set($cookieName, 1); ?>
+	
+	<script type="text/javascript">
+		jQuery.noConflict();
+	    jQuery(document).ready(function(){
+            if (document.cookie.indexOf('visited=true') == -1) {
+                var fifteenDays = 1000*60*60*24*15;
+                var expires = new Date((new Date()).valueOf() + fifteenDays);
+                document.cookie = "visited=true;expires=" + expires.toUTCString();
+                jQuery.colorbox({width:"65%", inline:true, href:"#entrydiv"});
+            }
+	    });
+
+	</script>
+<?php endif; ?>
+
+
+<!-- End POP UP Window  -->

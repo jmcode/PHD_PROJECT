@@ -1,0 +1,690 @@
+/* ===================== Fonts ================================================================== */
+
+@font-face {
+    font-family: 'HelveticaBold';
+    src: url('../fonts/helvetica_bold-webfont.eot');
+    src: url('../fonts/helvetica_bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helvetica_bold-webfont.woff') format('woff'),
+         url('../fonts/helvetica_bold-webfont.ttf') format('truetype'),
+         url('../fonts/helvetica_bold-webfont.svg#HelveticaBold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'HelveticaMedium';
+    src: url('../fonts/helvetica_65_medium-webfont.eot');
+    src: url('../fonts/helvetica_65_medium-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helvetica_65_medium-webfont.woff') format('woff'),
+         url('../fonts/helvetica_65_medium-webfont.ttf') format('truetype'),
+         url('../fonts/helvetica_65_medium-webfont.svg#HelveticaNeueMedium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+@font-face {
+    font-family: 'HelveticaNeue75';
+    src: url('../fonts/helveticaneueltstd-bd_0-webfont.eot');
+    src: url('../fonts/helveticaneueltstd-bd_0-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaneueltstd-bd_0-webfont.woff') format('woff'),
+         url('../fonts/helveticaneueltstd-bd_0-webfont.ttf') format('truetype'),
+         url('../fonts/helveticaneueltstd-bd_0-webfont.svg#HelveticaNeueLTStd75Bold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'HelveticaNeue65';
+    src: url('../fonts/helveticaneueltstd-md_0-webfont.eot');
+    src: url('../fonts/helveticaneueltstd-md_0-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaneueltstd-md_0-webfont.woff') format('woff'),
+         url('../fonts/helveticaneueltstd-md_0-webfont.ttf') format('truetype'),
+         url('../fonts/helveticaneueltstd-md_0-webfont.svg#HelveticaNeueLTStd65Medium') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'helveticaneuelight';
+    src: url('../fonts/helveticaneue_light-webfont.eot');
+    src: url('../fonts/helveticaneue_light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaneue_light-webfont.woff') format('woff'),
+         url('../fonts/helveticaneue_light-webfont.ttf') format('truetype'),
+         url('../fonts/helveticaneue_light-webfont.svg#helveticaneuelight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'helvetica_neueitalic';
+    src: url('../fonts/helveticaneue-italic-webfont.eot');
+    src: url('../fonts/helveticaneue-italic-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaneue-italic-webfont.woff') format('woff'),
+         url('../fonts/helveticaneue-italic-webfont.ttf') format('truetype'),
+         url('../fonts/helveticaneue-italic-webfont.svg#helvetica_neueregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'helvetica_neueregular';
+    src: url('../fonts/helveticaneue-ultralight-webfont.eot');
+    src: url('../fonts/helveticaneue-ultralight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/helveticaneue-ultralight-webfont.woff') format('woff'),
+         url('../fonts/helveticaneue-ultralight-webfont.ttf') format('truetype'),
+         url('../fonts/helveticaneue-ultralight-webfont.svg#helvetica_neueregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+/* ===================== / End Fonts ================================================================== */
+
+
+
+.logo { float: none; margin: 0; width: 500px; }
+.stores-links-container { /* border-top: 1px solid #676767; border-bottom: 1px solid #676767; */ padding: 5px 0 10px; margin: 25px 0; /* text-align: center;  */ }
+
+.home-welcome-message {
+margin-bottom: 20px;
+padding: 20px 0px 25px;
+border-top: 1px solid #7c7c7c;
+border-bottom: 1px solid #e0e0e0;
+}
+
+.home-welcome-message h1 {
+color: #690067;
+font-size: 26px;}
+.home-welcome-message h1, .home-welcome-message p{
+margin: 0;
+padding: 0;
+}
+.home-welcome-message h1{margin-bottom:15px;}
+.stores-links-container h2, .home-featured-products h2, .home-welcome-message h2 { 
+background: #fff; margin: 0; padding: 0px/*  40px */; display: inline-block; position: relative; top: -18px; font-family: 'helveticaneuelight', sans-serif; font-weight: normal; font-size: 23px; 
+width: 1000px;
+line-height: 43px;
+color: #7C7C7C;
+background:url(../images/line.jpg) repeat-x;
+width: 100%;
+
+}
+
+
+.stores-links-container h2 span, .home-featured-products h2 span, .home-welcome-message h2 span{
+background: #fff;
+padding-right: 20px;
+}
+
+
+.stores-list li { float: left; margin: 0px 20px 20px 20px;}
+.stores-list li.first { margin-left: 0; }
+.stores-list li.last { margin-right: 0; }
+.stores-list li a { text-decoration: none; font-size: 25px; font-family: 'helvetica_neueregular', sans-serif; font-weight: normal; }
+
+.page-title h1 { color: #520052; font-family: 'HelveticaNeue65',sans-serif; font-size: 28px; line-height: 28px; margin: 15px 0; text-align: left; letter-spacing: 0.02em;  }
+.std { font-family: 'helveticaneuelight', sans-serif;font-weight: normal; margin-top: 19px; } 
+
+
+
+/* POP UP */
+#entrydiv { font-family: 'helvetica_neueregular', sans-serif; font-weight: normal; }
+#entrydiv .col2-set .col-2 { border-left: 2px solid #660066; }
+#entrydiv .page-title { 
+width: 100%;
+margin: 0 auto 15px;
+background: #501555;
+}
+
+#entrydiv h2 { 
+font-family: 'helvetica_neueregular', sans-serif;
+width: 450px;
+font-size: 40px;
+line-height: 50px;
+color: #fff;
+padding: 10px 0px;
+margin: auto;
+}
+
+#entrydiv h3 { text-align: center; font-size: 32px; margin: 10px 0; }
+#entrydiv .signup-form { margin: 0 auto; width: 230px; }
+#entrydiv .form-list { float: none; margin: 0; }
+#entrydiv .form-list li { margin: 0 0 5px; }
+#entrydiv .form-list li.last { margin: 0; }
+#entrydiv .form-list label { margin: 0; font-family: 'helvetica_neueregular', sans-serif; font-weight: normal; }
+#entrydiv .form-list .input-box { clear: both; float: none; }
+#entrydiv .buttons-set { border-top: 0; margin-top: 3px; }
+#entrydiv .buttons-set p.required { margin-bottom: 5px;}
+#entrydiv .buttons-set .label-text { float: left; margin-top: 5px; }
+#entrydiv .buttons-set button.button.btn-login { background: #660066; }
+#entrydiv .popup-list { font-family: 'HelveticaNeue65',sans-serif; list-style: disc outside; margin-left: 23px; }
+#entrydiv .popup-list li { margin-bottom: 10px; font-size: 15px; }
+#entrydiv .popup-list li span { color: #FCC43C; }
+#entrydiv .cleanse-img { width: 275px; margin: 0 auto; }
+#entrydiv p { margin-bottom: 5px;  }
+#entrydiv .popup-logo { position: absolute; /*top: 32px;*/ left: 18px; }
+#entrydiv .popup-logo img {
+width: 100px;
+margin: 10px;
+}
+.larger-custom-font {
+font-size: 18px;
+}
+
+#home_purehealthdelivered {
+padding-top: 25px;
+border-top: 1px solid #eee;
+width: 1000px;
+}
+
+.top-center {
+width: 500px;
+margin:auto;
+margin-bottom: 13px;
+}
+
+.top-center h4 {
+margin: 0px;
+background: url(../images/juice-circle-img.gif) no-repeat left center;
+padding-left: 43px;
+line-height:40px;
+}
+
+#footer {
+background: #444444;
+border-top: 1px solid #359946;
+width: 100%;
+padding: 50px 0;
+min-height: 175px;
+}
+
+.footer-col {
+float: left;
+margin-right: 35px;
+width: 12%;
+}
+#header-right a img , .stores-list a img {
+opacity: 0.85;
+}
+#header-right a:hover img, .stores-list a:hover img {
+opacity: 1;
+}
+
+.top-content {
+border:0px;
+}
+
+.top-content-advert {
+padding: 15px 0 0px 40px;
+margin: 0px auto;
+position: relative;
+width: 980px;
+}
+
+.nav-container {
+background:#999999;
+margin-top:20px;
+font-family:'helveticaneuelight', Helvetica, Arial, sans-serif;
+-webkit-border-radius: 3px;
+-moz-border-radius: 3px;
+border-radius: 3px;
+}
+
+
+#main {
+width: 1000px;
+margin: 0 auto 20px;
+min-height: 50px;
+}
+
+
+/* ===================== Header Ask us area ================================================================== */
+
+.logo {
+float: left;
+margin: 0;
+width: 500px;
+}
+
+#header-right{
+float: right;
+width: 190px;
+height: 129px;
+font-size:12px;
+}
+#header-right p {padding:0;margin:0;}
+#header-right img {}
+
+/* ===================== Menu ================================================================== */
+
+
+div.menu a:link, div.menu a:visited {
+	margin: 0px 0px;
+}
+
+#popup64 .column, #popup67 .column, #popup10 .column {float: none;}
+
+#popup58 {width: 167px;}
+#popup61 {width: 200px;}
+#popup64 {width: 200px;}
+#popup10 div.column, #popup67 div.column, #popup10 div.column{width:80%;margin:auto}
+
+/* ===================== homepage featured prod ================================================================== */
+
+
+.category-products.featured .products-grid li.item{
+width: 23%;
+padding: 30px 10px;	
+}
+
+.category-products.featured .products-grid li.item.last{
+padding: 30px 0px 30px 10px;	
+}
+
+.products-grid .product-name {
+font-size: 16px;
+color: #444;
+font-family: 'HelveticaNeue65';
+font-weight: bold;
+height:auto;
+min-height:72px;
+}
+
+.category-products.featured .products-grid .regular-price .price {
+font-size: 24px;
+color: #642166;
+font-family: 'helveticaneuelight', verdana, sans-serif;
+font-weight: normal;
+}
+
+.products-grid .individual-prod{height:260px;padding-bottom:80px;}
+
+/* ===================== homepage header logo row area ================================================================== */
+
+#logo-wrapper{
+margin-bottom:25px;
+}
+
+
+/* ===================== homepage tagline area ================================================================== */
+
+#tagline {
+margin: 0px;
+border-top: 1px solid #E0E0E0;
+padding-top: 20px;
+}
+#tagline-wrapper {
+margin: 20px auto;
+}
+.top-left h4 {line-height: 38px; margin-left: 238px;}
+
+
+/* ===================== homepage top menu ================================================================== */
+
+#top-menu{margin-bottom:30px;}
+
+
+
+/* ===================== shopping assistant ================================================================== */
+
+.block.block-list.block-compare{
+	display:block;
+}
+
+#phdquiz-title{
+	height:100px; 
+	background:#642166;
+}
+
+#phdquiz-title #assistant-title{
+	background: none;
+	border-bottom: none;
+	padding: 0;
+}
+
+#quiz-wrapper {
+	border: 1px solid purple;
+	padding: 10px 20px 20px;
+	color:#444;
+	min-height:498px;
+}
+
+#quiz-questions{
+width: 500px;
+float: left;
+}
+
+#ask-me{
+width: 350px;
+margin-left: 25px;
+background: url(../images/ask-dude.jpg) no-repeat;
+float: right;
+	height:498px;
+}
+
+#assistant-content p.block-subtitle {
+	font-size: 14px;
+	font-family: 'helveticaneuelight', sans-serif;
+	font-weight: normal;
+	color:#444;
+
+}
+
+#assistant-content .actions{
+	background:none;
+}
+
+#assistant-process .products-grid{border:none;}
+
+#assistant-content button.button span span {
+	font-size: 18px;
+	padding: 5px 30px;
+}
+
+.block-compare button.button span {
+	border: none;
+	background: none;
+}
+
+#assistant-content .assistant-answers li {
+	background: none;
+	font-size: 14px;
+}
+
+#assistant-process-content p.block-subtitle {
+	color: purple !important;
+	font-family: 'HelveticaMedium' !important;
+	font-size: 16px;
+}
+
+#action_button_reset,
+#action_button_previous,
+#action_button_skip,
+#action_button_close {
+	margin-top: 5px;
+}
+
+#action_button_reset button.button span span, 
+#action_button_previous button.button span span, 
+#action_button_skip button.button span span,
+#action_button_close button.button span span{
+	padding:5px 10px; font-size:14px;
+}
+
+#action_button_reset button.button,
+#action_button_previous button.button,
+#action_button_skip button.button,
+#action_button_close button.button {
+background: #D1D1D1;
+color: rgb(128, 127, 128);
+}
+
+#action_button_reset button.button:hover,
+#action_button_previous button.button:hover,
+#action_button_skip button.button:hover,
+#action_button_close button.button:hover {
+background:#B9B9B9;
+}
+
+
+
+
+/* View Type: Grid class: list-detail */
+.category-blenders .products-grid.list-detail li.item, .category-juicers .products-grid.list-detail li.item { width: auto; padding: 30px 50px; max-width: 400px;}
+.products-grid.list-detail .product-image { width: 400px; height: 400px; }
+.products-grid.list-detail .product-name { font-size: 34px; color: #444; font-family: 'helvetica_neueregular'; font-weight: normal; line-height: 1.2em; margin-bottom: 38px;  }
+.products-grid.list-detail .desc { margin: 10px 0 5px; }
+
+
+
+/* ===================== category page (Pantry cat) ================================= */
+
+.categorymode .product-image {
+    display: block;
+    height: 200px;
+    margin: 0 auto 10px;
+    width: 200px;
+}
+
+.categorymode button.button {
+     background: none repeat scroll 0 0 #FCC43C;
+     border: medium none;
+     border-radius: 5px;
+     color: #FFFFFF;
+     cursor: pointer;
+     float: left;
+     font-size: 14px;
+     margin: 0 0 0 9px;
+     overflow: visible;
+     padding: 7px;
+     width: auto;
+ }
+
+.categorymode button.button:hover { background: #89CD06; }
+
+.categorymode .category-products{
+    float:left;
+    clear:none;
+}
+.categorymode .category-products .products-grid li.item {
+    float: left;
+    padding: 30px 40px;
+    width: 196px;
+}
+
+.categorymode .category-products .products-grid .product-name {
+    color: #444444;
+    font-family: 'HelveticaNeue65';
+    font-size: 20px;
+    font-weight: normal;
+}
+.categorymode .desc {
+    color: #444444;
+    font-family: 'HelveticaNeue65';
+    font-size: 12px;
+    text-align: center;
+}
+
+.categorymode .category-products a.link-learn {
+    background: none repeat scroll 0 0 #999999;
+    border: medium none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0 0 0 10px;
+    overflow: visible;
+    padding: 5px;
+    text-decoration: none;
+    /*width: 85px;*/
+}
+
+.categorymode .category-products a.link-learn:hover {
+    background: none repeat scroll 0 0 #666666;
+}
+
+.categorymode .mini-menu{
+    background: none repeat scroll 0 0 #642166;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -khtml-border-radius: 5px;
+    border-radius: 5px;
+    float: left;
+    padding: 8px 26px;
+    width: 120px;
+}
+
+.categorymode .mini-menu li{
+    font-size: 13px;
+}
+
+.categorymode .mini-menu ul li a{
+    color:#FFFFFF;
+    text-decoration: none;
+    font-family: 'HelveticaMedium';
+ }
+
+
+.categorymode .mini-menu ul li ul li a{
+    font-family: 'helveticaneuelight';
+}
+
+.categorymode .mini-menu ul li a:hover{
+    text-decoration: underline;
+}
+
+.categorymode .mini-menu ul li{
+    color:#89CD06;
+    font-family: 'helveticaneuelight';
+}
+
+.categorymode .page-title h1{
+    margin-left:30px;
+}
+#voucher_cond h3{
+    color:#520052;
+}
+
+#voucher_cond ul li{
+    margin-left:18px;
+}
+
+
+.products-grid .price-box .price {
+    color: #4F4F4F;
+    font-family: 'helveticaneuelight',verdana,sans-serif;
+    font-size: 24px;
+    font-weight: normal;
+}
+
+/****************
+view.phtml css
+****************/
+
+
+.product-essential {
+clear: both;
+width: 100%;
+}
+
+.catalog-product-view .col1-layout .product-shop {
+width: 50%;
+margin: 0 auto 25px;
+}
+
+.product-view {
+width: 82%;
+float: right;
+}
+
+.product-collateral {
+width: 100%;
+}
+.product-view .box-description {
+margin: 0 auto;
+text-align: center;
+width: 100%;
+}
+
+.product-img-box {
+
+}
+
+.product-img-box .product-image img {}
+
+.product-view .product-shop .product-name h1 {
+margin: 0;
+font-size: 20px;
+line-height: 25px;
+font-family: 'helveticaneuelight';
+}
+
+.product-view .product-shop .availability { font-size:15px; }
+.product-view .add-to-box .or{display:none;}
+.product-view .add-to-box .add-to-links{display:none;}
+
+
+.add-to-box .add-to-cart {
+    float: left;
+    margin-left: 125px;}
+
+.catalog-product-view .btn-cart {
+    background: none repeat scroll 0% 0% rgb(252, 196, 60);
+    padding: 19px 40px;
+    float: none !important;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-top: 19px;
+}
+
+.product-shop .order-box {
+    padding: 10px;
+    color: rgb(79, 79, 79);
+    margin-left: 20px;
+}
+
+/****************
+view.phtml css   -> ONLY FOR BUNDLE PAGE (PACK PRODUCT)
+****************/
+
+.bundle .product-options{display:none;}
+.bundle .product-options-bottom .add-to-links{display:none;}
+.bundle .product-options-bottom{background: none repeat scroll 0 0 rgba(0, 0, 0, 0);border: medium none;}
+.bundle .product-options-bottom .add-to-cart{float: left;margin-left: 100px;}
+.bundle .product-shop .price-box{margin:0}
+.bundle .price-box-bundle .price-box .price{font-family: 'helveticaneuelight';color: #4F4F4F;font-size: 24px;font-weight: normal;}
+
+
+/****************
+CART PAGE  -> ONLY FOR BUNDLE PAGE (PACK PRODUCT)
+****************/
+.item-options{display:none;}
+
+/**********************
+Cleanse Product Styling
+**********************/
+.products-grid li.item.basic-3-day, .products-grid li.item.advanced-3-day {
+box-shadow: 0 0 15px #CCC;
+/*background: url(../images/pro-back-hover.gif) no-repeat center top #F7F7F7;*/
+}
+
+/***************
+Fast Cart Styles
+****************/
+.products-list .price-box {
+float: left;
+/*padding: 0 30px;*/
+margin-left: -26px;
+}
+/***************
+Contact Styles
+****************/
+.contacts-index-index .page-title h1{
+    color: #000000;
+    font-family: 'helvetica_neueregular';
+    font-size: 60px;
+    line-height: 50px;
+    margin-bottom: 25px;
+    margin-top: 25px;
+    text-align: center;
+    text-transform: capitalize;
+}
+/********************
+	EASY BANNER
+********************/
+
+#output li a img {
+width: 839px !important;
+height: auto !important;
+}
+
+/* price */
+
+.category-phd-pantry .regular-price{margin-left: 0px;}

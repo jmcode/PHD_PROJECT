@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<!-- 
+/**
+ * @category   Devinc
+ * @package    Devinc_Gomobile
+ * @author     ModuleCreator
+ * @license    http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+ */
+ -->
+<config>
+    <modules>
+        <Devinc_Gomobile>
+            <version>0.1.0</version>
+        </Devinc_Gomobile>
+    </modules>
+    <frontend>
+        <routers>
+            <gomobile>
+                <use>standard</use>
+                <args>
+                    <module>Devinc_Gomobile</module>
+                    <frontName>gomobile</frontName>
+                </args>
+            </gomobile>
+        </routers>
+        <layout>
+            <updates>
+                <gomobile>
+                    <file>gomobile.xml</file>
+                </gomobile>
+            </updates>
+        </layout>
+        <translate>
+            <modules>
+                <gomobile>
+                    <files>
+                        <default>Gomobile.csv</default>
+                    </files>
+                </gomobile>
+            </modules>
+        </translate>
+    </frontend>
+    <adminhtml>
+		<acl>
+			<resources>
+				<!--
+<all>
+					<title>Allow Everything</title>
+				</all>
+-->
+				<admin>
+					<children>
+						<Devinc_Gomobile>
+							<title>Mobile Theme Module</title>
+							<sort_order>10</sort_order>
+						</Devinc_Gomobile>
+						<system>
+							<children>
+								<config>
+									<children>
+										<gomobile translate="title" module="gomobile">
+											<title>Mobile Theme</title>
+											<sort_order>20</sort_order>
+										</gomobile>
+									</children>
+								</config>
+							</children>
+						</system>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+    </adminhtml>   
+    <global>
+		<events> 	  
+          <controller_action_layout_load_before>
+              <observers>
+                  <set_groupdeals_city_region>
+                      <class>gomobile/observer</class>
+                      <method>setCityRegion</method>
+                  </set_groupdeals_city_region>
+              </observers>
+          </controller_action_layout_load_before>	 
+          <controller_front_init_before>
+              <observers>
+                  <gomobile_controller_action_before>
+                      <class>gomobile/observer</class>
+                      <method>hookToControllerActionPreDispatch</method>
+                  </gomobile_controller_action_before>
+              </observers>
+          </controller_front_init_before> 
+        </events>	
+        <blocks>
+            <gomobile>
+                <class>Devinc_Gomobile_Block</class>
+            </gomobile>
+        </blocks>
+        <models>
+            <gomobile>
+                <class>Devinc_Gomobile_Model</class>
+            </gomobile>
+            <core>
+            	<rewrite>  
+                	<design_package>Devinc_License_Model_Gomobile_Core_Design_Package</design_package>  
+				</rewrite> 
+            </core>
+        </models>  
+        <resources>
+            <gomobile_setup>
+                <setup>
+                    <module>Devinc_Gomobile</module>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </gomobile_setup>
+        </resources>
+        <helpers>
+            <gomobile>
+                <class>Devinc_Gomobile_Helper</class>
+            </gomobile>
+        </helpers>
+    </global>
+</config>

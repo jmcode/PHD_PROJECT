@@ -1,0 +1,40 @@
+<?php
+$ids = $this->getCategoryIds();
+$_categoryIds = explode(',', $ids);
+//Zend_Debug::dump($_categoryIds);
+//exit();
+$_helper    = $this->helper('catalog/output');
+?>
+<?php $_columnCount = $this->getNumProducts(); ?>
+    <div class="category-products">
+        <ul class="products-grid list-detail">
+            <?php $i=0; foreach ($_categoryIds as $_categoryId): ?>
+                <?php
+                $_category = Mage::getModel('catalog/category')->load($_categoryId);
+                $_imgHtml   = '';
+                if ($_imgUrl = $_category->getImageUrl()) {
+                    $_imgHtml = '<div class="category-image">
+                                <a href="'.$this->getCategoryUrl($_category).'" title="'.$this->htmlEscape($_category->getName()).'">
+                                    <img width="300px" src="'.$_imgUrl.'" alt="'.$this->htmlEscape($_category->getName()).'" title="'.$this->htmlEscape($_category->getName()).'" />
+                                </a>
+                             </div>';
+                    $_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
+                }
+                ?>
+                <?php if($_category->getIsActive() && $_category->getIncludeInMenu()): ?>
+                    <?php $i++; ?>
+                    <li class="item <?php if(($i-1)%$_columnCount==0): ?>first<?php elseif($i%$_columnCount==0): ?>last<?php endif; ?>">
+                        <?php if($_imgUrl): ?>
+                            <?php echo $_imgHtml ?>
+                        <?php endif; ?>
+
+                        <h2 class="product-name">
+                            <a href="<?php echo $this->getCategoryUrl($_category); ?>">
+                                <?php echo $this->htmlEscape($_category->getName()) ?>
+                            </a>
+                        </h2>
+                    </li>
+                <?php endif; ?>
+            <?php endforeach; ?>
+        </ul>
+    </div>

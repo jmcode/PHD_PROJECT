@@ -1,0 +1,20 @@
+<?php /**
+**  	
+**  
+**  	This File:
+**  
+**  	Gets Static Block 'bottom_contents'
+** 
+**  			(This holds the three columns)
+**  
+**  	Get template file 'facebook-sidebar.phtml'
+** 
+**  			(This holds the facebook code for the fourth home columns)
+**  
+**  
+**/?>
+
+
+<?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('bottom_contents')->toHtml() ?>
+
+<?php echo $this->getLayout()->createBlock('core/template')->setTemplate('/page/html/facebook-sidebar.phtml')->toHtml(); ?>

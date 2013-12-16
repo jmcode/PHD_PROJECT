@@ -1,0 +1,55 @@
+<form action="<?php echo Mage::getUrl(); ?>affiliate-enquiry/index/post/" id="enquiryForm" method="post">
+    <fieldset class="group-select">
+        <ul class="trade-enquiry">
+            <li>
+                <div class="input-box">
+                    <label for="firstname"><?php echo Mage::helper('twc_affiliateenquiry')->__('First Name') ?> <span class="required">*</span></label>
+                    <input name="firstname" id="firstname" title="<?php echo $this->__('First Name') ?>" value="<?php echo $this->htmlEscape($this->helper('twc_affiliateenquiry')->getFirstname()) ?>" class="required-entry input-text" type="text" />
+                </div>
+                <div class="input-box">
+                    <label for="lastname"><?php echo Mage::helper('twc_affiliateenquiry')->__('Last Name') ?> <span class="required">*</span></label>
+                    <input name="lastname" id="lastname" title="<?php echo $this->__('Last Name') ?>" value="<?php echo $this->htmlEscape($this->helper('twc_affiliateenquiry')->getLastname()) ?>" class="required-entry input-text" type="text" />
+                </div>
+                <div class="input-box">
+                    <label for="phone"><?php echo Mage::helper('twc_affiliateenquiry')->__('Phone') ?> <span class="required">*</span></label>
+                    <input name="phone" id="phone" title="<?php echo $this->__('Phone') ?>" value="<?php echo $this->htmlEscape($this->helper('twc_affiliateenquiry')->getTelephone()) ?>" class="required-entry input-text" type="text" />
+                </div>
+                <div class="input-box">
+                    <label for="email"><?php echo Mage::helper('twc_affiliateenquiry')->__('Email') ?> <span class="required">*</span></label>
+                    <input name="email" id="email" title="<?php echo $this->__('Email') ?>" value="<?php echo $this->htmlEscape($this->helper('twc_affiliateenquiry')->getUserEmail()) ?>" class="required-entry input-text validate-email" type="text" />
+                </div>
+                <div class="input-box">
+                    <label for="business"><?php echo Mage::helper('twc_affiliateenquiry')->__('Business Name') ?></label>
+                    <input name="business" id="business" title="<?php echo $this->__('Business Name') ?>" value="" class="input-text" type="text" />
+                </div>
+                <div class="input-box">
+                    <label for="type"><?php echo Mage::helper('twc_affiliateenquiry')->__('Business Type') ?> <span class="required">*</span></label>
+                    <input name="type" id="type" title="<?php echo $this->__('Business Type') ?>" value="" class="required-entry input-text" type="text" />
+                </div>
+                <div class="input-box">
+                    <label for="website"><?php echo Mage::helper('twc_affiliateenquiry')->__('Website') ?></label>
+                    <input name="website" id="website" title="<?php echo $this->__('Website') ?>" value="" class="input-text" type="text" />
+                </div>
+                <div class="input-box">
+                    <label for="region"><?php echo Mage::helper('twc_affiliateenquiry')->__('Region') ?> <span class="required">*</span></label>
+                    <input name="region" id="region" title="<?php echo $this->__('Region') ?>" value="" class="required-entry input-text" type="text" />
+                </div>
+                <div class="input-box">
+                    <label for="comment" class="required"><em>*</em><?php echo Mage::helper('twc_affiliateenquiry')->__('Tell us why we should chose you') ?></label>
+                    <textarea name="comment" id="comment" title="<?php echo Mage::helper('twc_affiliateenquiry')->__('Tell us why we should chose you') ?>" class="required-entry input-text" cols="18" rows="5"></textarea>
+                </div>
+            </li>
+        </ul>
+
+        <div class="buttons-set">
+            <p class="required"><?php echo $this->__('* Required Fields') ?></p>
+            <button class="button" type="submit"><span><span><?php echo Mage::helper('twc_affiliateenquiry')->__('Submit') ?></span></span></button>
+        </div>
+    </fieldset>
+</form>
+<script type="text/javascript">
+    //<![CDATA[
+    var enquiryForm = new VarienForm('enquiryForm', true);
+    new RegionUpdater('country', 'region', 'region_id', <?php echo $this->helper('directory')->getRegionJson() ?>, undefined, 'zip');
+    //]]>
+</script>

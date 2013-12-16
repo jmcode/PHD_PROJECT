@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<!--
+/**
+* Appmerce - Applications for Ecommerce
+* http://ww.appmerce.com
+*
+* @extension   eWAY Hosted Payment (AU/UK/NZ), XML+CVN (AU), Rapid API
+* @type        Payment method
+*
+* NOTICE OF LICENSE
+*
+* This source file is subject to the Open Software License (OSL 3.0)
+* that is bundled with this package in the file LICENSE.txt.
+* It is also available through the world-wide-web at this URL:
+* http://opensource.org/licenses/osl-3.0.php
+*
+* @category    Magento Commerce
+* @package     Appmerce_Eway
+* @copyright   Copyright (c) 2011-2012 Appmerce (http://www.appmerce.com)
+* @license     http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
+*/
+-->
+<config>
+    <modules>
+        <Appmerce_Eway>
+            <version>2.0.0</version>
+        </Appmerce_Eway>
+    </modules>
+    <global>
+        <models>
+            <eway>
+                <class>Appmerce_Eway_Model</class>
+                <resourceModel>eway_mysql4</resourceModel>
+            </eway>
+            <eway_mysql4>
+                <class>Appmerce_Eway_Model_Mysql4</class>
+                <entities>
+                    <api_debug>
+                        <table>eway_api_debug</table>
+                    </api_debug>
+                </entities>
+            </eway_mysql4>
+        </models>
+        <helpers>
+            <eway>
+                <class>Appmerce_Eway_Helper</class>
+            </eway>
+        </helpers>
+        <resources>
+            <eway_setup>
+                <setup>
+                    <module>Appmerce_Eway</module>
+                    <class>Appmerce_Eway_Model_Mysql4_Setup</class>
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </eway_setup>
+            <eway_write>
+                <connection>
+                    <use>core_write</use>
+                </connection>
+            </eway_write>
+            <eway_read>
+                <connection>
+                    <use>core_read</use>
+                </connection>
+            </eway_read>
+        </resources>
+        <blocks>
+            <eway>
+                <class>Appmerce_Eway_Block</class>
+            </eway>
+        </blocks>
+    </global>
+    <frontend>
+        <layout>
+            <updates>
+                <eway>
+                    <file>appmerce/eway/layout.xml</file>
+                </eway>
+            </updates>
+        </layout>
+        <secure_url>
+            <eway_api>/eway/api</eway_api>
+            <eway_direct>/eway/direct</eway_direct>
+            <eway_rapid>/eway/rapid</eway_rapid>
+        </secure_url>
+        <routers>
+            <eway>
+                <use>standard</use>
+                <args>
+                    <module>Appmerce_Eway</module>
+                    <frontName>eway</frontName>
+                </args>
+            </eway>
+        </routers>
+        <translate>
+            <modules>
+                <Appmerce_Eway>
+                    <files>
+                        <default>Appmerce_Eway.csv</default>
+                    </files>
+                </Appmerce_Eway>
+            </modules>
+        </translate>
+        <events>
+            <sales_model_service_quote_submit_after>
+                <observers>
+                    <eway_observer>
+                        <type>singleton</type>
+                        <class>eway/observer_submit</class>
+                        <method>sales_model_service_quote_submit_after</method>
+                    </eway_observer>
+                </observers>
+            </sales_model_service_quote_submit_after>
+        </events>
+    </frontend>
+    <adminhtml>
+        <translate>
+            <modules>
+                <Appmerce_Eway>
+                    <files>
+                        <default>Appmerce_Eway.csv</default>
+                    </files>
+                </Appmerce_Eway>
+            </modules>
+        </translate>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <payment_services translate="title" module="payment">
+                                            <title>Payment Services</title>
+                                        </payment_services>
+                                    </children>
+                                </config>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        <events>
+            <sales_order_invoice_save_before>
+                <observers>
+                    <eway_observer>
+                        <type>singleton</type>
+                        <class>eway/observer_invoice</class>
+                        <method>sales_order_invoice_save_before</method>
+                    </eway_observer>
+                </observers>
+            </sales_order_invoice_save_before>
+            <sales_order_creditmemo_save_before>
+                <observers>
+                    <eway_observer>
+                        <type>singleton</type>
+                        <class>eway/observer_invoice</class>
+                        <method>sales_order_creditmemo_save_before</method>
+                    </eway_observer>
+                </observers>
+            </sales_order_creditmemo_save_before>
+        </events>
+    </adminhtml>
+    <default>
+        <payment>
+            <eway_redirect>
+                <model>eway/api_redirect</model>
+                <title>eWAY Redirect</title>
+                <interface_language>EN</interface_language>
+                <allowspecific>0</allowspecific>
+                <order_email>1</order_email>
+                <order_status>pending</order_status>
+                <processing_status>processing</processing_status>
+            </eway_redirect>
+            <eway_direct>
+                <model>eway/api_direct</model>
+                <title>eWAY Direct XML</title>
+                <interface_language>EN</interface_language>
+                <card_security>standard</card_security>
+                <refund_password backend_model="adminhtml/system_config_backend_encrypted"/>
+                <token_password backend_model="adminhtml/system_config_backend_encrypted"/>
+                <allowspecific>0</allowspecific>
+                <order_email>1</order_email>
+                <order_status>pending</order_status>
+                <pending_status>pending_payment</pending_status>
+                <processing_status>processing</processing_status>
+            </eway_direct>
+            <eway_rapid>
+                <model>eway/api_rapid</model>
+                <title>eWAY Rapid 3.0</title>
+                <allow_billing_agreement_wizard>0</allow_billing_agreement_wizard>
+                <rapid_password backend_model="adminhtml/system_config_backend_encrypted"/>
+                <api_key backend_model="adminhtml/system_config_backend_encrypted"/>
+                <allowspecific>0</allowspecific>
+                <order_email>1</order_email>
+                <order_status>pending</order_status>
+                <pending_status>pending_payment</pending_status>
+                <review_status>payment_review</review_status>
+                <processing_status>processing</processing_status>
+            </eway_rapid>
+        </payment>
+    </default>
+</config>

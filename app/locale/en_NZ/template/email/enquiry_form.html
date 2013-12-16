@@ -1,0 +1,53 @@
+<!--@subject Affiliate Enquiry Form@-->
+<!--@vars
+{"var data.name":"Sender Name",
+"var data.email":"Sender Email",
+"var data.telephone":"Sender Telephone",
+"var data.comment":"Comment"}
+@-->
+
+<style type="text/css">
+    body,td { color:#2f2f2f; font:12px/1.35em Verdana, Arial, Helvetica, sans-serif; }
+    p { color: #666; }
+</style>
+
+<div style="font:12px/1.35em Verdana, Arial, Helvetica, sans-serif;">
+    <table cellspacing="0" cellpadding="0" border="0" width="98%" style="margin-top:10px; font:12px/1.35em Verdana, Arial, Helvetica, sans-serif; margin-bottom:10px;">
+        <tr>
+            <td align="center" valign="top">
+                <!-- [ header starts here] -->
+                <table cellspacing="0" cellpadding="0" border="0" width="650">
+                    <tr>
+                        <td valign="top">
+                            <a href="{{store url=""}}"><img src="{{var logo_url}}" alt="{{var logo_alt}}" style="margin-bottom:10px;" border="0"/></a>
+                        </td>
+                    </tr>
+                </table>
+
+                <!-- [ middle starts here] -->
+                <table cellspacing="0" cellpadding="0" border="0" width="650">
+                    <thead>
+                    <tr>
+                        <th align="left" bgcolor="#EAEAEA" style="padding:5px 9px 6px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;">New Affiliate Enquiry</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td valign="top" style="border:1px solid #BEBCB7; padding:13px 18px; background:#ffffff; ">
+                            <p>First Name: <strong>{{var data.firstname}}</strong></p>
+                            <p>Last Name: <strong>{{var data.lastname}}</strong></p>
+                            <p>Email: <strong>{{var data.email}}</strong></p>
+                            <p>Phone: <strong>{{var data.phone}}</strong></p>
+                            <p>Business Name: <strong>{{var data.business}}</strong></p>
+                            <p>Business Type: <strong>{{var data.type}}</strong></p>
+                            <p>Website: <strong>{{var data.website}}</strong></p>
+                            <p>Region: <strong>{{var data.region}}</strong></p>
+                            <p>And you should use them because: <strong>{{var data.comment}}</strong></p>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+</div>

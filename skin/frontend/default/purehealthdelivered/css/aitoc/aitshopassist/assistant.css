@@ -1,0 +1,78 @@
+
+/**
+ * Shopping Assistant
+ *
+ * @category:    Aitoc
+ * @package:     Aitoc_Aitshopassist
+ * @version      1.0.17
+ * @license:     n/a
+ * @copyright:   Copyright (c) 2013 AITOC, Inc. (http://www.aitoc.com)
+ */
+.block-compare .assistant-down {
+    cursor:pointer;
+}
+
+.block-compare .assistant-up {
+    cursor:pointer;
+}
+
+.block-compare .assistant-down strong {
+	
+}
+
+.block-compare .assistant-down strong, .block-compare .assistant-up strong {
+	padding: 40px 40px;
+}
+.block-compare .assistant-down strong span, .block-compare .assistant-up strong span{
+	color: #fff;
+font-family: 'helvetica_neueregular';
+font-weight: normal;
+letter-spacing: 2px;
+font-size: 32px;
+text-transform: capitalize;
+}
+.block-compare .hide {
+    display: none;
+}
+
+.block-compare .assistant-process-view {
+    display: none;
+}
+
+.block-compare .assistant-process-actions-view {
+    display: none;
+}
+
+.assistant-process-view li {
+    padding: 3px 9px;
+}
+
+.assistant-process-view .label {
+    display: block;
+    margin-left: 18px;
+}
+
+.assistant-process-view input.radio {
+    float: left;
+    margin: 1px -18px 0 0;
+}
+
+.assistant-process-view label {
+    color: #777777;
+    font-weight: bold;
+}
+
+.assistant-message-view {
+display: none;
+padding: 0;
+color: purple;
+font-size: 14px;
+font-weight: normal;
+}
+
+.assistant-error-view {
+    display: none;
+    color: #FF0000;
+    font-size: 12px;
+    font-weight: normal;
+}

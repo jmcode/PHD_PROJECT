@@ -1,0 +1,150 @@
+<style>
+#edit_content {
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+overflow:hidden;
+	-moz-box-shadow: 1px 2px 12px 1px #000000;
+	-webkit-box-shadow:1px 2px 12px 1px #000000;
+	box-shadow: 1px 2px 12px 1px #000000;
+	/* For IE 8 */
+	-ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+	/* For IE 5.5 - 7 */
+	filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+
+</style>
+<?php
+$customer = Mage::getSingleton('customer/session')->getCustomer();
+$customerId = $customer->getId();
+
+if (isset($_POST['enter2'])) {
+   $region = $_POST['region_name'];
+   $sub_region = $_POST['sub_reg'];
+   editUserInfo2($customerId, $region, $sub_region);
+   Mage::getModel('core/cookie')->set('region', $region, 0, '/');
+   Mage::getModel('core/cookie')->set('sub_region', $sub_region, 0, '/');
+   header("location:http://www.phdcleanse.co.nz/pricing-availability/");
+}
+?>
+   
+   <script>
+   var j=jQuery.noConflict();
+   j(document).ready(function(){
+				
+      j(".inline").colorbox({inline:true, width:"685px"});
+				
+				
+      //Example of preserving a JavaScript event for inline calls.
+      j("#click").click(function(){ 
+         j('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+         return false;
+      });
+   });
+</script>
+<?php
+$reg_id=Mage::getModel('core/cookie')->get('region');
+$resource = Mage::getSingleton('core/resource');
+$readConnection = $resource->getConnection('core_read');
+$query = 'SELECT * FROM diji_salesregions_region';
+$results = $readConnection->fetchAll($query);
+if($customerId){
+$readselectedresion = 'SELECT  * from  diji_customer_region_info where customer_id=' . $customerId;
+$results_for_selected = $readConnection->fetchAll($readselectedresion);
+foreach ($results_for_selected as $selected) {
+   $sel_reg = $selected['regions_id'];
+   $sel_subreg = $selected['sub_regions_id'];
+}
+}else if(isset($_POST['enter2'])) {
+   $sel_reg = $_POST['region_name'];
+   $sel_subreg = $_POST['sub_reg'];
+}else if($reg_id){
+   $sel_reg =Mage::getModel('core/cookie')->get('region');
+   $sel_subreg = Mage::getModel('core/cookie')->get('sub_region');
+}
+?>
+
+
+			<div id='edit_content' style='padding:10px; background:#fff;width:552px;'>
+			<div class='regons'style="width:552;">
+			<div class="reg-div"><span class="headding">Where Do You Live?</span></div><br/>
+			<div class="regcnt-div">
+			<?php $i=1;
+			
+			foreach($results as $result){?> 
+			<?php
+               if (($result['region_id'] == $sel_reg)) {
+                  $class = "Select";
+               } else {
+                  $class = "";
+               }
+               ?>
+			<?php $query_subr = 'SELECT * FROM diji_salesregions_subregion where region_id='.$result['region_id']; 
+					$results_subr = $readConnection->fetchAll($query_subr);
+					$name_reg=$result['name'];
+			?>
+			<div class="left2 col<?php echo $class; ?>" id="edleft2-<?php echo $i ?>" onmousemove="togglein('<?php echo $i ?>')">
+			<div class="main-reg"> <?php echo $result['name'];?></div>
+			</div>
+			<div class="left" id="edleft1-<?php echo $i ?>" style="display:none;background:url('<?php echo $this->getSkinUrl().'images/'.$name_reg.'.jpg'; ?>');" >
+			
+			<div class="main-reg"> <?php echo $result['name'];?></div>
+			<form name="regionsl<?php echo $i ?>" id="edregionsl<?php echo $i ?>" method="POST">
+			<input type="hidden" name="region_name" value="<?php echo $result['region_id'];?>" />
+			<select name="sub_reg">
+			<option name="sub" value="0">----Select----</option> 
+			<?php foreach($results_subr as $res_subr){
+			if ($res_subr['subregion_id'] == $sel_subreg) {
+                              $sel = "selected";
+                           } else {
+                              $sel = "";
+                           }
+			?>
+			<option <?php echo $sel ?> name="sub" value="<?php echo $res_subr['subregion_id'];?>">
+			<?php echo $res_subr['name'];?>
+			</option>
+			<?php } ?>
+			</select>
+			<input type="submit" name="enter2" value="Enter" class="enter" style="border:0px !important;padding:5px !important"/>
+			</form>
+			</div>
+			
+			<?php $i++;} ?>
+			</div>
+			</div>
+			<?php //print_r($_POST);?>
+			<!--<p>Updating Content Example:<br />
+			<a class="ajax" href="../content/flash.html">Click here to load new content</a></p-->
+			</div>
+
+
+	<script>
+	function togglein(id){
+		var j=jQuery.noConflict();
+		//alert('a');
+		j(".left").hide();
+		j(".left2").show();
+    j("#edleft2-"+id).hide();
+	j("#edleft1-"+id).show();
+	return false;
+  }
+	
+		</script>
+		
+<?php
+
+function editUserInfo2($cust_id, $region_id, $subregion_id) {
+if($cust_id){
+   $write = Mage::getSingleton("core/resource")->getConnection("core_write");
+   $read1 = Mage::getSingleton('core/resource')->getConnection('core_read');
+   $readQuery1 = 'SELECT  * from diji_customer_region_info where customer_id=' . $cust_id;
+   $results = $read1->fetchAll($readQuery1);
+   if (count($results) > 0) {
+     $upquery = "UPDATE  diji_customer_region_info SET regions_id=$region_id,sub_regions_id=$subregion_id WHERE customer_id=$cust_id";
+      $write->query($upquery);
+   } else {
+      $query = "INSERT INTO diji_customer_region_info (id,regions_id,sub_regions_id,customer_id) VALUES ('',$region_id,$subregion_id,$cust_id)";
+      $write->query($query);
+   }
+   }
+}?>

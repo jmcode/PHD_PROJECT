@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <twc_affiliateenquiry_index_index>
+        <reference name="root">
+            <action method="setTemplate"><template>page/1column.phtml</template></action>
+        </reference>
+        <reference name="head">
+            <action method="setTitle"><title>Trade and Affiliate Enquiry Form</title></action>
+        </reference>
+        <reference name="content">
+            <block type="core/template" name="enquiryPage" template="twc/affiliateenquiry/page.phtml">
+                <block type="core/template" name="enquiryForm" template="twc/affiliateenquiry/form.phtml"/>
+            </block>
+        </reference>
+    </twc_affiliateenquiry_index_index>
+</layout>

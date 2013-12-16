@@ -1,0 +1,59 @@
+.products-grid.list-detail li.item { padding: 30px 20px; }
+.products-grid.list-detail li.item.first { padding-left: 0; }
+.products-grid.list-detail li.item.last { padding-right: 0; }
+.products-grid.list-detail li.item .category-image img { width: 300px; }
+
+.top-left h4 { height: 30px; padding-top: 4px; background-position: 0 0; }
+
+.read-butn { background-color: #339900; }
+
+.cart-items {
+background: url(../images/cart-img.gif) no-repeat right top;
+}
+
+.therapy-col{float:left; width:46%;}
+#therapy-left{margin-right:8%}
+#therapy-right{margin-right:0px;}
+
+.green{color: #00a84c !important;}
+
+#therapy-content p{font-size:15px;}
+#therapy-content h2{font-family:'HelveticaNeuelight', sans-serif; font-size:30px;}
+
+#therapy-content #therapy-right h2{margin-bottom:0px;}
+
+#therapy-content{
+margin-bottom:60px; 
+font-family: 'helveticaneuelight', sans-serif;
+font-size: 16px;
+}
+
+#therapy-content ul{list-style: disc;}
+#therapy-content ul li {margin-left:30px; font-size:14px;}
+
+#primary-nav li > ul li {background:#339900;}
+
+#primary-nav li > ul{background:url("../images/mainnavbg.png") no-repeat scroll center top transparent}
+
+.footer-col {
+float: left;
+margin-right: 35px;
+width: 12%;
+}
+
+.top-content {
+padding: 15px 0 15px 18px;}
+
+
+.top-content-advert{
+padding: 15px 0 0px 20px;
+margin: 0px auto;
+position: relative;
+width: 980px;
+}
+
+.logo {
+width: 474px;
+float: left;
+margin: 15px 0 20px;
+}

@@ -1,0 +1,178 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+/**
+ * @var Mage_Page_Block_Html_Header $this
+ */
+?>
+<link rel="stylesheet" href="<?php echo $this->getSkinUrl('colorbox/colorbox.css')?>" />
+<script src="<?php echo $this->getSkinUrl('colorbox/jquery.colorbox.js')?>"></script>
+<header id="header" class="clearfix">
+<div class="top-header">
+    <div class="row clearfix">
+      <div class="social-nav">
+      
+  <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('social-navigation')->toHtml(); ?>
+        
+        
+        
+      </div>
+      <!--Social nav close here -->
+      
+      <div class="cart-items"> <?php
+        $items = Mage::getSingleton('checkout/session')->getQuote()->getAllItems();
+//Get total items and total quantity in cart
+$totalItems = Mage::getModel('checkout/cart')->getQuote()->getItemsCount();
+$totalQuantity = Mage::getModel('checkout/cart')->getQuote()->getItemsQty();
+//echo "<br />"; 
+//Get subtotal and grand total price of cart
+$subTotal = Mage::getModel('checkout/cart')->getQuote()->getSubtotal();
+$grandTotal = Mage::getModel('checkout/cart')->getQuote()->getGrandTotal();
+ ?>    
+<?php if($totalItems>0){
+$cartlabel="Shopping Cart" ;
+}
+else{
+$cartlabel="My Cart Is Empty"; 
+ }
+ ?> 
+
+ 
+<div class="cart"> My cart (<?php if($totalItems>0){ ?><?php echo $totalItems?>): $<?php echo $grandTotal?> <?php }?><a href="<?php echo Mage::helper('checkout/cart')->getCartUrl(); ?>"><?php echo $cartlabel?></a> </div>
+</div>
+      
+      
+      
+    
+      </div>
+      
+      <!--Cart close here --> 
+      
+    </div>
+    <!--Row close here --> 
+    
+  </div>
+   <!--Top close here --> 
+
+<div class="row clearfix">
+    <div class="logo">
+<h1><a href="<?php echo $this->getUrl('') ?>" title="<?php echo $this->getLogoAlt() ?>"><img src="<?php echo $this->getLogoSrc() ?>" alt="<?php echo $this->getLogoAlt() ?>" /></a></h1>
+
+</div>
+
+ <nav id="primary-nav">
+      
+      
+   <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('top-navigation')->toHtml(); ?>   
+    </nav>
+
+</div>
+
+
+<div class="header-container">
+    <div class="header" style="display:none;">
+        <?php //if ($this->getIsHomePage()):?>
+        
+        <?php //else:?>
+        <a href="<?php //echo $this->getUrl('') ?>" title="<?php //echo $this->getLogoAlt() ?>" class="logo"><strong><?php echo $this->getLogoAlt() ?></strong><img src="<?php //echo $this->getLogoSrc() ?>" alt="<?php //echo $this->getLogoAlt() ?>" /></a>
+        <?php //endif?>
+        <div class="quick-access">
+            <?php //echo $this->getChildHtml('topSearch') ?>
+            <p class="welcome-msg"><?php echo $this->getWelcome() ?> <?php echo $this->getAdditionalHtml() ?></p>
+            <?php //echo $this->getChildHtml('topLinks') ?>
+            <?php //echo $this->getChildHtml('store_language') ?>
+        </div>
+        <?php echo $this->getChildHtml('topContainer'); ?>
+    </div>
+</div>
+
+
+</header>
+<!-- Header close here -->
+<?php echo $this->getChildHtml('topMenu') ?>
+		<?php if(!isset($_COOKIE['region']) ||!isset($_COOKIE['sub_region']) ){?>
+		<script type="text/javascript"> 
+		var j=jQuery.noConflict();
+        j(document).ready(function(){
+		
+          j.fn.colorbox({width:"60%", inline:true, href:"#inline_content"});
+		  j("#cboxClose").remove();
+        }); 
+</script>  
+<?php } ?>
+<?php
+    $resource = Mage::getSingleton('core/resource');
+    $readConnection = $resource->getConnection('core_read');
+    $query = 'SELECT * FROM diji_salesregions_region';
+    $results = $readConnection->fetchAll($query);
+?>
+		<div style='display:none'>
+			<div id='inline_content' style='padding:10px; background:#fff;width:450px;'>
+			<div class='regons'style="width:450px;">
+			<?php $i=1;
+			foreach($results as $result){?> 
+			<div class="left" style="width:200px;height:200px;border:1px solid #333;margin-right:10px;"> <?php echo $result['name'];?>
+			<?php $query_subr = 'SELECT * FROM diji_salesregions_subregion where region_id='.$result['region_id']; 
+					$results_subr = $readConnection->fetchAll($query_subr);
+			?>
+			<div>
+			<form name="regions<?php echo $i ?>" id="regions<?php echo $i ?>" method="POST">
+			<input type="hidden" name="region_name" value="<?php echo $result['region_id'];?>" />
+			<select name="sub_reg">
+			<option name="sub" value="0">----Select----</option> 
+			<?php foreach($results_subr as $res_subr){?>
+			<option name="sub" value="<?php echo $res_subr['subregion_id'];?>">
+			<?php echo $res_subr['name'];?>
+			</option>
+			<?php } ?>
+			</select>
+			<input type="submit" name="submit" value="Enter"/>
+			</form>
+			</div>
+			</div>
+			<?php $i++;} ?>
+			
+			</div>
+			<?php //print_r($_POST);?>
+			<!--<p>Updating Content Example:<br />
+			<a class="ajax" href="../content/flash.html">Click here to load new content</a></p-->
+			</div>
+		</div>
+		<?php 
+		if(isset($_POST['submit'])){
+		
+		 $region = $_POST['region_name'];
+		 $sub_region= $_POST['sub_reg'];
+		 Mage::getModel('core/cookie')->set('region', $region,0,'/');
+		 Mage::getModel('core/cookie')->set('sub_region', $sub_region,0,'/');
+		 /* setcookie('region',$region,0,'/'); // 86400 = 1 daytime()+60*60, '/', 'site.com'); 
+		 setcookie('sub_region',$sub_region,0,'/'); */
+		echo "<SCRIPT language='JavaScript'>
+			window.location='';
+		</SCRIPT>";
+		}
+		//print_r($_COOKIE);
+		
+		?>

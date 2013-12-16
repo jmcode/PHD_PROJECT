@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <TWC_MultiAdd>
+            <version>0.1.0</version>
+        </TWC_MultiAdd>
+    </modules>
+    <global>
+        <!--<rewrite>-->
+            <!--<twc_multiadd_checkout_cart>-->
+                <!--<from><![CDATA[#^/checkout/cart/addmultiple/.*$#]]></from>-->
+                <!--<to>/multiadd/checkout_cart/addmultiple/</to>-->
+            <!--</twc_multiadd_checkout_cart>-->
+        <!--</rewrite>-->
+        <helpers>
+            <twc_multiadd>
+                <class>TWC_MultiAdd_Helper</class>
+            </twc_multiadd>
+        </helpers>
+    </global>
+    <frontend>
+        <routers>
+            <checkout>
+                <args>
+                    <modules>
+                        <TWC_MultiAdd before="Mage_Checkout">TWC_MultiAdd_Checkout</TWC_MultiAdd>
+                    </modules>
+                </args>
+            </checkout>
+            <twc_multiadd>
+                <use>standard</use>
+                <args>
+                    <module>TWC_MultiAdd</module>
+                    <frontName>multiadd</frontName>
+                </args>
+            </twc_multiadd>
+        </routers>
+    </frontend>
+</config> 

@@ -1,0 +1,72 @@
+
+/**
+ * Shopping Assistant
+ *
+ * @category:    Aitoc
+ * @package:     Aitoc_Aitshopassist
+ * @version      1.0.17
+ * @license:     n/a
+ * @copyright:   Copyright (c) 2013 AITOC, Inc. (http://www.aitoc.com)
+ */
+.block-compare .assistant-down {
+    cursor:pointer;
+}
+
+.block-compare .assistant-up {
+    cursor:pointer;
+}
+
+.block-compare .assistant-down strong {
+    background-image: url("../../../images/aitshopassistant_arrow_down.gif");
+    background-position: 0 1px;
+}
+
+.block-compare .assistant-up strong {
+    background-image: url("../../../images/aitshopassistant_arrow_up.gif");
+    background-position: 0 1px;
+}
+
+.block-compare .hide {
+    display: none;
+}
+
+.block-compare .assistant-process-view {
+    display: none;
+}
+
+.block-compare .assistant-process-actions-view {
+    display: none;
+}
+
+.assistant-process-view li {
+    padding: 3px 9px;
+}
+
+.assistant-process-view .label {
+    display: block;
+    margin-left: 18px;
+}
+
+.assistant-process-view input.radio {
+    float: left;
+    margin: 1px -18px 0 0;
+}
+
+.assistant-process-view label {
+    color: #777777;
+    font-weight: bold;
+}
+
+.assistant-message-view {
+    display: none;
+    padding: 3px 9px;
+    color: #3D6611;
+    font-weight: bold;
+}
+
+.assistant-error-view {
+    display: none;
+    padding: 3px 9px;
+    color: #FF0000;
+    font-weight: bold;
+}

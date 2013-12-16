@@ -1,0 +1,106 @@
+<?php
+/**
+ * Shopping Assistant
+ *
+ * @category:    Aitoc
+ * @package:     Aitoc_Aitshopassist
+ * @version      1.0.17
+ * @license:     fEv8NRVUcfeWNj6fFopfiC6j0bkfeMCgY3lx8CzFS6
+ * @copyright:   Copyright (c) 2013 AITOC, Inc. (http://www.aitoc.com)
+ */
+/**
+ * @copyright  Copyright (c) 2012 AITOC, Inc. 
+ */
+?>
+
+<script type="text/javascript">
+//<![CDATA[
+    aitshopassist = new aitshopassist_class();
+    aitshopassist.actionUrl = '<?php echo $this->getUrl("aitshopassist/ajax/") ?>';
+//]]>
+</script>
+<?php if ($this->getQuestionSetSize($this->getCategoryId())) : ?>
+<div class="block block-list block-compare" id="aitshopassist">
+    <div id="assistant-title" class="block-title assistant-<?php echo (!Mage::getStoreConfig("general/aitshopassist/hide_assistant", Mage::app()->getStore()->getId()) || Mage::helper('aitshopassist')->isAssistantOpen($this->getCategoryId())) ? 'up': 'down' ?>" onclick="hideAssistant('assistant-content', 'assistant-title')">
+        <strong><span><?php echo $this->__('Automated Shopping Assistant') ?></span></strong>
+    </div>
+    <?php foreach ($this->getQuestionSetCollection($this->getCategoryId()) as $set) : ?>
+    <div id="assistant-content" class="block-content" <?php echo (!Mage::getStoreConfig("general/aitshopassist/hide_assistant", Mage::app()->getStore()->getId()) || Mage::helper('aitshopassist')->isAssistantOpen($this->getCategoryId())) ? '' : 'style="display:none;"' ?>>
+        <?php if ($set->getShowInBar()) : ?>
+        <p class="block-subtitle">
+            <?php echo $set->getPageTitle(); ?>
+        </p>
+        <?php endif; ?>
+        <p class="block-subtitle">
+            <?php echo $set->getShortDescription(); ?>
+        </p>
+        <p class="empty">
+            <?php echo $set->getDescription(); ?>
+        </p>
+        <div id="loadingmask" style="display: none;">
+            <div class="loader" id="loading-mask-loader"><p class="empty"><img src="<?php echo $this->getSkinUrl('images/opc-ajax-loader.gif') ?>" alt="<?php echo $this->__('Loading...') ?>"/></p></div>
+            <div id="loading-mask"></div>
+        </div>
+        <div id="start-action" class="actions">
+            <button class="button" type="submit" onclick="switchViewProcess()"><span><span><?php echo $this->__('Go') ?></span></span></button>
+        </div>
+        <div id="assistant-process">
+            <div class="products-grid"></div>
+            <div id="assistant-process-input">
+                <div id="assistant-error" class="assistant-error-view"></div>
+                <div id="assistant-message" class="assistant-message-view"></div>
+                <input type="hidden" id="aitshopassist_category_id" value="<?php echo $this->getCategoryId(); ?>">
+                <div id="assistant-process-content" class="assistant-process-view">
+                    <?php foreach ($this->getQuestionCollection($set->getId(), $this->getCategoryId()) as $question) : ?>
+                        <p class="block-subtitle">
+                            <?php echo $question->getTitle(); ?>
+                        </p>
+                        <p class="empty">
+                            <?php echo $question->getDescription(); ?>
+                        </p>
+                        <ul class="assistant-answers">
+                            <?php foreach ($this->getAnswers($question->getId()) as $id=>$answer) : ?>
+                                <li class="odd">
+                                    <input type="radio" name="assistant_answer" class="radio" id="answer_<?php echo $id; ?>" <?php echo $id == Mage::helper('aitshopassist')->getAnswer($this->getCategoryId(), $question->getId()) ? 'checked' : ''; ?> value="<?php echo $id; ?>" />
+                                    <span class="label">
+                                        <label for="answer_<?php echo $id; ?>">
+                                            <?php echo $answer; ?>
+                                        </label>
+                                    </span>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+            <div id="assistant-process-actions" class="actions assistant-process-actions-view">
+                <div class="left" id="action_button_reset">
+                    <button id="assistant-reset" class="button" title="<?php echo $this->__('Reset') ?>" type="submit" onclick="aitshopassist.submitReset(<?php echo $this->getCategoryId(); ?>);"><span><span><?php echo $this->__('Reset') ?></span></span></button>
+                </div>
+                <div class="left" id="action_button_previous">
+                    &nbsp;<button class="button" title="<?php echo $this->__('Previous') ?>" type="submit" onclick="aitshopassist.submitPrevious(<?php echo $this->getCategoryId(); ?>);"><span><span><?php echo $this->__('Previous') ?></span></span></button>
+                </div>
+                <div class="left" id="action_button_skip">
+                    &nbsp;<button class="button" title="<?php echo $this->__('Skip') ?>" type="submit" onclick="aitshopassist.submitSkip(<?php echo $this->getCategoryId(); ?>);"><span><span><?php echo $this->__('Skip') ?></span></span></button>
+                </div>
+                <div class="left" id="action_button_next">
+                    &nbsp;<button class="button" title="<?php echo $this->__('Submit') ?>" type="submit" onclick="aitshopassist.submitNext(<?php echo $this->getCategoryId(); ?>);"><span><span><?php echo $this->__('Submit') ?></span></span></button>
+                </div>
+                <div class="right" id="action_button_close">
+                    <button class="button" title="<?php echo $this->__('Close') ?>" type="submit" onclick="switchViewProcess()"><span><span><?php echo $this->__('Close') ?></span></span></button>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <?php endforeach; ?>
+</div>
+<?php endif; ?>
+<script type="text/javascript">
+//<![CDATA[
+    <?php if (Mage::helper('aitshopassist')->getCurrentQuestion() || Mage::helper('aitshopassist')->checkProcessStarted()) : ?>
+    switchViewProcess();
+    setLastQuestionActions();
+    <?php endif; ?>
+//]]>
+</script>

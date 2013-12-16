@@ -1,0 +1,14 @@
+<config>
+   <modules>
+      <Extendware_EWCartReminder>
+         <active>true</active>
+         <codePool>local</codePool>
+         <depends>
+            <Extendware_EWCore/>
+         </depends>
+         <extendware>
+            <name>Cart Reminder</name>
+         </extendware>
+      </Extendware_EWCartReminder>
+   </modules>
+</config>

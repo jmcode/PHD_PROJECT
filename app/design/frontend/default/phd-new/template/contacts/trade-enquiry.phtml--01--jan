@@ -1,0 +1,65 @@
+<form id="contactForm" method="post" action="/index/post/">
+    <fieldset class="group-select">
+        <ul class="trade-enquiry">
+        <li>
+				<div class="input-box">
+                    <label for="name">First name<span class="required">*</span></label>
+                    <input name="name" id="name" title="Name" value="" class="required-entry input-text" type="text"/>
+                </div>
+				<div class="input-box">
+                    <label for="name">Surname <span class="required">*</span></label>
+                    <input name="name" id="name" title="Name" value="" class="required-entry input-text" type="text"/>
+                </div>
+				<div class="input-box">
+                    <label for="mobile">Mobile phone <span class="required">*</span></label>
+                    <input name="mobile" id="mobile" title="Mobile phone" value="" class="required-entry input-text" type="text"/>
+                </div>
+
+                <div class="input-box">
+                    <label for="email">Email address <span class="required">*</span></label>
+                    <input name="email" id="email" title="Email" value="" class="required-entry input-text validate-email" type="text"/>
+                </div>
+
+				
+				<div class="input-box">
+                    <label for="business">Business name</label>
+                    <input name="business" id="business" title="Business name" value="" class="input-text" type="text"/>
+                </div>
+
+                <div class="input-box">
+                    <label for="typebusiness">Type of Business <span class="required">*</span></label>
+                    <input name="typebusiness" id="street" title="Type of Business" value="" class="required-entry input-text" type="text"/>
+                </div>
+
+                <div class="input-box">
+                    <label for="region">Region <span class="required">*</span></label>
+                    <input name="region" id="region" title="Region" value="" class="required-entry input-text" type="text"/>
+                </div> 
+				<div class="input-box">
+                    <label for="city">Plaatsnaam <span class="required">*</span></label>
+                    <input name="city" id="city" title="Email" value="" class="required-entry input-text" type="text"/>
+                </div>
+
+                
+                
+                <div class="input-box">
+                    <label for="comment">Comments box </label>
+                    <textarea name="comment" id="comment" title="Comment" class="input-text" style="" cols="18" rows="2"></textarea>
+                </div>
+                </li>
+                </ul>
+							
+				<div class="buttons-set">
+						<p class="required">* Required Fields</p>
+						<button type="submit" title="Submit" class="button"><span><span><?php echo Mage::helper('contacts')->__('Submit') ?></span></span></button>
+				</div>
+    </fieldset>
+
+   	
+	
+	
+</form>
+<script type="text/javascript">
+    var contactForm = new VarienForm('contactForm', true);
+</script>    
+</div>

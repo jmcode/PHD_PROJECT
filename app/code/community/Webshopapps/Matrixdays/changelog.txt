@@ -1,0 +1,63 @@
+3.0 - Grid main release
+
+4.0 - Implemented 4 week view on grid using Ajax
+
+4.1 - Implement create new time slot post-order if not present
+4,2 - Fixed time calculations to use locale time zone
+4.3 - Changed start day to be first delivery day (not previous Monday)
+4.4 - Fixed issue with incorrect method code being picked up sometimes
+5.0 - Updated to work with 1-4 time slots
+      Supports infinite availability
+      Will show latest delivery date if more than one shipping group matched on
+5.1 - Changed codebase to support non-grid output on all occasions, as it was in old MatrixDays codebase
+5.2 - Update available.phtml to better support grid deliveries.
+      Added support for append=algorithm on non-grid view
+      Split out description into 2 new fields so can be grabbed separately
+5.3 - Resolved issue where the append details werent being modified when a later rate found on highest price
+5.4 - Added days to the unique key. This will allow rows in the csv file that are identical other than the daysOfWeek field. Removed city from unique key to support.
+5.5 - Added back in date_format for m-d-Y
+6.0 - Moved to community. changed DaysOfWeek to be Display On (1=Mon). Fixed dateformat on grid output
+6.1 - Moved back to local
+6.2 - Changed default to 0000-00-00 for week_commecing in SQL. Set NOT NULL. Seems different SQL versions will interpret a empty string date differently.
+6.3 - Put in changes to allow for 2 rates to be returned for a method when using grid matrix. Will then prioritise the cheapest one, provided it can be delivered on that date. See 2rate.csv
+6.4 - Allow multiple blackout days in CSV file. Use bd=start-finish.
+6.5 - Changed logic so that can change the production days on a per row basis via csv.
+7.0 - Added support for 1 month per page. Now supports not having default time slots set up under Timegrid
+7.1 - put back in bd= change
+7.2 - added support for other shipping methods showing alongside matrixdays
+7.3 - Added in ALT= logic
+7.5 - Add 2 week switch, for week grid.
+7.6 - Added free shipping promotion logic.
+7.7 - Typo on rate result causing wrong order of dates.
+7.8 - Changed getDispatchDay to use Production days rather than delivery days. Reset statics for each search
+7.9 - Added Saturday algorithm
+8.0 - Changed to use Ajax calendar
+8.1 - Added support for multiple delivery options in grid. Tidied display to not show date on each radio. Made display of shipping method optional. Added support of incl/excl
+8.2 - Fixed issue of no rates showing when using non grid. Fixed radio button label issue when using grid. Added new date format. 
+8.3 - Added note in admin panel to make it clear that only d-m-Y is supported for ajax calendar.
+8.4 - Added option to exclude expected delivery date from showing when not using ajax calander.
+8.5 - Altered jquery inclusion to minimise possibilty of conflicts with other extensions using jquery.
+8.6 - Implemented on multi address checkout. Added ability to tie methods and rates to specific time slots. 2 new time slots.
+8.7 - Added ability to set cut_off time in the CSV file.
+8.8 - Added to the new cut_off ability, will now find the earliest cut_off time if presented with multiple cut_offs.
+8.9 - Added ability to use mm-dd-yy format on the jQuery calendar.
+8.10 - Can now obtain rates for 1 week upto 52 weeks in advance.
+8.11 - Slot algorithm can now be comma-separated.
+8.12 - Changed getDispatchDay to use production blackout days/dates instead of delivery. Fixed issue with statics not being reset.Plus added new date format for Day dd-mm-yyyy.
+8.13 - Added support for custom codes using C= logic
+18.4 - Added cheapest method logic
+8.14 - Added enhancement to auto-select the date/day with the cheapest delivery option available
+8.15 - Added switch so that you can change the number of rates that show up at checkout.
+8.16 - Added in long postcode logic from Premium Matrix.
+8.17 - Added mechanism to display error message if no rate found.
+9.0 - Refactored admin templates to work better. Added rule to just show 1 rate in admin for matrixdays
+9.1 - Updated phtml so that in line with 1.7 around escape html logic
+9.2 - Added fix to resolve issue when no rates found via multi-address checkout
+9.3 - Added support for a rolling dispatch date
+9.4 - Added support for expected delivery dates
+9.5 - Added support for volume_weight attribute to volume enabled installs
+10.0 - Moved to community
+10.1 - Added in Same Day delivery support.
+10.2 - Layout.xml edited to work with OSC
+10.3 - Enhanced performance by removing unneccesary calls. Brought available slot logic up to date. Ensured blackout days are set when no rate found. Added more notes to admin.
+10.4 - Improved the automatic timegrid creation logic and also added more logic to the dispatch day logic.

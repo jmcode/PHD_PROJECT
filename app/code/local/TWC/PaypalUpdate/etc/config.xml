@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <TWC_PaypalUpdate>
+            <version>0.1.0</version>
+        </TWC_PaypalUpdate>
+    </modules>
+    <global>
+        <models>
+            <twc_paypalupdate>
+                <class>TWC_PaypalUpdate_Model</class>
+            </twc_paypalupdate>
+            <paypal>
+                <rewrite>
+                    <standard>TWC_PaypalUpdate_Model_Update</standard>
+                </rewrite>
+            </paypal>
+        </models>
+    </global>
+</config>

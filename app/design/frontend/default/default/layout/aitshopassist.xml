@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/aitoc/aitshopassist/assistant.css</stylesheet></action> 
+            <action method="addJs"><script>aitoc/aitshopassist/assistant.js</script></action>
+            <action method="addJs"><script>aitoc/aitshopassist/assistant_actions.js</script></action>
+        </reference>
+    </default>
+    <catalog_category_view>
+        <reference name="content">
+            <block type="aitshopassist/assistant" name="aitshopassist_assistant" template="aitshopassist/assistant.phtml" before="category.products" />
+        </reference>
+    </catalog_category_view>
+    <aitshopassist_question>
+        <block type="aitshopassist/assistant" name="root" output="toHtml" template="aitshopassist/assistant_process.phtml"/>
+    </aitshopassist_question>
+</layout>
+<!--
+/**
+ * Shopping Assistant
+ *
+ * @category:    Aitoc
+ * @package:     Aitoc_Aitshopassist
+ * @version      1.0.17
+ * @license:     fEv8NRVUcfeWNj6fFopfiC6j0bkfeMCgY3lx8CzFS6
+ * @copyright:   Copyright (c) 2013 AITOC, Inc. (http://www.aitoc.com)
+ */
+-->

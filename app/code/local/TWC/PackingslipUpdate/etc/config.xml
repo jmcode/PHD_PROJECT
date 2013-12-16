@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <TWC_PackingslipUpdate>
+            <version>0.1.0</version>
+        </TWC_PackingslipUpdate>
+    </modules>
+    <global>
+        <models>
+            <twc_packingslipupdate>
+                <class>TWC_PackingslipUpdate_Model</class>
+            </twc_packingslipupdate>
+            <sales>
+                <rewrite>
+                    <order_pdf_shipment>TWC_PackingslipUpdate_Model_Sales_Order_Pdf_Shipment</order_pdf_shipment>
+                </rewrite>
+            </sales>
+        </models>
+    </global>
+</config>

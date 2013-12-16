@@ -1,0 +1,19 @@
+<div class="referrals">
+    <div class="page-title">
+        <h1><?php echo $this->__('Referral Program') ?></h1>
+</div>
+<?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+
+<div class="box-account my_referrals-urlcode_group">
+    <div class="box-head">
+        <h2 class="legend"><?php echo $this->__('How It Works'); ?></h2>
+    </div>
+    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('referral-intro-text')->toHtml() ?>
+</div>
+
+<?php //echo $this->getChildHtml('affiliate'); ?>
+<?php echo $this->getChildHtml('refer_form'); ?>
+<?php echo $this->getChildHtml('preferences'); ?>
+<?php echo $this->getChildHtml('history'); ?>
+
+</div>

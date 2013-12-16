@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<!--
+/** Matrixdays
+ *
+ * @category   Webshopapps
+ * @package    Webshopapps_matrixdays
+ * @copyright  Copyright (c) 2011 Zowta Ltd (http://www.webshopapps.com)
+ * @license    http://www.webshopapps.com/license/license.txt - Commercial license
+ */
+-->
+<config>
+  <modules>
+    <Webshopapps_Matrixdays>
+      <version>3.0.4</version>
+      <depends>
+        <Mage_Shipping />
+      </depends>
+    </Webshopapps_Matrixdays>
+  </modules>
+  
+  <frontend>
+    <routers>
+      <matrixdays>
+        <use>standard</use>
+        <args>
+          <module>Webshopapps_Matrixdays</module>
+          <frontName>matrixdays</frontName>
+        </args>
+      </matrixdays>
+    </routers>
+    <translate>
+      <modules>
+        <Webshopapps_Matrixdays>
+          <files>
+            <default>Webshopapps_Matrixdays.csv</default>
+          </files>
+        </Webshopapps_Matrixdays>
+      </modules>
+    </translate>
+    <layout>
+      <updates>
+        <matrixdays>
+          <file>webshopapps_matrixdays.xml</file>
+        </matrixdays>
+      </updates>
+    </layout>
+  </frontend>
+  
+  <adminhtml>
+    <routers>
+      <matrixdays>
+        <use>standard</use>
+        <args>
+          <module>Webshopapps_Matrixdays</module>
+          <frontName>matrixdays</frontName>
+        </args>
+      </matrixdays>
+    </routers>
+    <translate>
+      <modules>
+        <Webshopapps_Matrixdays>
+          <files>
+            <default>Webshopapps_Matrixdays.csv</default>
+          </files>
+        </Webshopapps_Matrixdays>
+      </modules>
+    </translate>
+    <layout>
+      <updates>
+        <matrixdays>
+          <file>webshopapps_matrixdays.xml</file>
+        </matrixdays>
+      </updates>
+    </layout>
+  </adminhtml>
+  
+  <global>
+    <blocks>
+      <matrixdays>
+        <class>Webshopapps_Matrixdays_Block</class>
+      </matrixdays>
+    </blocks>
+    <models>
+      <matrixdays>
+        <class>Webshopapps_Matrixdays_Model</class>
+      </matrixdays>
+      <matrixdays_shipping>
+        <class>Webshopapps_Matrixdays_Model</class>
+        <resourceModel>matrixdays_mysql4</resourceModel>
+      </matrixdays_shipping>
+      <matrixdays_mysql4>
+        <class>Webshopapps_Matrixdays_Model_Mysql4</class>
+        <entities>
+          <matrixdays>
+            <table>shipping_matrixdays</table>
+          </matrixdays>
+        </entities>
+      </matrixdays_mysql4>
+      <googlecheckout>
+        <rewrite>
+          <api_xml_callback>Webshopapps_Matrixdays_GoogleCheckout_Model_Api_Xml_Callback</api_xml_callback>
+        </rewrite>
+      </googlecheckout>
+      <sales>
+        <rewrite>
+          <quote_address_total_shipping>Webshopapps_Matrixdays_Model_Quote_Address_Total_Shipping</quote_address_total_shipping>
+          <quote_address_rate>Webshopapps_Matrixdays_Model_Quote_Address_Rate</quote_address_rate>
+          <quote_address>Webshopapps_Matrixdays_Model_Quote_Address</quote_address>
+        </rewrite>
+      </sales>
+    </models>
+    <resources>
+      <matrixdays_setup>
+        <setup>
+          <module>Webshopapps_Matrixdays</module>
+          <class>Mage_Eav_Model_Entity_Setup</class>
+        </setup>
+        <connection>
+          <use>core_setup</use>
+        </connection>
+        <matrixdays_write>
+          <connection>
+            <use>core_write</use>
+          </connection>
+        </matrixdays_write>
+        <matrixdays_read>
+          <connection>
+            <use>core_read</use>
+          </connection>
+        </matrixdays_read>
+      </matrixdays_setup>
+    </resources>
+    <sales>
+      <shipping>
+        <carriers>
+          <matrixdays>
+            <class>Webshopapps_Matrixdays_Model_Carrier_Matrixdays</class>
+          </matrixdays>
+        </carriers>
+      </shipping>
+      <quote>
+        <item>
+          <product_attributes>
+            <package_id />
+          </product_attributes>
+        </item>
+      </quote>
+    </sales>
+    <helpers>
+      <matrixdays>
+        <class>Webshopapps_Matrixdays_Helper</class>
+      </matrixdays>
+    </helpers>
+    <fieldsets>
+      <sales_convert_quote_address>
+        <dispatch_date><to_order>*</to_order></dispatch_date>
+        <expected_delivery><to_order>*</to_order></expected_delivery>
+        <delivery_description><to_order>*</to_order></delivery_description>
+        <delivery_notes><to_order>*</to_order></delivery_notes>
+      </sales_convert_quote_address>
+      <sales_convert_order>
+        <dispatch_date><to_quote_address_shipping>*</to_quote_address_shipping></dispatch_date>
+        <expected_delivery><to_quote_address_shipping>*</to_quote_address_shipping></expected_delivery>
+        <delivery_description><to_quote_address_shipping>*</to_quote_address_shipping></delivery_description>
+        <delivery_notes><to_quote_address_shipping>*</to_quote_address_shipping></delivery_notes>
+      </sales_convert_order>
+    </fieldsets>
+    <events>
+      <checkout_submit_all_after>
+        <observers>
+          <matrixdays_observer>
+            <type>singleton</type>
+            <class>matrixdays/observer</class>
+            <method>saveOrderAfter</method>
+          </matrixdays_observer>
+        </observers>
+      </checkout_submit_all_after>
+      <admin_system_config_changed_section_carriers>
+          <observers>
+              <matrixdays_error_observer>
+                  <class>matrixdays/observer</class>
+                  <method>postError</method>
+              </matrixdays_error_observer>
+          </observers>
+      </admin_system_config_changed_section_carriers>
+    </events>
+  </global>
+  
+  <default>
+    <carriers>
+      <matrixdays>
+        <active>0</active>
+        <ship_once>0</ship_once>
+        <serial backend_model="adminhtml/system_config_backend_encrypted" />
+        <sallowspecific>0</sallowspecific>
+        <free_method_text>Free Shipping</free_method_text>
+        <cutoff_cost>50</cutoff_cost>
+        <condition_name>per_package</condition_name>
+        <star_include_all>1</star_include_all>
+        <model>matrixdays_shipping/carrier_matrixdays</model>
+        <name>MatrixRatePremium</name>
+        <title>Select Shipping Method</title>
+        <specificerrmsg>This shipping method is currently unavailable.
+          If you would like to ship using this shipping method, please
+          contact us.
+        </specificerrmsg>
+        <custom_text_1>Dear Customer, we need %PROD_DAYS% days for production.</custom_text_1>
+        <custom_text_2>Your product is finished (ready for delivery) on %END_DATE%.</custom_text_2>
+        <production_days>4</production_days>
+        <date_format>1</date_format>
+        <default_avail_slots>-1</default_avail_slots>
+        <default_ship_price>4.95</default_ship_price>
+        <slot_1>Before 9am</slot_1>
+        <slot_2>9am - 12pm</slot_2>
+        <slot_3>12pm - 5pm</slot_3>
+        <slot_4>After 5pm</slot_4>
+        <slot_5>After 7pm</slot_5>
+        <slot_6>After 9pm</slot_6>
+        <cutoff_time>13:00</cutoff_time>
+        <ship_options>display_matrix</ship_options>
+        <num_slots>1</num_slots>
+        <date_format>1</date_format>
+        <num_of_weeks>4</num_of_weeks>
+        <dates_at_checkout>1</dates_at_checkout>
+      </matrixdays>
+    </carriers>
+  </default>
+</config>

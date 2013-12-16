@@ -1,0 +1,189 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BelVG LLC.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://store.belvg.com/BelVG-LICENSE-COMMUNITY.txt
+ *
+ /***************************************
+ *         MAGENTO EDITION USAGE NOTICE *
+ *****************************************/
+ /* This package designed for Magento COMMUNITY edition
+ * BelVG does not guarantee correct work of this extension
+ * on any other Magento edition except Magento COMMUNITY edition.
+ * BelVG does not provide extension support in case of
+ * incorrect edition usage.
+ /***************************************
+ *         DISCLAIMER   *
+ *****************************************/
+ /* Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future.
+ *****************************************************
+ * @category   Belvg
+ * @package    Belvg_Checkoutfields
+ * @copyright  Copyright (c) 2010 - 2011 BelVG LLC. (http://www.belvg.com)
+ * @license    http://store.belvg.com/BelVG-LICENSE-COMMUNITY.txt
+   */-->
+
+<config>
+
+
+
+	<modules>
+		<Belvg_Checkoutfields>
+			<version>2.0.2</version>
+		</Belvg_Checkoutfields>
+	</modules>
+	<blocks>
+            <checkoutfields><class>Belvg_Checkoutfields_Block</class></checkoutfields>
+        </blocks>
+	<admin>
+		<routers>
+			<checkoutfields>
+				<use>admin</use>
+				<args>
+					<module>Belvg_Checkoutfields</module>
+					<frontName>checkoutfields</frontName>
+				</args>
+			</checkoutfields>
+                </routers>
+	</admin>
+	<frontend>
+		<layout>
+		    <updates>
+			    <checkoutfields>
+				    <file>checkoutfields.xml</file>
+			    </checkoutfields>
+		    </updates>
+           </layout>
+	</frontend>
+    <adminhtml>
+	    <layout>
+		    <updates>
+			    <checkoutfields>
+				    <file>belvg_checkoutfields.xml</file>
+			    </checkoutfields>
+		    </updates>
+           </layout>
+           <menu>
+               <sales>
+                    <children>
+                        <checkoutfields translate="title">
+                            <title>Checkout Fields</title>
+                            <sort_order>99</sort_order>
+                            <action>checkoutfields/adminhtml_list/</action>
+                        </checkoutfields>
+                    </children>
+                </sales>
+	   </menu>
+		<acl>
+			<resources>
+				<all>
+					<title>Allow Everything</title>
+				</all>
+				<admin>
+					<children>
+						<checkoutfields>
+							<title>Checkoutfields Module</title>
+							<sort_order>200</sort_order>
+						</checkoutfields>
+					</children>
+				</admin>
+			</resources>
+		</acl>
+
+
+    </adminhtml>
+    <global>
+
+	    <blocks>
+		    <checkoutfields>
+			    <class>Belvg_Checkoutfields_Block</class>
+		    </checkoutfields>
+                    <sales>
+                        <rewrite>
+                            <order_info>Belvg_Checkoutfields_Block_OrderViewInfo</order_info>
+                        </rewrite>
+                    </sales>
+	    </blocks>
+            <adminhtml>
+                <rewrite>
+                        <sales_order_view_info>Belvg_Checkoutfields_Block_Rewrite_AdminSalesOrderViewInfo</sales_order_view_info>                        
+                </rewrite>
+            </adminhtml>
+
+             <resources>
+                <checkoutfields_setup>
+                    <setup>
+                            <module>Belvg_Checkoutfields</module>
+                    </setup>
+                    <connection>
+                            <use>core_setup</use>
+                    </connection>
+                </checkoutfields_setup>
+                <checkoutfields_write>
+                    <connection><use>core_write</use></connection>
+                </checkoutfields_write>
+                <checkoutfields_read>
+                    <connection><use>core_read</use></connection>
+                </checkoutfields_read>
+            </resources>
+	    <models>
+		    <checkoutfields>
+			    <class>Belvg_Checkoutfields_Model</class>
+			    <resourceModel>checkoutfields_mysql4</resourceModel>
+		    </checkoutfields>
+                     <checkout>
+                        <rewrite>
+                                <type_onepage>Belvg_Checkoutfields_Model_TypeOnepage</type_onepage>
+                        </rewrite>
+
+                    </checkout>
+		    <checkoutfields_mysql4>
+			    <class>Belvg_Checkoutfields_Model_Mysql4</class>
+                                <entities>
+                                    <fields>
+                                        <table>belvg_checkoutfields_fields</table>
+                                    </fields>
+                                    <orders>
+                                        <table>belvg_checkoutfields_orders</table>
+                                    </orders>
+                                </entities>
+		    </checkoutfields_mysql4>
+            </models>
+	    <helpers>
+		    <checkoutfields>
+			    <class>Belvg_Checkoutfields_Helper</class>
+		    </checkoutfields>
+	    </helpers>
+             <events>
+        	<sales_order_save_after>
+                    <observers>
+                        <checkoutfields>
+                            <type>model</type>
+                            <class>checkoutfields/observer</class>
+                            <method>customObserverAction</method>
+                        </checkoutfields>
+                    </observers>
+        	</sales_order_save_after>
+                <checkout_type_onepage_save_billing_after>
+                    <observers>
+                        <checkoutfields_billing>
+                            <type>model</type>
+                            <class>checkoutfields/observer</class>
+                            <method>saveBillingAction</method>
+                        </checkoutfields_billing>
+                    </observers>
+        	</checkout_type_onepage_save_billing_after>
+             </events>
+    </global>
+
+
+
+</config>
+

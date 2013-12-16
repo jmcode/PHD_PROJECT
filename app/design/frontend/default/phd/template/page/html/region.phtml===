@@ -1,0 +1,177 @@
+<?php
+$customer = Mage::getSingleton('customer/session')->getCustomer();
+$customerId = $customer->getId();
+
+if (isset($_POST['enter2'])) {
+   $region = $_POST['region_name'];
+   $sub_region = $_POST['sub_reg'];
+   //editUserInfo_head($customerId, $region, $sub_region);
+   Mage::getModel('core/cookie')->set('region', $region, 0, '/');
+   Mage::getModel('core/cookie')->set('sub_region', $sub_region, 0, '/');
+   header("location:http://phddev.frontforge.com/pricing-availability/");
+}
+?>
+<?php
+$reg_id=Mage::getModel('core/cookie')->get('region');
+$resource = Mage::getSingleton('core/resource');
+$readConnection = $resource->getConnection('core_read');
+$query = 'SELECT * FROM diji_salesregions_region';
+$results = $readConnection->fetchAll($query);
+if($customerId){
+$readselectedresion = 'SELECT  * from  diji_customer_region_info where customer_id=' . $customerId;
+$results_for_selected = $readConnection->fetchAll($readselectedresion);
+foreach ($results_for_selected as $selected) {
+   $sel_reg = $selected['regions_id'];
+   $sel_subreg = $selected['sub_regions_id'];
+}
+}else if(isset($_POST['enter2'])) {
+   $sel_reg = $_POST['region_name'];
+   $sel_subreg = $_POST['sub_reg'];
+}else if($reg_id){
+   $sel_reg =Mage::getModel('core/cookie')->get('region');
+   $sel_subreg = Mage::getModel('core/cookie')->get('sub_region');
+}
+else{
+$sel_reg="";
+$sel_subreg="";
+}
+?>
+   <?php
+//$user_reg_info = getUsersRegionInfo_head($sel_reg,$sel_subreg);die();
+   if(getUsersRegionInfo_head($sel_reg,$sel_subreg)){
+   $user_reg_info = getUsersRegionInfo_head($sel_reg,$sel_subreg);
+   $reginfo = explode(",", $user_reg_info);
+   $reginfo_reg=$reginfo[0];
+   $reginfo_subr=$reginfo[1];
+   }
+   else{
+   $reginfo_reg="";
+   $reginfo_subr="";
+   } 
+   ?>
+	<?php  if($reginfo[0] && $reginfo[1]){?>
+		<a href="#edit_content_head" class="inline cboxElement">Your Region:<?php //echo $reginfo[0].","$reginfo[1];?>[change]</a> 
+	<?php }else{ ?>
+		<a href="<?php echo $this->getUrl('pricing-availability'); ?>">Please select your region [select]</a> 
+	<?php  }  ?>
+	<div style='display:none'>
+			<div id='edit_content_head' style='padding:10px; background:#fff;width:615px;'>
+			<div class='regons'style="width:614px;">
+			<div class="reg-div"><span class="headding">Where Do You Live?</span></div><br/>
+			<div class="regcnt-div">
+			<?php $i=1;
+			
+			foreach($results as $result){?> 
+			<?php
+               if (($result['region_id'] == $sel_reg)) {
+                  $class = "Select";
+               } else {
+                  $class = "";
+               }
+               ?>
+			<?php $query_subr = 'SELECT * FROM diji_salesregions_subregion where region_id='.$result['region_id']; 
+					$results_subr = $readConnection->fetchAll($query_subr);
+					$name_reg=$result['name'];
+			?>
+			<div class="left2 col<?php echo $class; ?>" id="edleft2-<?php echo $i ?>" onmousemove="togglein('<?php echo $i ?>')">
+			<div class="main-reg"> <?php echo $result['name'];?></div>
+			</div>
+			<div class="left" id="edleft1-<?php echo $i ?>" style="display:none;background:url('<?php echo $this->getSkinUrl().'images/'.$name_reg.'.jpg'; ?>');" >
+			
+			<div class="main-reg"> <?php echo $result['name'];?></div>
+			<form name="regions_head<?php echo $i ?>" id="edregions_head<?php echo $i ?>" method="POST">
+			<input type="hidden" name="region_name" value="<?php echo $result['region_id'];?>" />
+			<select name="sub_reg">
+			<option name="sub" value="0">----Select----</option> 
+			<?php foreach($results_subr as $res_subr){
+			if ($res_subr['subregion_id'] == $sel_subreg) {
+                              $sel = "selected";
+                           } else {
+                              $sel = "";
+                           }
+			?>
+			<option <?php echo $sel ?> name="sub" value="<?php echo $res_subr['subregion_id'];?>">
+			<?php echo $res_subr['name'];?>
+			</option>
+			<?php } ?>
+			</select>
+			<input type="submit" name="enter2" value="Enter" class="enter" style="border:0px !important;padding:5px !important"/>
+			</form>
+			</div>
+			
+			<?php $i++;} ?>
+			</div>
+			</div>
+			<?php //print_r($_POST);?>
+			<!--<p>Updating Content Example:<br />
+			<a class="ajax" href="../content/flash.html">Click here to load new content</a></p-->
+			</div>
+		</div>
+
+<?php
+
+function editUserInfo_head($cust_id, $region_id, $subregion_id) {
+
+   $write = Mage::getSingleton("core/resource")->getConnection("core_write");
+   $read1 = Mage::getSingleton('core/resource')->getConnection('core_read');
+   $readQuery1 = 'SELECT  * from diji_customer_region_info where customer_id=' . $cust_id;
+   $results = $read1->fetchAll($readQuery1);
+   if (count($results) > 0) {
+      $upquery = "UPDATE  diji_customer_region_info SET regions_id=$region_id,sub_regions_id=$subregion_id WHERE customer_id=$cust_id";
+      $write->query($upquery);
+   } else {
+      $query = "INSERT INTO diji_customer_region_info (id,regions_id,sub_regions_id,customer_id) VALUES ('',$region_id,$subregion_id,$cust_id)";
+      $write->query($query);
+   }
+}
+
+function getUsersRegionInfo_head($regid,$subregid) {
+if($regid!='' && $subregid !=''){
+$read = Mage::getSingleton('core/resource')->getConnection('core_read');
+	$region_id=$regid;
+ $sub_region_id=$subregid;
+    $reg_name2 = "SELECT name  from diji_salesregions_region where region_id= ".$region_id;
+ $reg_results = $read->fetchAll($reg_name2); 
+   $sub_name = "SELECT name  from diji_salesregions_subregion where subregion_id=" . $sub_region_id . " And region_id=" . $region_id;
+   $sub_results = $read->fetchAll($sub_name);
+   
+		 foreach ($reg_results as $reg) {
+			$region_name = $reg['name'];
+		} 
+	   foreach ($sub_results as $sub){
+			$subr_name = $sub['name'];
+		}
+		return  $region_name . "," . $subr_name;
+	}
+	else{
+	return false;
+	}
+}
+
+
+?>	<script>
+	function togglein(id){
+		var j=jQuery.noConflict();
+		//alert('a');
+		j(".left").hide();
+		j(".left2").show();
+    j("#edleft2-"+id).hide();
+	j("#edleft1-"+id).show();
+	return false;
+  }
+	
+		</script> 
+   <script>
+   var j=jQuery.noConflict();
+   j(document).ready(function(){
+				
+      j(".inline").colorbox({inline:true, width:"685px"});
+				
+				
+      //Example of preserving a JavaScript event for inline calls.
+      j("#click").click(function(){ 
+         j('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+         return false;
+      });
+   });
+</script>

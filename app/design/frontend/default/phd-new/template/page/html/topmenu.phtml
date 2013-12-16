@@ -1,0 +1,108 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     default_phd
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Top menu for store
+ *
+ * @see Mage_Page_Block_Html_Topmenu
+ */
+?>
+<?php $_menu = $this->getHtml('level-top') ?>
+<?php if($_menu): ?>
+<nav id="primary-nav">
+    <ul>
+     <?php echo $_menu ?>
+     <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('top-navigation')->toHtml(); ?>
+    </ul>
+</nav>
+<?php endif ?>
+    <?php /* ?>
+    <ul class="sf-js-enabled">
+        <li class="level0 nav-1 first level-top parent">
+            <a class="level-top" href="<?php echo $this->getUrl() ?>cleanses.html"><span>Cleanse</span></a>
+            <ul class="level0 sf-js-enabled" style="float: none; width: 11em; visibility: hidden; display: none;">
+                <li class="level1 nav-1-1 first" style="white-space: normal; float: left; width: 100%;"><a
+                        href="<?php echo $this->getUrl() ?>cleanses/basic-cleanse.html"
+                        style="float: none; width: auto;"><span>Basic Cleanse</span></a></li>
+                <li class="level1 nav-1-2" style="white-space: normal; float: left; width: 100%;"><a
+                        href="<?php echo $this->getUrl() ?>cleanses/advanced-cleanse.html"
+                        style="float: none; width: auto;"><span>Advanced Cleanse</span></a></li>
+                <li class="level1 nav-1-3" style="white-space: normal; float: left; width: 100%;"><a
+                        href="<?php echo $this->getUrl() ?>cleanses/group-cleanse.html"
+                        style="float: none; width: auto;"><span>Group Cleanse</span></a></li>
+                <li class="level1 nav-1-4 last" style="white-space: normal; float: left; width: 100%;"><a
+                        href="<?php echo $this->getUrl() ?>cleanses/bridal-cleanse.html"
+                        style="float: none; width: auto;"><span>Bridal Cleanse</span></a></li>
+                <li class="level1 nav-1-4 last" style="white-space: normal; float: left; width: 100%;"><a
+                        href="<?php echo $this->getUrl() ?>faq/about-juice-cleansing.html"
+                        style="float: none; width: auto;"><span>Cleanse FAQ</span></a></li>
+            </ul>
+        </li>
+        <li class="level0 nav-2 level-top parent">
+            <a class="level-top" href="<?php echo $this->getUrl() ?>juices.html"><span>juice</span></a>
+            <ul class="level0 sf-js-enabled" style="float: none; width: 11em; display: none; visibility: hidden;">
+                <li class="level1 nav-2-1 first" style="white-space: normal; float: left; width: 100%;">
+                    <a href="<?php echo $this->getUrl() ?>juices/therapy-green.html"
+                        style="float: none; width: auto;"><span>Therapy Green</span></a>
+                </li>
+                <li class="level1 nav-2-2" style="white-space: normal; float: left; width: 100%;">
+                    <a href="<?php echo $this->getUrl() ?>juices/therapy-yellow.html"
+                        style="float: none; width: auto;"><span>Therapy Yellow</span></a>
+                </li>
+                <li class="level1 nav-2-3 last" style="white-space: normal; float: left; width: 100%;">
+                    <a href="<?php echo $this->getUrl() ?>juices/therapy-red.html"
+                        style="float: none; width: auto;"><span>Therapy Red</span></a>
+                </li>
+                <li class="level1 nav-1-4 last" style="white-space: normal; float: left; width: 100%;">
+                    <a href="<?php echo $this->getUrl() ?>faq/about-therapy-juices.html"
+                        style="float: none; width: auto;"><span>Therapy FAQ</span></a>
+                </li>
+            </ul>
+        </li>
+        <li class="level0 nav-3 last level-top parent">
+            <a class="level-top" href="<?php echo $this->getUrl() ?>other.html"><span>Other</span></a>
+            <ul class="level0 sf-js-enabled" style="float: none; width: 11em; display: none; visibility: hidden;">
+                <li class="level1 nav-3-1 first" style="white-space: normal; float: left; width: 100%;"><a
+                        href="<?php echo $this->getUrl() ?>other/breville.html"
+                        style="float: none; width: auto;"><span>Breville Juicers</span></a></li>
+                <li class="level1 nav-3-2" style="white-space: normal; float: left; width: 100%;"><a
+                        href="<?php echo $this->getUrl() ?>other/gift-vouchers.html"
+                        style="float: none; width: auto;"><span>Gift Vouchers</span></a></li>
+                <li class="level1 nav-3-3 last" style="white-space: normal; float: left; width: 100%;"><a
+                        href="<?php echo $this->getUrl() ?>other/cooler-bags.html" style="float: none; width: auto;"><span>Cooler Bags</span></a>
+                </li>
+            </ul>
+        </li>
+ <?php */ ?>
+
+<?php /* if($_menu): ?>
+    <div class="nav-container">
+        <ul id="nav">
+            <?php echo $_menu ?>
+        </ul>
+    </div>
+<?php endif */ ?>

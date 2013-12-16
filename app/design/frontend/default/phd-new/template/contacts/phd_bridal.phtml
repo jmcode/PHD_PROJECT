@@ -1,0 +1,77 @@
+
+<head>
+  <!--<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css"/>
+  <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>  -->
+  
+  <link rel="stylesheet" href="<?php echo $this->getSkinUrl('css/jquery-ui.css') ?>" />
+  <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script>
+  <!--<script>
+  
+  $(document).ready(function() {
+    $("#datepicker1").datepicker();
+  });
+  </script>  -->
+  
+  <script>
+  var tk=jQuery.noConflict();
+tk(function() {
+tk( "#datepicker1" ).datepicker();
+});
+</script>
+</head>
+
+<form id="contactForm" method="post" action="<?php echo $this->getUrl('contacts/index/postbridal/')?>"">
+    <fieldset class="group-select">
+        <ul class="trade-enquiry phd-bridal-fm">
+        <li>
+				<div class="input-box">
+                    <label for="name">First name<span class="required">*</span></label>
+                    <input name="name" id="name" title="Name" value="" class="required-entry input-text" type="text"/>
+                </div>
+				<div class="input-box">
+                    <label for="name">Surname <span class="required">*</span></label>
+                    <input name="sur_name" id="sur_name" title="sur_name" value="" class="required-entry input-text" type="text"/>
+                </div>
+				<div class="input-box">
+                    <label for="mobile">Mobile phone <span class="required">*</span></label>
+                    <input name="mobile" id="mobile" title="Mobile phone" value="" class="required-entry input-text" type="text"/>
+                </div>
+
+                <div class="input-box">
+                    <label for="email">Email address <span class="required">*</span></label>
+                    <input name="email" id="email" title="Email" value="" class="required-entry input-text validate-email" type="text"/>
+                </div>
+				
+				<div class="input-box wedding-dt">
+                    <label for="email">When is your <br>wedding date? <span class="required">*</span></label>
+					<!--<input id="datepicker1" name="datepicker1"/>-->
+					 <input type="text" id="datepicker1" name="datepicker1" />
+				</div>
+				
+				<div class="input-box">
+                    <label for="how_many_party">How many in the </br>bridal party?</label>
+                    <input name="how_many_party" id="how_many_party" title="how_many_party" value="" class="input-text" type="text"/>
+                </div>
+				
+				<div class="input-box">
+                    <label for="comment">Comments box </label>
+                    <textarea name="comment" id="comment" title="Comment" class="input-text" style="" cols="18" rows="2"></textarea>
+                </div>
+                </li>
+                </ul>
+							
+				<div class="buttons-set">
+						<p class="required">* Required Fields</p>
+						<button type="submit" title="Submit" class="button"><span><span><?php echo Mage::helper('contacts')->__('Submit') ?></span></span></button>
+				</div>
+    </fieldset>
+
+   	
+	
+	
+</form>
+
+<script type="text/javascript">
+    var contactForm = new VarienForm('contactForm', true);
+</script>    

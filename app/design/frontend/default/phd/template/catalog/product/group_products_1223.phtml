@@ -1,0 +1,24 @@
+<?php
+	$_groupCollection = Mage::getModel('catalog/product')->getCollection()
+					->addAttributeToSelect('*')
+					->addAttributeToFilter('type_id', array('eq' => 'bundle'))
+					->load();
+					$i=0;
+					?>
+					<?php
+	foreach($_groupCollection as $product)
+	{
+		if($i == 3)
+		{
+			break;
+		}
+		?>
+		 <?php if($product->getName() !='Maintenance' || $product->getName() !='Maintenance'){ ?>
+		<div class="featured-box"><a href="<?php echo $this->htmlEscape($product->getProductUrl()) ?>"><h2 class="<?php if(++$i%2 == 0){ echo 'pink';}else{echo 'blue';}?>"><?php echo $product->getName(); ?></h2></a>
+		<p><?php echo $product->getShortDescription(); ?> <a class="pink" href="<?php echo $this->htmlEscape($product->getProductUrl()) ?>">Find Out More</a></p>
+		<a href="<?php echo $this->htmlEscape($product->getProductUrl()) ?>"><img src="<?php echo $this->helper('catalog/image')->init($product, 'small_image')->resize(220,160); ?>" width="220" height="160" alt="<?php echo $this->stripTags($this->getImageLabel($product, 'small_image'), null, true) ?>" /></a>
+		</div>
+		<?php
+		}
+	}
+	?>

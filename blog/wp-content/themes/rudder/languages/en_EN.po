@@ -1,0 +1,645 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Rudder\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-05-25 14:04-0600\n"
+"PO-Revision-Date: 2013-05-25 14:04-0600\n"
+"Last-Translator: Cudazi <info@cudazi.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _e;__;_n:1,2\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: ..\n"
+
+#: ../archive-portfolio.php:122
+msgid "No featured image set for this post!"
+msgstr ""
+
+#: ../archive-portfolio.php:156
+msgid "All"
+msgstr ""
+
+#: ../archive-portfolio.php:166
+msgid "No Portfolio Items to Display"
+msgstr ""
+
+#: ../archive.php:23
+#, php-format
+msgid "Daily Archives: %s"
+msgstr ""
+
+#: ../archive.php:25
+#, php-format
+msgid "Monthly Archives: %s"
+msgstr ""
+
+#: ../archive.php:27
+#, php-format
+msgid "Yearly Archives: %s"
+msgstr ""
+
+#: ../archive.php:32
+#, php-format
+msgid "Posts by: %s"
+msgstr ""
+
+#: ../archive.php:50
+msgid "Archive"
+msgstr ""
+
+#: ../comments.php:9
+msgid "This post is password protected. Enter the password to view any comments."
+msgstr ""
+
+#: ../comments.php:15
+#, php-format
+msgid "One Response to %2$s"
+msgid_plural "%1$s Responses to %2$s"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../comments.php:19
+#: ../comments.php:31
+msgid "&lt;&nbsp;&nbsp;Older Comments"
+msgstr ""
+
+#: ../comments.php:20
+#: ../comments.php:32
+msgid "Newer Comments&nbsp;&nbsp;&gt;"
+msgstr ""
+
+#: ../comments.php:41
+msgid "Your email address will not be published. Please enter your name, email and a comment."
+msgstr ""
+
+#: ../content-page-archives-categories.php:10
+#: ../content-page-archives-tags.php:9
+#: ../content-page-archives.php:10
+#: ../content-page.php:17
+#: ../content.php:21
+msgid "Read More..."
+msgstr ""
+
+#: ../content-page-archives-categories.php:11
+#: ../content-page-archives-tags.php:10
+#: ../content-page-archives.php:11
+#: ../content-page.php:18
+#: ../content.php:22
+msgid "<p>Pages:"
+msgstr ""
+
+#: ../content-page-archives-categories.php:12
+#: ../content-page-archives-tags.php:11
+#: ../content-page-archives.php:12
+#: ../content-page.php:19
+msgid "Edit"
+msgstr ""
+
+#: ../content-page-archives.php:21
+#, php-format
+msgid "Latest %s Posts"
+msgstr ""
+
+#: ../content-page-archives.php:35
+msgid "Categories"
+msgstr ""
+
+#: ../content-page-archives.php:39
+msgid "Months"
+msgstr ""
+
+#: ../content-page-archives.php:43
+msgid "Tags"
+msgstr ""
+
+#: ../footer.php:16
+#, php-format
+msgid "%s %s - Design by %s"
+msgstr ""
+
+#: ../footer.php:23
+msgid "Scroll to top"
+msgstr ""
+
+#: ../functions.php:196
+msgid "Previous"
+msgstr ""
+
+#: ../functions.php:197
+msgid "Next"
+msgstr ""
+
+#: ../functions.php:217
+msgid "Add a menu in Appearance, Menus"
+msgstr ""
+
+#: ../functions.php:297
+msgid "Go to..."
+msgstr ""
+
+#: ../index.php:15
+#, php-format
+msgid "Your search for %s returned %s %s."
+msgstr ""
+
+#: ../index.php:15
+msgid "result"
+msgid_plural "results"
+msgstr[0] ""
+msgstr[1] ""
+
+#: ../index.php:29
+msgid "Not Found"
+msgstr ""
+
+#: ../index.php:33
+msgid "We are sorry, the item you requested cannot be found."
+msgstr ""
+
+#: ../meta-post.php:2
+msgid "By:"
+msgstr ""
+
+#: ../meta-post.php:10
+msgid "Tagged with"
+msgstr ""
+
+#: ../meta-post.php:11
+#: ../meta-post.php:13
+#: ../meta-post.php:17
+msgid "0 Responses"
+msgstr ""
+
+#: ../meta-post.php:11
+#: ../meta-post.php:13
+#: ../meta-post.php:17
+msgid "1 Response"
+msgstr ""
+
+#: ../meta-post.php:11
+#: ../meta-post.php:13
+#: ../meta-post.php:17
+msgid "% Responses"
+msgstr ""
+
+#: ../meta-post.php:16
+msgid "Posted in"
+msgstr ""
+
+#: ../meta-post.php:20
+msgid "[edit]"
+msgstr ""
+
+#: ../searchform.php:3
+msgid "Search this site..."
+msgstr ""
+
+#: ../searchform.php:12
+msgid "Go"
+msgstr ""
+
+#: ../libraries/comments.php:25
+msgid "Your comment is awaiting moderation."
+msgstr ""
+
+#: ../libraries/comments.php:40
+msgid "Trackback:"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:9
+msgid "Social Links"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:10
+msgid "Social Link"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:11
+#: ../libraries/custom-post-types.php:44
+msgid "Add New"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:12
+msgid "Add New Item"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:13
+msgid "Edit Item"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:14
+msgid "New Item"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:15
+msgid "View Item"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:16
+msgid "Search Social Links"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:17
+msgid "Nothing found"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:18
+msgid "Nothing found in Trash"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:45
+msgid "Add New Portfolio Post"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:46
+msgid "Edit Portfolio Post"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:47
+#: ../libraries/custom-post-types.php:48
+msgid "Portfolio"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:49
+msgid "New Portfolio Post"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:50
+msgid "No portfolio posts found"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:51
+msgid "No portfolio posts found in Trash"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:53
+msgid "Portfolio Post"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:54
+msgid "Search Portfolio Posts"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:55
+msgid "View Portfolio Post"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:81
+msgid "Add New Category"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:82
+msgid "All Categories"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:83
+msgid "Edit Category"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:84
+msgid "Portfolio Categories"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:85
+msgid "New Genre Category"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:87
+msgid "Parent Category"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:88
+msgid "Parent Category:"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:89
+msgid "Portfolio Category"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:90
+msgid "Search Categories"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:91
+msgid "Update Category"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:106
+msgid "Add New Tag"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:107
+msgid "All Tags"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:108
+msgid "Edit Tag"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:109
+#: ../libraries/custom-post-types.php:110
+msgid "Portfolio Tags"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:111
+msgid "New Genre Tag"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:112
+msgid "Parent Tag"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:113
+msgid "Parent Tag:"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:114
+msgid "Portfolio Tag"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:115
+msgid "Search Tags"
+msgstr ""
+
+#: ../libraries/custom-post-types.php:116
+msgid "Update Tag"
+msgstr ""
+
+#: ../libraries/meta-boxes.php:13
+msgid "Details"
+msgstr ""
+
+#: ../libraries/meta-boxes.php:67
+msgid "Enter a link to your social profile such as: http://twitter.com/cudazi"
+msgstr ""
+
+#: ../libraries/meta-boxes.php:77
+msgid "Need more icons? Upload them to images/social_icons in this theme folder."
+msgstr ""
+
+#: ../libraries/shortcodes.php:11
+msgid "Hide"
+msgstr ""
+
+#: ../libraries/theme-options.php:16
+msgid "Theme Options"
+msgstr ""
+
+#: ../libraries/theme-options.php:26
+msgid "Image File"
+msgstr ""
+
+#: ../libraries/theme-options.php:30
+msgid "Post"
+msgstr ""
+
+#: ../libraries/theme-options.php:34
+msgid "No Link"
+msgstr ""
+
+#: ../libraries/theme-options.php:40
+msgid "Display Tags"
+msgstr ""
+
+#: ../libraries/theme-options.php:44
+msgid "Display Categories"
+msgstr ""
+
+#: ../libraries/theme-options.php:48
+msgid "Display Nothing"
+msgstr ""
+
+#: ../libraries/theme-options.php:65
+msgid " Theme Options"
+msgstr ""
+
+#: ../libraries/theme-options.php:66
+msgid "Options saved"
+msgstr ""
+
+#: ../libraries/theme-options.php:72
+#, php-format
+msgid "Custom settings and options for the %s theme. Be sure to click the save options button after making any changes."
+msgstr ""
+
+#: ../libraries/theme-options.php:74
+msgid "Header Settings and Style"
+msgstr ""
+
+#: ../libraries/theme-options.php:84
+msgid "Fixed Header"
+msgstr ""
+
+#: ../libraries/theme-options.php:87
+msgid "Make the header fixed at the top of the page"
+msgstr ""
+
+#: ../libraries/theme-options.php:100
+msgid "Full Logo URL"
+msgstr ""
+
+#: ../libraries/theme-options.php:104
+msgid "Enter the full URL to your custom logo."
+msgstr ""
+
+#: ../libraries/theme-options.php:106
+msgid "Tip: Upload it in the Media Library and then copy the full file URL. (Test the URL in your browser first)"
+msgstr ""
+
+#: ../libraries/theme-options.php:116
+msgid "Tagline / Description"
+msgstr ""
+
+#: ../libraries/theme-options.php:119
+msgid "Hide the tagline / blog description to make more room for the logo / menu."
+msgstr ""
+
+#: ../libraries/theme-options.php:130
+msgid "Post Meta"
+msgstr ""
+
+#: ../libraries/theme-options.php:149
+msgid "During post loop, show tags, categories or nothing."
+msgstr ""
+
+#: ../libraries/theme-options.php:162
+msgid "General Settings"
+msgstr ""
+
+#: ../libraries/theme-options.php:172
+msgid "Primary Color"
+msgstr ""
+
+#: ../libraries/theme-options.php:177
+msgid "Enter the color code you want used as the primary color.<br />Leave blank for default color. For making extensive CSS edits, set up a child theme."
+msgstr ""
+
+#: ../libraries/theme-options.php:201
+msgid "Featured Image"
+msgstr ""
+
+#: ../libraries/theme-options.php:204
+msgid "Hide the featured image on a single post/portfolio page"
+msgstr ""
+
+#: ../libraries/theme-options.php:218
+msgid "Featured Image Links To"
+msgstr ""
+
+#: ../libraries/theme-options.php:237
+msgid "If featured images are displayed in a post loop, choose where you want them to be linked to, or disable the link."
+msgstr ""
+
+#: ../libraries/theme-options.php:250
+msgid "Other Settings / Information"
+msgstr ""
+
+#: ../libraries/theme-options.php:260
+msgid "Background Color or Image"
+msgstr ""
+
+#: ../libraries/theme-options.php:261
+msgid "Set the background color or image in appearance > background."
+msgstr ""
+
+#: ../libraries/theme-options.php:265
+msgid "Custom Bio Sidebar"
+msgstr ""
+
+#: ../libraries/theme-options.php:267
+msgid "All options (Photo, Text, Search) for the custom bio in the sidebar are found in the widget itself, go to Appearance > Widgets and drag it into the sidebar. To add social links, use the \"Social Links\" menu."
+msgstr ""
+
+#: ../libraries/theme-options.php:272
+msgid "Menu Builder"
+msgstr ""
+
+#: ../libraries/theme-options.php:274
+msgid "Drag and drop menus are set up in Appearance > Menus."
+msgstr ""
+
+#: ../libraries/theme-options.php:281
+msgid "Save Options"
+msgstr ""
+
+#: ../libraries/themesetup.php:46
+msgid "Primary Menu"
+msgstr ""
+
+#: ../libraries/widget-areas.php:16
+msgid "Column Two: All"
+msgstr ""
+
+#: ../libraries/widget-areas.php:18
+msgid "Appears in any template with a sidebar column except the 404 not found page."
+msgstr ""
+
+#: ../libraries/widget-areas.php:27
+msgid "Column Two: Blog / Blog as Home"
+msgstr ""
+
+#: ../libraries/widget-areas.php:29
+msgid "Appears when a static blog page is set in reading settings or when your home page is showing posts."
+msgstr ""
+
+#: ../libraries/widget-areas.php:37
+msgid "Column Two: Home"
+msgstr ""
+
+#: ../libraries/widget-areas.php:39
+msgid "Appears when a static home page is set in reading settings and visiting that home page"
+msgstr ""
+
+#: ../libraries/widget-areas.php:50
+msgid "Column Two: Single Post"
+msgstr ""
+
+#: ../libraries/widget-areas.php:52
+msgid "Appears on a single post page"
+msgstr ""
+
+#: ../libraries/widget-areas.php:59
+msgid "Column Two: Single Page"
+msgstr ""
+
+#: ../libraries/widget-areas.php:61
+msgid "Appears on a single page template, except the home page."
+msgstr ""
+
+#: ../libraries/widget-areas.php:70
+msgid "Column Two: Any Archive Page"
+msgstr ""
+
+#: ../libraries/widget-areas.php:72
+msgid "When any type of Archive page is being displayed. Category, Tag, Author and Date based pages are all types of Archives."
+msgstr ""
+
+#: ../libraries/widget-areas.php:79
+msgid "Column Two: 404 Page"
+msgstr ""
+
+#: ../libraries/widget-areas.php:81
+msgid "When a page displays after an \"HTTP 404: Not Found\" error occurs."
+msgstr ""
+
+#: ../libraries/widget-areas.php:88
+msgid "Column Two: Logged in User"
+msgstr ""
+
+#: ../libraries/widget-areas.php:90
+msgid "Appears in the sidebar when a user is logged in."
+msgstr ""
+
+#: ../libraries/widget-areas.php:99
+msgid "Footer"
+msgstr ""
+
+#: ../libraries/widget-areas.php:101
+msgid "Footer, designed for a text widget. Do not enter a widget title. Check the box to add a paragraph tag."
+msgstr ""
+
+#: ../libraries/plugins/cudazi-bio-widget.php:13
+msgid "Reusable custom widget by Cudazi."
+msgstr ""
+
+#: ../libraries/plugins/cudazi-bio-widget.php:15
+msgid "Cudazi Custom Bio"
+msgstr ""
+
+#: ../libraries/plugins/cudazi-bio-widget.php:111
+msgid "All fields optional. Social icons pull from the items you created using the Social Links custom post type in the main menu."
+msgstr ""
+
+#: ../libraries/plugins/cudazi-bio-widget.php:113
+msgid "Photo URL:"
+msgstr ""
+
+#: ../libraries/plugins/cudazi-bio-widget.php:114
+msgid "Full image source/path. Image should be over 425px wide to fit in all layout options as the site resizes. Eg: http://dummyimage.com/420x525"
+msgstr ""
+
+#: ../libraries/plugins/cudazi-bio-widget.php:117
+msgid "Photo Links To:"
+msgstr ""
+
+#: ../libraries/plugins/cudazi-bio-widget.php:118
+msgid "Optional, allow the image above to be clickable."
+msgstr ""
+
+#: ../libraries/plugins/cudazi-bio-widget.php:121
+msgid "Bio/ Description:"
+msgstr ""
+
+#: ../libraries/plugins/cudazi-bio-widget.php:122
+msgid "Tell us a little about yourself!"
+msgstr ""
+
+#: ../libraries/plugins/cudazi-bio-widget.php:128
+msgid "Disable Search Form"
+msgstr ""
+

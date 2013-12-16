@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+	<!-- Default layout, loads most of the pages -->
+    <default>
+        <reference name="footer_links">
+            <action method="addLink" ifconfig="gomobile/configuration/enabled" translate="label" module="gomobile"><label>Mobile version</label><url helper="gomobile/getSwitchToMobileUrl"/><title>Mobile version</title><prepare/></action>
+        </reference>
+    </default>
+         
+</layout> 

@@ -1,0 +1,486 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Magento Webshopapps Shipping Module
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ ** Matrixdays
+ *
+ * @category   Webshopapps
+ * @package    Webshopapps_matrixdays
+ * @copyright  Copyright (c) 2011 Zowta Ltd (http://www.webshopapps.com)
+ * @license    http://www.webshopapps.com/license/license.txt - Commercial license
+*/
+-->
+<config>
+	<sections>
+		<carriers translate="label" module="shipping">
+			<label>Shipping Methods</label>
+			<tab>sales</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>320</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<matrixdays translate="label">
+					<label>Webshopapps Matrix Days</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>2</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<comment>
+                 <![CDATA[
+                <div style="padding:10px;background-color:#fff;border:1px solid #ddd;margin-bottom:7px;">
+                This module was developed by <a href="http://www.webshopapps.com" target="_blank">WebShopApps.com</a> - <b>Magento Shipping Extension Specialists</b>.
+                <br/> For docs & examples refer to the WebShopApps <a href="http://wiki.webshopapps.com/extensions/matrix-days-select">wiki</a>.
+                </div>
+                  ]]>
+					</comment>
+					<fields>
+						<active translate="label">
+							<label>Enabled</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>10</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</active>
+						<serial translate="label">
+							<label>Serial Key</label>
+							<frontend_type>obscure</frontend_type>
+							<backend_model>adminhtml/system_config_backend_encrypted
+							</backend_model>
+							<sort_order>11</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<tooltip>
+								If this field is blank, the extension will NOT work.
+			  </tooltip>
+							<comment>
+				  <![CDATA[If this is emptied after getting a shipping quote and refreshing this page then extension will not work.
+				  <br/>See this <a href="http://wiki.webshopapps.com/installation/serial-keys">wiki</a> article for more info
+				  ]]>
+							</comment>
+						</serial>
+						<title translate="label">
+							<label>Title</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>15</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</title>
+						<star_include_all translate="label">
+							<label>Apply shipping group '*' to all items in cart</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>20</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>When set * in shipping group column in csv file will
+								mean applies to ALL items</comment>
+						</star_include_all>
+						<condition_name translate="label">
+							<label>Totalling algorithm</label>
+							<frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_shipping_matrixdays
+							</source_model>
+							<sort_order>30</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Most people use Per Package or Highest Price totalling
+							</comment>
+						</condition_name>
+						<import translate="label">
+							<label>Import</label>
+							<frontend_type>import</frontend_type>
+							<backend_model>adminhtml/system_config_backend_shipping_matrixdays
+							</backend_model>
+							<sort_order>40</sort_order>
+							<show_in_default>0</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</import>
+						<postcode_filter translate="label">
+							<label>Postcode Matching</label>
+							<frontend_type>select</frontend_type>
+							<source_model>matrixdays/carrier_source_postcode</source_model>
+							<sort_order>45</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</postcode_filter>
+						<zipcode_max_length translate="label">
+							<label>Zip Code Max Length</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>47</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>0</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Strip long zipcodes to this length</comment>
+						</zipcode_max_length>
+						<heading_slots translate="label">
+							<label>Time Slots</label>
+							<frontend_model>adminhtml/system_config_form_field_heading
+							</frontend_model>
+							<sort_order>50</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+						</heading_slots>
+						<default_ship_price translate="label">
+							<label>Default shipping price</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>52</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</default_ship_price>
+						<num_slots translate="label">
+							<label>Number of different time slots</label>
+							<frontend_type>select</frontend_type>
+							<source_model>matrixdays/carrier_source_timeslots</source_model>
+							<sort_order>53</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</num_slots>
+						<default_avail_slots translate="label">
+							<label>Default availability in each slot</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>54</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>Set to -1 for infinite availability</comment>
+						</default_avail_slots>
+						<slot_1 translate="label">
+							<label>Slot 1</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>56</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</slot_1>
+						<slot_2 translate="label">
+							<label>Slot 2</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>58</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</slot_2>
+						<slot_3 translate="label">
+							<label>Slot 3</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>60</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</slot_3>
+						<slot_4 translate="label">
+							<label>Slot 4</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>62</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</slot_4>
+						<slot_5 translate="label">
+							<label>Slot 5</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>63</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</slot_5>
+						<slot_6 translate="label">
+							<label>Slot 6</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>64</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</slot_6>
+						<delivery_calc translate="label">
+							<label>Delivery Date Calculation</label>
+							<frontend_model>adminhtml/system_config_form_field_heading
+							</frontend_model>
+							<sort_order>65</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+						</delivery_calc>
+						<cutoff_time translate="label">
+							<label>Cutoff time e.g. 13:00</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>66</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</cutoff_time>
+						<production_days translate="label">
+							<label>Production days e.g. 4</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>68</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</production_days>
+						<production_daysofweek translate="label">
+							<label>Blackout production days</label>
+							<frontend_type>multiselect</frontend_type>
+							<source_model>matrixdays/carrier_source_daysofweek</source_model>
+							<sort_order>70</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</production_daysofweek>
+						<production_dates translate="label">
+							<label>Blackout production dates</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>72</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Use format specified in Date format (mm/dd/yyyy or
+								dd-mm-yyyy) &amp; separate with comma</comment>
+						</production_dates>
+						<delivery_daysofweek translate="label">
+							<label>Blackout delivery days</label>
+							<frontend_type>multiselect</frontend_type>
+							<source_model>matrixdays/carrier_source_daysofweek</source_model>
+							<sort_order>74</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</delivery_daysofweek>
+						<delivery_dates translate="label">
+							<label>Blackout delivery dates</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>76</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Use format specified in Date format (mm/dd/yyyy or
+								dd-mm-yyyy) &amp; separate with comma</comment>
+						</delivery_dates>
+						<custom_text_1 translate="label">
+							<label>Information text line 1</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>78</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</custom_text_1>
+						<custom_text_2 translate="label">
+							<label>Information text line 2</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>80</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</custom_text_2>
+						<!--
+							<show_dates translate="label"> <label>Show possible delivery
+							dates</label> <frontend_type>select</frontend_type>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>67</sort_order> <show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store> </show_dates>
+						-->
+						<date_format translate="label">
+							<label>Date format</label>
+							<frontend_type>select</frontend_type>
+							<source_model>matrixdays/carrier_source_dateformat</source_model>
+							<comment>If using the Ajax calendar use d-m-Y or m/d/Y</comment>
+							<sort_order>82</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</date_format>
+						<num_of_weeks translate="label">
+							<label>Number of weeks in advance to show</label>
+							<frontend_type>select</frontend_type>
+							<source_model>matrixdays/carrier_source_numofweeks</source_model>
+							<sort_order>83</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</num_of_weeks>
+						<advanced_heading translate="label">
+							<label>Advanced Settings</label>
+							<frontend_model>adminhtml/system_config_form_field_heading
+							</frontend_model>
+							<sort_order>85</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+						</advanced_heading>
+						<max_shipping_cost translate="label">
+							<label>Maximum shipping cost</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>87</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</max_shipping_cost>
+						<free_shipping_text translate="label">
+							<label>Free shipping promotion text</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>89</sort_order>
+							<tooltip>
+								What to show the shipping method as when it's free because of
+								a shopping cart promotion rule in Magento.
+			        </tooltip>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</free_shipping_text>
+						<zero_shipping_text translate="label">
+							<label>Zero cost shipping text</label>
+							<frontend_type>text</frontend_type>
+							<tooltip>
+								What to show the shipping as when the price of shipping is 0. I.e
+								"FREE SHIPPING"
+			        </tooltip>
+							<sort_order>90</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</zero_shipping_text>
+						<parent_group translate="label">
+							<label>Which shipping group?</label>
+							<frontend_type>select</frontend_type>
+							<source_model>matrixdays/carrier_source_parentgroup
+							</source_model>
+							<tooltip>
+								Parent is the actual configurable/bundle product.
+								The child is the associatated product/s or the configurable
+								options.
+              </tooltip>
+							<sort_order>100</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</parent_group>
+						<ship_options translate="label">
+							<label>Options</label>
+							<frontend_type>multiselect</frontend_type>
+							<source_model>matrixdays/carrier_source_shipoptions
+							</source_model>
+							<sort_order>120</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+							<comment>If unsure set to N/A. These are only used in rare
+								scenarios</comment>
+						</ship_options>
+						<dates_at_checkout translate="label">
+							<label>Number of rates to show at checkout</label>
+							<frontend_type>select</frontend_type>
+							<source_model>matrixdays/carrier_source_numofdatesatcheckout</source_model>
+							<sort_order>125</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Choose the number of rates to display at checkout.
+								'Display as Ajax calendar' must be selected in Options
+                            </comment>
+						</dates_at_checkout>
+						<heading_std_ship translate="label">
+							<label>Standard Shipping</label>
+							<frontend_model>adminhtml/system_config_form_field_heading
+							</frontend_model>
+							<sort_order>130</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+						</heading_std_ship>
+						<handling_type translate="label">
+							<label>Calculate handling fee</label>
+							<frontend_type>select</frontend_type>
+							<source_model>shipping/source_handlingType</source_model>
+							<sort_order>150</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</handling_type>
+						<handling_fee translate="label">
+							<label>Handling fee</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>160</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</handling_fee>
+						<sallowspecific translate="label">
+							<label>Ship to applicable countries</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>200</sort_order>
+							<frontend_class>shipping-applicable-country</frontend_class>
+							<source_model>adminhtml/system_config_source_shipping_allspecificcountries
+							</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</sallowspecific>
+						<specificcountry translate="label">
+							<label>Ship to specific countries</label>
+							<frontend_type>multiselect</frontend_type>
+							<sort_order>210</sort_order>
+							<source_model>adminhtml/system_config_source_country
+							</source_model>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</specificcountry>
+						<showmethod translate="label">
+							<label>Show method if not applicable</label>
+							<frontend_type>select</frontend_type>
+							<sort_order>220</sort_order>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<frontend_class>shipping-skip-hide</frontend_class>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</showmethod>
+						<specificerrmsg translate="label">
+							<label>Displayed error message</label>
+							<frontend_type>textarea</frontend_type>
+							<sort_order>230</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</specificerrmsg>
+						<sort_order translate="label">
+							<label>Sort order</label>
+							<frontend_type>text</frontend_type>
+							<sort_order>500</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>0</show_in_store>
+						</sort_order>
+					</fields>
+				</matrixdays>
+			</groups>
+		</carriers>
+	</sections>
+</config>

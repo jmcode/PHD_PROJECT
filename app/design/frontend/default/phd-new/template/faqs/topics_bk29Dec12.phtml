@@ -1,0 +1,252 @@
+<?php
+/**
+ * Advance FAQ Management Extension
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ *
+ * @category   FME
+ * @package    Advance FAQ Management
+ * @author     Kamran Rafiq Malik <support@fmeextensions.com>
+ *                          
+ * 	       Asif Hussain <support@fmeextensions.com>
+ * 	       
+ * @copyright  Copyright 2012 © www.fmeextensions.com All right reserved
+ */
+?>
+
+
+
+<?php 
+
+
+if(Mage::getStoreConfig('faqs/list/display_categories') == 'selected'):
+
+	$topics = $this->getSelectedTopics();
+else :
+	$topics = $this->getTopics();
+endif;
+
+$num_of_question_to_display = Mage::getStoreConfig('faqs/list/show_number_of_questions');
+
+$cat_num = count($topics);
+
+$faq_num = $num_of_question_to_display;
+
+$allowed_rating_customers = Mage::getStoreConfig('faqs/rating/allow_customers');
+
+//Faqs that already has been rated, in that session
+$faqs_already_rated = Mage::getSingleton('customer/session')->getRatedFaqsId();
+
+
+?>
+
+<?php if(Mage::getStoreConfig('faqs/rating/enable')) : ?>
+		<script type="text/javascript">		
+			Event.observe(window, 'load', function() {
+				var cat = '<?= $cat_num; ?>';
+				var faq = '<?= $faq_num; ?>';
+				//var is_rated = '<?= $is_rated; ?>';
+				
+				for(c=1; c<=cat; c++ ){
+					
+					for(f=1; f<=faq; f++){
+						
+						var rating_element = $('rating_'+c+'_'+f);
+						if($('has_rated_'+c+'_'+f) != undefined){
+							var is_rated = $('has_rated_'+c+'_'+f).readAttribute('title');
+							if(is_rated == 'yes') is_rated = true;
+							else if(is_rated == 'no') is_rated = false;
+						}
+						if(rating_element != undefined){
+							
+								rating = new Control.Rating(rating_element,
+										{
+											rated: is_rated,
+											value: parseFloat($('stars_'+c+'_'+f).readAttribute('title')),
+											cat_id: parseInt($('cat_id_'+c+'_'+f).readAttribute('title')),
+											faq_id: parseInt($('faq_id_'+c+'_'+f).readAttribute('title')),
+											updateUrl:'<?php echo $this->getUrl('*/*/rating') ?>',
+											updateOptions : {
+												method: 'post',
+												onSuccess: function(transport) {
+														$('rating-success').appear();
+														$('rating_message').update(transport.responseText);
+													},
+												onFailure: function(transport) {
+														$('rating-fail').appear();
+														$('rating_message').update(transport.responseText);
+													}
+												}
+										});
+						}			
+					}		
+				}	
+			});
+		</script>
+
+<?php endif; ?>
+
+
+
+<?php
+	$current_theme = Mage::getStoreConfig('faqs/themes/select_theme');
+	if($current_theme == ''){
+			
+			$current_theme = 'theme1';
+	}
+	
+?>
+
+<?php if($current_theme == 'theme1' || $current_theme == 'theme3' || $current_theme == 'theme4'):?> <style type="text/css">.rating_container a { background-image: url("<?php echo $this->getSkinUrl('images/faqs/rating.png'); ?>") !important; </style> <?php endif; ?>
+
+<?php if($current_theme == 'theme2' || $current_theme == 'theme5'):?> <style type="text/css">.rating_container a { background-image: url("<?php echo $this->getSkinUrl('images/faqs/rating2.png'); ?>") !important; </style> <?php endif; ?>
+
+
+
+<?php if(Mage::getStoreConfig('faqs/list/enable_accordion')) : ?>
+
+<script type="text/javascript">
+	
+	Event.observe(window, 'load', function() {
+		
+		var cat = '<?= $cat_num; ?>';
+		
+		
+		for(c=1; c<=cat; c++ ){
+			
+			var accor_element = $('faq_accordian_'+c);
+			var default_accor_open = $('default_accordion_opened_category_'+c);
+			if(default_accor_open != undefined){
+				accordian = new Accordion(accor_element,default_accor_open.title)
+			}else{
+				accordian = new Accordion(accor_element,1)
+			}
+		}
+	});
+	
+</script>
+
+<?php endif; ?>
+
+
+
+<div id="wrapper">
+
+
+
+<div class="page-title">
+	<h1>
+		
+		<?php
+			if(Mage::getStoreConfig('faqs/list/page_title') != '')
+				
+				echo Mage::getStoreConfig('faqs/list/page_title');
+			else
+				echo Mage::helper('faqs')->__('FAQ\'s Categories');
+		?>
+	</h1>
+</div>
+
+	<div class="success-msg" id="rating-success" style="display:none;"><p id="rating_message"></p></div>
+	<div class="error-msg" id="rating-fail" style="display:none;"><p id="rating_message"></p></div>
+	
+	
+
+<?php if ( count($topics) == 0 ) : ?>    
+		<p class="empty"><?php echo Mage::helper('faqs')->__('No Category find yet!') ?></p>
+<?php else : ?>
+
+	<?php $cat = 0; foreach ($topics as $_topic): $cat++; ?>
+	
+		
+		
+		
+		<div class="<?php echo $current_theme; ?>" id="<?php echo 'faq_accordian_'.$cat; ?>">
+					
+			<h1><a href="<?php echo Mage::helper('faqs')->getUrl($_topic['identifier']); ?>"><?php echo $_topic["title"]; ?></a></h1>
+					
+			<?php $faqs = $this->getFaqsOfTopics($_topic['topic_id']); ?>
+					
+			<?php if( count($faqs) == 0 ): ?>
+			
+				<p class="empty"><?php echo Mage::helper('faqs')->__('No Faqs Found in this topic!') ?></p>
+							
+			<?php else: ?>
+							
+				<ul>		
+					<?php $i=0; $has_default_opened = '';
+					
+					foreach($faqs as $f_val): $i++; ?>
+									
+							
+							<?php if($f_val['accordion_opened'] == 1 && $has_default_opened == ''):  ?>
+								<span id="<?php echo 'default_accordion_opened_category_'.$cat; ?>" title="<?php echo $i; ?>" style="display:none;">
+									<?php $has_default_opened = 'yes'; ?>
+								</span>
+							<?php endif; ?>
+						
+						
+							<?php if($i <= $num_of_question_to_display): ?>
+								<li>		
+								
+									<div class="accordion-toggle" ><?php echo $f_val['title']; ?></div>
+									<div class="accordion-content">
+									
+										<div class="answer"><?php echo $f_val['faq_answar']; ?></div>
+											
+											
+										<?php if(Mage::getStoreConfig('faqs/rating/enable')) : ?>
+												
+											<div class="rating_dv">											
+												<span id="<?php echo 'cat_id_'.$cat.'_'.$i; ?>" style="display:none;" title="<?php echo $_topic['topic_id'] ?>"></span>
+												<span id="<?php echo 'faq_id_'.$cat.'_'.$i; ?>" style="display:none;" title="<?php echo $f_val['faqs_id']; ?>" ></span>
+												<span id="<?php echo 'stars_'.$cat.'_'.$i; ?>" style="display:none;" title="<?php echo $f_val['rating_stars']; ?>" ></span>
+														
+												<?php if($allowed_rating_customers == 'all' || ($allowed_rating_customers == 'registered' && Mage::helper('customer')->isLoggedIn())): ?>
+				
+													<?php if(in_array($f_val['faqs_id'],$faqs_already_rated)): ?>	
+															<span id="<?php echo 'has_rated_'.$cat.'_'.$i; ?>" style="display:none;" title="yes" ></span>
+													<?php else: ?>
+															<span id="<?php echo 'has_rated_'.$cat.'_'.$i; ?>" style="display:none;" title="no" ></span>
+													<?php endif; ?>
+													
+												<?php else: ?>
+												
+													<span id="<?php echo 'has_rated_'.$cat.'_'.$i; ?>" style="display:none;" title="yes" ></span>
+													
+												<?php endif; ?>													
+												
+												<div id="<?php echo 'rating_'.$cat.'_'.$i; ?>" class="rating_container"> </div>
+												<br class="clear" />
+											</div>
+												
+										<?php endif; ?>
+									</div>
+								</li>	
+							<?php endif; ?>
+							
+					<?php endforeach; ?>
+				</ul>
+							
+			<?php endif; ?>
+						
+			<?php if(Mage::getStoreConfig('faqs/list/enable_view_more') == 1 &&  count($faqs) > $num_of_question_to_display && $num_of_question_to_display!= 0 ): ?>
+					
+				<a class="read_more" href="<?php echo Mage::helper('faqs')->getUrl($_topic['identifier']); ?>"><?php echo $this->__('Read more'); ?></a>
+				
+			<?php endif; ?>
+		
+		</div>
+				
+	<?php endforeach; ?>	
+	
+	
+<?php endif; ?>
+
+
+</div>

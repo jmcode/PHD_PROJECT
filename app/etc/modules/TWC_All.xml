@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <TWC_MultiAdd>
+            <active>true</active>
+            <codePool>local</codePool>
+            <version>0.1.0</version>
+        </TWC_MultiAdd>
+        <TWC_NZRegions>
+            <active>true</active>
+            <codePool>local</codePool>
+        </TWC_NZRegions>
+        <TWC_CGHandle>
+            <active>true</active>
+            <codePool>local</codePool>
+        </TWC_CGHandle>
+        <TWC_PaypalUpdate>
+            <active>true</active>
+            <codePool>local</codePool>
+        </TWC_PaypalUpdate>
+        <TWC_PackingslipUpdate>
+            <active>true</active>
+            <codePool>local</codePool>
+            <depends>
+                <Belvg_Checkoutfields/>
+            </depends>
+        </TWC_PackingslipUpdate>
+        <TWC_AffiliateEnquiry>
+            <active>true</active>
+            <codePool>local</codePool>
+        </TWC_AffiliateEnquiry>
+    </modules>
+</config>

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <catalog>
+            <children>
+                <aitshopassist translate="title" module="aitshopassist">
+                    <title>Shopping Assistant</title>
+                    <sort_order>100</sort_order>
+                    <action>aitshopassist/adminhtml_page</action>
+                </aitshopassist>
+            </children>
+        </catalog>
+    </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <catalog>
+                        <children>
+                            <aitshopassist translate="title">
+                                <title>Shopping Assistant</title>
+                                <sort_order>100</sort_order>
+                            </aitshopassist>
+                        </children>
+                    </catalog>
+                </children>
+            </admin>
+        </resources>
+    </acl> 
+    <translate>
+        <modules>
+            <Aitoc_Aitshopassist>
+                <files>
+                    <default>Aitoc_Aitshopassist.csv</default>
+                </files>
+            </Aitoc_Aitshopassist>
+        </modules>
+    </translate>
+</config>
+<!--
+/**
+ * Shopping Assistant
+ *
+ * @category:    Aitoc
+ * @package:     Aitoc_Aitshopassist
+ * @version      1.0.17
+ * @license:     fEv8NRVUcfeWNj6fFopfiC6j0bkfeMCgY3lx8CzFS6
+ * @copyright:   Copyright (c) 2013 AITOC, Inc. (http://www.aitoc.com)
+ */
+-->

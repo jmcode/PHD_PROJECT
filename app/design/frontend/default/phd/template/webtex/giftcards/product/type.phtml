@@ -1,0 +1,188 @@
+<?php
+$_product = $this->getProduct();
+$_currency = Mage::app()->getStore()->getCurrentCurrency();
+$_from = Mage::getStoreConfig('giftcards/default/min_card_value') ? Mage::getStoreConfig('giftcards/default/min_card_value') : 0;;
+$_to = Mage::getStoreConfig('giftcards/default/max_card_value') ? Mage::getStoreConfig('giftcards/default/max_card_value') : 0;;
+?>
+<script type="text/javascript">
+    Validation.add('validate-float-range', "The value is not within the specified range.", function(v, element) {
+        var result = Validation.get('IsEmpty').test(v) || !/[^\d\.\,]/.test(v);
+        var reRange = new RegExp(/^float-range-[\d\.\,]+-[\d\.\,]+$/);
+        $w(element.className).each(function(name, index) {
+            if (name.match(reRange) && result) {
+                var min = parseFloat(name.split('-')[2]);
+                var max = parseFloat(name.split('-')[3]);
+                var val = parseFloat(v);
+                result = !((v < min && min > 0) || (v > max && max > 0));
+            }
+        });
+        return result;
+    });
+</script>
+<div class="giftcard-info">
+    <fieldset style="height: 100%;">
+        <div class="field-label"><?php //echo $this->__('Choose the type of Gift Card') ?></div>
+        <div style="display:none;">
+            <?php if($this->helper('giftcards')->isShowEmailType()): ?>
+            <input type="radio" id="email-radio" name="card_type" value="email" checked="checked" onclick="changeFieldset('email')" />&nbsp;<label for="email-radio"><?php echo $this->__('E-mail Gift Card (to someone or yourself)') ?></label><br>
+            <?php endif; ?>
+            <?php if($this->helper('giftcards')->isShowPrintType()): ?>
+            <input type="radio" id="print-radio" name="card_type" value="print" onclick="changeFieldset('print')" />&nbsp;<label for="print-radio"><?php echo $this->__('Print-Out Gift Card') ?></label><br>
+            <?php endif; ?>
+            <?php if($this->helper('giftcards')->isShowOfflineType()): ?>
+            <input type="radio" id="offline-radio" name="card_type" value="offline" onclick="changeFieldset('offline')" />&nbsp;<label for="offline-radio"><?php echo $this->__('Send by post office') ?></label>
+            <?php endif; ?>
+        </div>
+    </fieldset>
+    <fieldset id="giftcard-fieldset" class="giftcard-fieldset">
+        <?php if ($this->getPriceStatus() == 1) : ?>
+        <div class="field" style="display:block !important;">
+            <!--label for="card-amount" class="required"><?php echo $this->__('Select the Gift Voucher amount') ?><em>*</em>:</label--><br/>
+			
+			<div class="allbtns">
+			<?php $i=$_from;?>
+			<?php while($i<=$_to){?>
+			<div class='voucher-btn'>
+			<button id="prcebtn-<?php echo $i?>" class="prcebtn" type="button"  onclick="setPriceval('<?php echo $i ?>');" style="background:url('<?php echo $this->getSkinUrl().'images/giftvoucher_'.$i.'.png'; ?>') no-repeat;border:0px none !important;background-position:0px -80px ;"><span class="priceimg" ></span></button>
+			</div>
+			<?php $i=$i+25;} ?>
+			
+			<input style="width:100px;" type="hidden" id="card-amount" name="card_amount" class="input-text required-entry validate-float-range float-range-<?php echo $_from;?>-<?php echo $_to;?>"/>
+			</div>
+			<!--&nbsp;(--><?php //echo $_currency->format($_from)-?>  <?php //echo $_currency->format($_to) ?><!--)-->
+        </div>
+        <?php elseif($this->getPriceStatus() == 2) : ?>
+        <br/>
+        <label for="card-amount" class="required"><?php echo $this->__('Select amount') ?><em>*</em>:</label><br/>
+        <select id="cart-amount" name="card_amount" class="validate-select" style="width:207px;">
+            <?php foreach($this->aAdditionalPrices as $additionalPrice) : ?>
+            <option value="<?php echo $additionalPrice;?>"><?php echo $_currency->format($additionalPrice);?></option>
+            <?php endforeach; ?>
+        </select>
+        <?php else: ?>
+        <?php echo $this->getPriceHtml($_product) ?>
+        <?php endif; ?>
+        <div class="field align">
+            <label for="mail-from"><?php echo $this->__('From Name') ?>:</label><br/>
+            <input style="width:200px;" type="text" id="mail-from" name="mail_from" class="input-text"/>
+        </div>
+        <div class="field align">
+            <label for="mail-to"><?php echo $this->__('To Name') ?>:</label><br/>
+            <input style="width:200px;" type="text" id="mail-to" name="mail_to" class="input-text"/>
+        </div>
+        <div class="field align">
+            <label for="mail-to-email" class="required"><?php echo $this->__('To E-mail') ?><em>*</em>:</label><br/>
+            <input style="width:200px;" type="text" id="mail-to-email" name="mail_to_email" class="input-text required-entry validate-email"/>
+        </div>
+        <div class="field align" style="width:646px !important;">
+            <label for="mail-message"><?php echo $this->__('Message') ?>:</label><br/>
+            <textarea id="mail-message" name="mail_message"></textarea>
+        </div>
+        <div class="field">
+            <label for="offline-country"><?php echo $this->__('Country') ?><em>*</em>:</label><br/>
+            <input style="width:200px;" type="text" id="offline-country" name="offline_country" class="input-text required-entry"/>
+        </div>
+        <div class="field">
+            <label for="offline-state"><?php echo $this->__('State/Province') ?><em>*</em>:</label><br/>
+            <input style="width:200px;" type="text" id="offline-state" name="offline_state" class="input-text required-entry"/>
+        </div>
+        <div class="field">
+            <label for="offline-city"><?php echo $this->__('City') ?><em>*</em>:</label><br/>
+            <input style="width:200px;" type="text" id="offline-city" name="offline_city" class="input-text required-entry"/>
+        </div>
+        <div class="field">
+            <label for="offline-street"><?php echo $this->__('Street Address') ?><em>*</em>:</label><br/>
+            <input style="width:200px;" type="text" id="offline-street" name="offline_street" class="input-text required-entry"/>
+        </div>
+        <div class="field">
+            <label for="offline-zip"><?php echo $this->__('Zip/Postcode') ?><em>*</em>:</label><br/>
+            <input style="width:200px;" type="text" id="offline-zip" name="offline_zip" class="input-text required-entry"/>
+        </div>
+        <div class="field">
+            <label for="offline-phone"><?php echo $this->__('Telephone') ?><em>*</em>:</label><br/>
+            <input style="width:200px;" type="text" id="offline-phone" name="offline_phone" class="input-text required-entry"/>
+        </div>
+    </fieldset>
+
+</div>
+<h3 class="phd-popup-term" style="float:left;">
+<a href="#voucher_cond" class="inline_voucher cboxElement">Conditions Apply</a>
+</h3>
+<div style="display:none;">
+<div style="padding:10px; background:#fff;" id="voucher_cond">
+  <h3>Gift Vouchers Terms & Conditions</h3>
+  <ul> 
+   <li>Valid for 12 months from date of purchase</li>
+    <li>Vouchers are not redeemable for cash</li>
+   <li> Vouchers must be redeemed online and in full (no credit or cash refund will be given)</li>
+    <li>Only available for product to a delivery address in Auckland, Wellington, Hamilton, Tauranga</li>
+    <li>Gift Vouchers cannot be used to purchase other gift vouchers</li>
+</ul></div>
+</div>
+<script type="text/javascript">
+    function changeFieldset(type) {
+        var mapEmail = new Array('card-amount', 'mail-from', 'mail-to', 'mail-to-email', 'mail-message');
+        var mapPrint = new Array('card-amount', 'mail-from', 'mail-to', 'mail-message');
+        var mapOffline = new Array('card-amount', 'mail-from', 'mail-to', 'mail-message', 'offline-country', 'offline-state', 'offline-city', 'offline-street', 'offline-zip', 'offline-phone');
+        $('giftcard-fieldset').select('.field').invoke('hide');
+        var map = mapEmail;
+        if (type == 'email') {
+		$('giftcard-fieldset').select('.f').invoke('show');
+            map = mapEmail
+        } else if (type == 'print') {
+            map = mapPrint
+        } else if (type == 'offline') {
+            map = mapOffline
+        }
+        map.each(function(field) {
+            if ($(field)) {
+                $(field).up('.field').show();
+            }
+        });
+    }
+    changeFieldset('email');
+</script>
+<script>
+
+function setPriceval(value){
+var gv=jQuery.noConflict();
+gv('#card-amount').val(value);
+return false;
+}
+var gv=jQuery.noConflict();
+gv(document).ready(function(){
+    gv('.prcebtn').hover(function(){
+	
+        gv(this).css('background-position', '0px 0px');
+    }, function(){
+	gv(this).css('background-position', '0px -80px');
+		
+    });    
+	   gv('.prcebtn').click(function(){
+	   gv('.prcebtn').removeClass('bg-position');
+        gv(this).addClass('bg-position');
+    }); 
+	});
+
+
+</script>
+<script>
+var gv=jQuery.noConflict();
+			gv(document).ready(function(){
+				//Examples of how to assign the ColorBox event to elements
+				
+				gv(".inline_voucher").colorbox({inline:true, width:"50%"});
+				
+				
+				//Example of preserving a JavaScript event for inline calls.
+				gv("#click").click(function(){ 
+					gv('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+					return false;
+				});
+			});
+		</script>
+		<style>
+.bg-position{
+background-position:0px 0px !important;
+}
+</style>

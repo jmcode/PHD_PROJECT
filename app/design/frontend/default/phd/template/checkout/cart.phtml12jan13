@@ -1,0 +1,245 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2012 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+/**
+ * Shopping cart template
+ *
+ * @see Mage_Checkout_Block_Cart
+ */
+?>
+
+<div class="cart">
+   <div class="page-title title-buttons">
+      <h1><?php echo $this->__('Checkout With Confidence') ?></h1>
+      <?php //if(!$this->hasError()): ?>
+      <ul class="checkout-types">
+         <?php //foreach ($this->getMethods('top_methods') as $method): ?>
+         <?php //if ($methodHtml = $this->getMethodHtml($method)): ?>
+         <li>
+            <?php //echo $methodHtml; ?>
+         </li>
+         <?php //endif; ?>
+         <?php //endforeach; ?>
+      </ul>
+      <?php //endif; ?>
+      <div class="secure-icons"><img alt="" src="http://phdcleanse.frontforge.com/skin/frontend/default/phd/images/secure-icons.jpg"></div>
+   </div>
+   <div class="cart-banner"> <?php echo $this->getMessagesBlock()->getGroupedHtml() ?> <?php echo $this->getChildHtml('form_before') ?>
+      <form action="<?php echo $this->getUrl('checkout/cart/updatePost') ?>" method="post">
+         <fieldset>
+            <table id="shopping-cart-table" class="data-table cart-table">
+               <col width="1" />
+               <col />
+               <col width="1" />
+               <?php if ($this->helper('wishlist')->isAllowInCart()) : ?>
+                  <col width="1" />
+               <?php endif ?>
+               <?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                  <col width="1" />
+               <?php endif; ?>
+               <?php if ($this->helper('tax')->displayCartPriceInclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                  <col width="1" />
+               <?php endif; ?>
+               <col width="1" />
+               <?php if ($this->helper('tax')->displayCartPriceExclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                  <col width="1" />
+               <?php endif; ?>
+               <?php if ($this->helper('tax')->displayCartPriceInclTax() || $this->helper('tax')->displayCartBothPrices()): ?>
+                  <col width="1" />
+               <?php endif; ?>
+               <col width="1" />
+               <?php $mergedCells = ($this->helper('tax')->displayCartBothPrices() ? 2 : 1); ?>
+               <thead>
+                  <tr class="first-row">
+                     <th rowspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Product') ?></span></th>
+                     <th rowspan="<?php echo $mergedCells; ?>">&nbsp;</th>
+                     <th rowspan=""><span class="nobr days">Days</span></th>
+                     <th rowspan="" style="text-align:left; padding-left:20px;"><span class="nobr delivery-date">Delivery Date</span></th>
+                     <!-- <th rowspan="<?php echo $mergedCells; ?>" class="just"></th>-->
+                     <?php if ($this->helper('wishlist')->isAllowInCart()) : ?>
+                        <th rowspan="<?php echo $mergedCells; ?>" class="a-center"><span class="nobr"><?php echo $this->__('Move to Wishlist') ?></span></th>
+                     <?php endif ?>
+                     <th class="a-center price-cart1" colspan="<?php echo $mergedCells; ?>"><span class="nobr"><?php echo $this->__('Price') ?></span></th>
+                     <th rowspan="<?php echo $mergedCells; ?>" class="a-center"><span class="nobr"><?php echo $this->__('Qty') ?></span></th>
+                     <th class="a-center total-cart1" colspan="<?php echo $mergedCells; ?>"><?php echo $this->__('Total Price') ?></th>
+                     <th rowspan="<?php echo $mergedCells; ?>" class="a-center remove-prod">&nbsp;</th>
+                  </tr>
+                  <?php if ($this->helper('tax')->displayCartBothPrices()): ?>
+                     <tr >
+                        <th class="a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+                        <th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+                        <th class="a-right"><?php echo $this->helper('tax')->getIncExcTaxLabel(false) ?></th>
+                        <th><?php echo $this->helper('tax')->getIncExcTaxLabel(true) ?></th>
+                     </tr>
+                  <?php endif; ?>
+               </thead>
+               <tfoot style=" display:none; visibility:hidden;">
+                  <tr >
+                     <td colspan="50" class="a-right"><?php if ($this->getContinueShoppingUrl()): ?>
+                           <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="button btn-continue" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+                        <?php endif; ?>
+                        <button type="submit" name="update_cart_action" value="update_qty" title="<?php echo $this->__('Update Shopping Cart'); ?>" class="button btn-update"><span><span><?php echo $this->__('Update Shopping Cart'); ?></span></span></button>
+                        <button type="submit" name="update_cart_action" value="empty_cart" title="<?php echo $this->__('Clear Shopping Cart'); ?>" class="button btn-empty" id="empty_cart_button"><span><span><?php echo $this->__('Clear Shopping Cart'); ?></span></span></button>
+
+                        <!--[if lt IE 8]>
+                                    <input type="hidden" id="update_cart_action_container" />
+                                    <script type="text/javascript">
+                                    //<![CDATA[
+                                        Event.observe(window, 'load', function()
+                                        {
+                                            // Internet Explorer (lt 8) does not support value attribute in button elements
+                                            $emptyCartButton = $('empty_cart_button');
+                                            $cartActionContainer = $('update_cart_action_container');
+                                            if ($emptyCartButton && $cartActionContainer) {
+                                                Event.observe($emptyCartButton, 'click', function()
+                                                {
+                                                    $emptyCartButton.setAttribute('name', 'update_cart_action_temp');
+                                                    $cartActionContainer.setAttribute('name', 'update_cart_action');
+                                                    $cartActionContainer.setValue('empty_cart');
+                                                });
+                                            }
+
+                                        });
+                                    //]]>
+                                    </script>
+                                    <![endif]--></td>
+                  </tr>
+               </tfoot>
+               <tbody>
+                  <?php
+                  foreach ($this->getItems() as $_item):
+                     $pro_id = $_item->getProductId();
+                     ?>
+                     <?php echo $this->getItemHtml($_item) ?>
+                  <?php endforeach ?>
+               </tbody>
+            </table>
+            <script type="text/javascript">decorateTable('shopping-cart-table')</script>
+         </fieldset>
+      </form>
+      <div class="cart-collaterals">
+         <div class="col2-set">
+
+            <div class="have-question">
+               <h6 class="purple">Do You Have<br />
+                  Any Questions?</h6>
+               <p class="brown">You can either</p>
+               <p class="read-butn"><a href="#">Read The Faq</a> </p>
+               <p class="brown"> or, call us on</p>
+               <h6 class="purple">0800 000 000</h6>
+            </div>
+            <div class="col-1">
+
+               <?php
+               echo $this->getChildHtml('crosssell');
+               ?>
+
+
+            </div>
+            <div class="col-2">
+               <?php /* Extensions placeholder */ ?>
+               <?php echo $this->getChildHtml('checkout.cart.extra') ?> <?php echo $this->getChildHtml('coupon') ?>
+               <?php if (!$this->getIsVirtual()): echo $this->getChildHtml('shipping');
+               endif; ?>
+            </div>
+
+
+            <div class="totals"> <?php echo $this->getChildHtml('totals'); ?>
+                  <?php if (!$this->hasError()): ?>
+                  <ul class="checkout-types">
+                     <?php foreach ($this->getMethods('methods') as $method): ?>
+                        <?php if ($methodHtml = $this->getMethodHtml($method)): ?>
+                           <li><?php echo $methodHtml; ?></li>
+                        <?php endif; ?>
+                  <?php endforeach; ?>
+                  </ul>
+<?php endif; ?>
+                <div class="secure-bottom">
+                  <div class="secure-icons2">
+                     <ul class="secure-icon3">
+						<li class="first">Shop With Confidence</li>
+						<li><img src="<?php echo $this->getSkinUrl('images/secure-icons-2.jpg') ?>" /></li>
+						<li class="last">Clear Cart</li>
+					</ul>
+                  </div>
+                </div>
+            </div>
+         </div>
+      </div>
+	  
+	  
+   </div>
+   
+   <div class="continue-shop-btn">
+		<?php if ($this->getContinueShoppingUrl()): ?>
+        <button type="button" title="<?php echo $this->__('Continue Shopping') ?>" class="button btn-continue" onclick="setLocation('<?php echo $this->getContinueShoppingUrl() ?>')"><span><span><?php echo $this->__('Continue Shopping') ?></span></span></button>
+        <?php endif; ?>
+	</div>
+   
+</div>
+<div style='display:none'>
+   <div id='inline_content2' style='padding:10px; background:#fff;'>
+      <?php
+      $object = Mage::getModel('catalog/product');
+      $_product = $object->load($pro_id);
+      $upsell_product = $_product->getUpSellProductCollection()->addAttributeToSort('position', Varien_Db_Select::SQL_ASC)->addStoreFilter();
+      $count = count($upsell_product);
+      if (empty($count)) :
+         echo "Record not found";
+      else:
+		$i=0;
+         foreach ($upsell_product as $_upsell):
+            $upsp = $object->load($_upsell->getId());
+			if($i<1){
+			?>
+			<div class="heading-top"><span class="row1">Would you like to add&nbsp;</span><span class="row2">the <?php echo $upsp->getName() ?> for  </span><span class="row3">Only $<?php echo $upsp->getPrice() ?></span></div>
+            <div class="mid-cntent">
+				<div class="left_cnt"><?php echo $upsp->getShortDescription(); ?></div>
+				<div class="right_cnt"><a href="<?php echo $upsp->getProductUrl()?>"><img src="<?php echo $this->helper('catalog/image')->init($upsp, 'small_image')->resize(261, 160); ?>" width="261" height="160" alt="<?php echo $this->stripTags($this->getImageLabel($upsp, 'small_image'), null, true) ?>" /></a></div>
+			</div>
+			<p class="inline-btn"><button type="button" title="<?php echo $upsp->getName()?>" class="button btn-cart" onclick="setLocation('<?php echo $this->getAddToCartUrl($_product) ?>')"><span><span><?php echo 'yes, Add the '.$upsp->getName() ?></span></span></button></p>
+			<p class="simple-txt"><span><a href="javascript:void(0)" onclick="closecbox();">No thanks, not this time</a></span></p>
+                     
+         <?php }
+			$i++;
+		 endforeach;
+      endif;
+      ?>
+	  
+      </div>
+      </div>
+      <script type="text/javascript">
+	  var cart=jQuery.noConflict();
+         cart(document).ready(function(){
+       
+           cart.fn.colorbox({width:"65%", inline:true, href:"#inline_content2"});
+         });
+		 function closecbox(){
+		 cart.fn.colorbox.close();
+		 
+		 }
+      </script>

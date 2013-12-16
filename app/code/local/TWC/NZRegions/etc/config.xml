@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <TWC_NZRegions>
+            <version>0.5.0</version>
+            <depends>
+                <Mage_Shipping />
+            </depends>
+        </TWC_NZRegions>
+    </modules>
+    <global>
+        <resources>
+            <twc_nzregions_setup>
+                <setup>
+                    <module>TWC_NZRegions</module>
+                </setup>
+                <connection>
+                    <use>directory_setup</use>
+                </connection>
+            </twc_nzregions_setup>
+            <twc_nzregions_write>
+                <connection>
+                    <use>local_write</use>
+                </connection>
+            </twc_nzregions_write>
+            <twc_nzregions_read>
+                <connection>
+                    <use>local_read</use>
+                </connection>
+            </twc_nzregions_read>
+        </resources>
+    </global>
+
+</config>

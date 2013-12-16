@@ -1,0 +1,243 @@
+@charset "utf-8";
+/* CSS Document */
+
+* {
+	padding:0px;
+	margin:0px;
+}
+body {
+	/*background:url(../../images/faqs/bg.jpg) repeat;*/
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	/*color:#878787;*/
+}
+
+form { margin:0px; }
+
+a {
+	text-decoration:none;
+	outline:none;
+	color:#878787;
+}
+a img {
+	border:none;
+}
+.clear {
+	clear:both;
+}
+.colr {
+	color:#216472 !important;
+}
+.bold {
+	font-weight:bold;
+}
+
+p {
+	line-height:18px;
+}
+.left {
+	float:left !important;
+}
+.right {
+	float:right !important;
+}
+.heading {
+	padding:10px 0px 0px 10px;
+	width:100%;
+	margin-bottom:10px;
+	text-transform:none;
+}
+input {
+	font-size:11px;
+}
+.itlc {
+	font-style:italic;
+}
+
+/*
+=======================================================================
+	Wrapper
+=======================================================================
+*/
+
+#wrapper { width:685px; margin:0 auto; }
+
+/*Theme1*/
+
+.theme1 { width:685px; margin:0px; padding:0px; *padding-left:5px; }
+
+.theme1 .read_more { font-family:Arial; font-size:12px; font-weight:normal; color:#1E7EC8; text-decoration:underline; margin-left:20px; line-height:30px; }
+
+.theme1 .read_more:hover { color:#1E7EC8; text-decoration:none; }
+
+.theme1 h1 { font-family:"Trebuchet MS"; font-size:17px; font-weight:normal; color:#404040; line-height:35px; margin-top:20px; }
+
+.theme1 h1 a{ font-family:"Trebuchet MS"; font-size:17px; font-weight:normal; color:#404040; line-height:35px; margin-top:20px; }
+
+.theme1 ul { list-style:none; padding:0px; margin-left:20px; }
+
+.theme1 ul li { line-height:25px; list-style:decimal; font-family:Arial; font-size:12px; font-weight:bold; color:#000; }
+
+.theme1 ul li .accordion-toggle {z-index: 10; font-family:Arial; font-size:14px; font-weight:normal; color:#343032; text-decoration:none; cursor:pointer; }
+
+.theme1 ul li .accordion-content { overflow:hidden; }
+
+.theme1 ul li p { padding:5px 0 5px 15px; }
+
+.theme1 ul li .answer { background:#f7f7f7; border:#e5e5e5 1px solid; padding:10px; width:620px; margin:8px 0 8px 2px; }
+
+.theme1 ul li .answer p { font-family:Verdana; font-size:12px; color:#343032; line-height:20px; }
+
+
+
+/*Theme2*/
+
+.theme2 { width:685px; margin:0px; padding:0px; }
+
+.theme2 .read_more { font-family:Arial; font-size:12px; font-weight:normal; color:#000; text-decoration:underline; margin-left:32px; line-height:35px; }
+
+.theme2 .read_more:hover { color:#1E7EC8; text-decoration:none; }
+
+.theme2 h1 { font-family:"Trebuchet MS"; font-size:17px; font-weight:normal; color:#404040; line-height:35px; margin-top:20px; }
+
+.theme2 h1 a{ font-family:"Trebuchet MS"; font-size:17px; font-weight:normal; color:#404040; line-height:35px; margin-top:20px; }
+
+.theme2 ul { list-style:none; padding:0px; margin-left:10px; }
+
+.theme2 ul li { line-height:25px;  }
+
+.theme2 ul li.minus { background:url(../../images/faqs/minus.png) no-repeat left top; vertical-align:top;  }
+
+.theme2 ul li.minus p { font-family:Verdana; font-size:12px; color:#343032; line-height:20px; line-height:20px; margin-left:8px; } 
+
+.theme2 ul li .accordion-toggle { background:url(../../images/faqs/plus.png) no-repeat left top; z-index:10; font-family:Arial; font-size:13px; font-weight:bold; color:#343032; text-decoration:none; padding-left:22px; cursor:pointer; }
+
+.theme2 ul li .accordion-toggle-active { background:url(../../images/faqs/minus.png) no-repeat left top; }
+
+.theme2 ul li .accordion-content { overflow:hidden; }
+
+.theme2 ul li p { padding:5px 0 5px 15px; }
+
+.theme2 ul li .answer { /*background:url(../../images/faqs/minus.png) no-repeat left top; vertical-align:top;*/ }
+
+.theme2 ul li .answer p { font-family:Verdana; font-size:12px; color:#343032; line-height:20px; line-height:20px; margin-left:8px;  }
+
+.theme2 ul li .rating_dv { padding-left: 19px; }
+
+
+
+/*Theme3*/
+
+.theme3 { width:685px; margin:0px; padding:0px; }
+
+.theme3 .read_more { font-family:Arial; font-size:12px; font-weight:normal; color:#000; text-decoration:none; margin-left:32px; line-height:35px; }
+
+.theme3 .read_more:hover { color:#1E7EC8; text-decoration:none; }
+
+.theme3 h1 { font-family:"Trebuchet MS"; font-size:17px; font-weight:normal; color:#404040; line-height:35px; margin-top:20px; }
+
+.theme3 h1 a{ font-family:"Trebuchet MS"; font-size:17px; font-weight:normal; color:#404040; line-height:35px; margin-top:20px; }
+
+.theme3 ul { list-style:none; padding:0px; margin-left:18px; }
+
+.theme3 ul li { line-height:25px; background:#e3e3e3; margin:0 0 5px 0; }
+
+.theme3 ul li.ans { background:none; list-style:none; }
+
+.theme3 ul li.ans p { font-family:Verdana; font-size:12px; color:#343032; line-height:20px; margin-left:0px; }
+
+.theme3 ul li.ans a { background:none; }
+
+.theme3 ul li .accordion-toggle {  z-index:10; cursor:pointer; font-family:Arial; font-size:13px; font-weight:bold; color:#343032; text-decoration:none; padding-left:15px; margin-left:8px; background:url(../../images/faqs/bullet1.jpg) no-repeat left; }
+
+.theme3 ul li .accordion-content { overflow:hidden; background:#fff; }
+
+.theme3 ul li p { padding:5px 0 5px 15px; }
+
+.theme3 ul li .answer { background:none; list-style:none; }
+
+.theme3 ul li .answer p { font-family:Verdana; font-size:12px; color:#343032; line-height:20px; line-height:20px; }
+
+.theme3 ul li .rating_dv { padding-left: 19px; }
+
+
+
+
+/*Theme4*/
+
+.theme4 { width:685px; margin:0px; padding:0px; }
+
+.theme4 .read_more { font-family:Arial; font-size:12px; font-weight:normal; color:#1E7EC8; text-decoration:none; line-height:35px; }
+
+.theme4 .read_more:hover { color:#1E7EC8; text-decoration:underline; }
+
+.theme4 h1 { font-family:"Trebuchet MS"; font-size:17px; font-weight:normal; color:#404040; line-height:35px; margin-top:20px; }
+
+.theme4 h1 a { font-family:"Trebuchet MS"; font-size:17px; font-weight:normal; color:#404040; line-height:35px; margin-top:20px; }
+
+.theme4 ul { list-style:none; padding:0px; margin-left:0px; }
+
+.theme4 ul li { line-height:25px; margin:0 0 5px 0; }
+
+.theme4 ul li .answer { background:none; list-style:none; }
+
+.theme4 ul li .answer p { font-family:Verdana; font-size:12px; color:#343032; line-height:20px; margin-left:0px; }
+
+.theme4 ul li.ans a { background:none; } 
+
+.theme4 ul li .accordion-toggle {background:url(../../images/faqs/plus1.png) no-repeat left top; z-index:10; cursor:pointer; padding-left: 22px; font-family:Arial; font-size:13px; font-weight:bold; color:#343032; text-decoration:none; margin-left:0px; }
+
+.theme4 ul li .accordion-toggle-active { background:url(../../images/faqs/minus1.png) no-repeat left top; }
+
+.theme4 ul li .accordion-content { overflow:hidden; }
+
+.theme4 ul li p { padding:5px 0 5px 4px; }
+
+
+
+/*Theme5*/
+
+.theme5 { width:685px; margin:0px; padding:0px; }
+
+.theme5 .read_more { font-family:Arial; font-size:12px; font-weight:normal; color:#1E7EC8; text-decoration:none; line-height:35px; }
+
+.theme5 .read_more:hover { color:#1E7EC8; text-decoration:underline; }
+
+.theme5 h1 { font-family:"Trebuchet MS"; font-size:17px; font-weight:normal; color:#404040; line-height:40px; margin-top:20px; text-transform:uppercase; }
+
+.theme5 h1 a { font-family:"Trebuchet MS"; font-size:17px; font-weight:normal; color:#404040; line-height:40px; margin-top:20px; text-transform:uppercase; }
+
+.theme5 ul { list-style:none; padding:0px; margin-left:0px; }
+
+.theme5 ul li { line-height:25px; margin:0 0 5px 0; border-bottom:#ccc 1px solid; padding-bottom:4px; }
+
+.theme5 ul li .answer {  }
+
+.theme5 ul li .answer p { font-family:Verdana; font-size:12px; color:#343032; line-height:20px; margin-left:20px; }
+
+.theme5 ul li.ans a { background:none; } 
+
+.theme5 ul li .accordion-toggle { z-index:10; cursor:pointer; line-height: 25px; font-family:Arial; font-size:13px; font-weight:bold; color:#343032; text-decoration:none; padding-left:20px; margin-left:0px; background:url(../../images/faqs/left.png) no-repeat; }
+
+.theme5 ul li .accordion-toggle-active { background:url(../../images/faqs/down.png) no-repeat left top;  line-height: 25px;}
+
+.theme5 ul li .accordion-content { overflow:hidden; }
+
+.theme5 ul li p { padding:5px 0 5px 0px; }
+
+.theme5 ul li .rating_dv { padding-left: 19px; }
+
+/*
+=======================================================================
+	Block
+=======================================================================
+*/
+
+
+.block-faqs .search-content { padding:3px 3px 3px 9px; }
+
+.block-faqs .menu { padding:3px 3px 3px 9px; }
+
+.block-faqs .menu strong { color: #343032; font-weight:bold; padding-bottom:5px; }
+
+.block-faqs a { color: #343032; }

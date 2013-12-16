@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+
+    <default>
+        <!--<remove name="top.links" />-->
+       <!-- <remove name="footer_links" />
+        <remove name="left.newsletter" />
+        <remove name="cart_head_ajax" />
+        <reference name="head">
+            <action method="addCss"><stylesheet>css/phd.css</stylesheet></action>
+        </reference>
+        <reference name="top.links">
+            <action method="addLink" translate="label title"><label>Affiliate Enquiries</label><url>affiliate-enquiry</url><title>Affiliate Enquiries</title><prepare>true</prepare><position>2</position></action>
+        </reference>-->
+		<!--<reference name="top.links">
+            <block type="checkout/links" name="checkout_cart_link">
+                <action method="addCheckoutLink"></action>
+            </block>
+        </reference>-->
+    </default>
+
+    <cms_index_index>
+        <!--<reference name="head">
+            <action method="addCss"><stylesheet>css/easybanner.css</stylesheet></action>-->
+            <!--<action method="addJs"><script>mw_js/jquery.js</script></action>-->
+
+        </reference>
+        <reference name="content">
+			<!--<action method="unsetChild"><name>cms.wrapper</name></action> -->
+            
+			<!-- Banner -->
+			<!--<block type="easybanner/banner" name="banner" before="-" template="easybanner/feature-gallery.phtml">
+                <action method="setBannerId"><banner_id>home_purehealthdelivered</banner_id></action>
+            </block>-->
+			
+			<!-- Stores / Favourites -->
+           <!-- <block type="core/template" name="stores-links" after="banner" template="page/html/home-stores.phtml" /> -->
+			
+			<!-- Featured Products -->
+           <!-- <block type="catalog/product_list" name="featured-products" after="stores-links" template="catalog/product/list-featured.phtml">
+                <action method="setCategoryId"><category>67</category></action>
+                <action method="setNumProducts"><products>4</products></action>
+                <action method="setColumnCount"><count>4</count></action>
+            </block> -->
+            
+            
+			<!-- Welcome to Pure Health Delivered and Para -->
+            <block type="core/template" name="welcome-message" after="featured-products" template="page/html/messageblock.phtml" />
+       		
+            
+       		<!-- Home bottom and Facebook -->
+			<!--<block type="core/template" name="home_add_bottom" after="welcome-message" template="page/html/home-add-bottom.phtml" /> -->
+			            
+        </reference>
+        
+        <reference name="before_body_end">
+        	<block type="customer/form_register" name="home-popup" template="page/html/popup.phtml" />
+        </reference>
+        
+    </cms_index_index>
+
+</layout>
+

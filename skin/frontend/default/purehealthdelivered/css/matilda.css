@@ -1,0 +1,50 @@
+/* price */
+.regular-price{margin-left: 0px;}
+.category-fast-order .regular-price{margin-left: 70px;}
+.price-box .old-price{margin-top:0px;}
+.category-fast-order .price-box .old-price{margin-top:-30px;}
+
+/*juices*/
+
+.juices button.button {
+    background: none repeat scroll 0 0 #FCC43C;
+    border: medium none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    cursor: pointer;
+    float: left;
+    font-size: 14px;
+    margin: 0 0 0 30px;
+    overflow: visible;
+    padding: 7px;
+    width: auto;
+}
+.category-blenders .juices button.button,.category-juicers .juices button.button {margin: 0 0 0 110px; }
+.juices button.button:hover {
+    background: none repeat scroll 0 0 #89CD06;
+}
+
+.juices a.link-learn {
+    background: none repeat scroll 0 0 #999999;
+    border: medium none;
+    border-radius: 5px;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    float: left;
+    font-size: 14px;
+    font-weight: normal;
+    margin: 0 0 0 10px;
+    overflow: visible;
+    padding: 5px;
+    text-decoration: none;
+}
+
+.category-fast-order .category-products-list .points-prediction{width: 340px;}
+#voucher_cond h3 {
+    color: #520052;
+}
+.cleanseleft{border-radius: 12px;    box-shadow: 1px 1px 16px -6px #000000;    float: left;    width: 270px;padding: 20px;}
+
+.cleanseright{float: right !important;    width: 677px !important;}
+.products-grid .individual-prod{height:280px;}

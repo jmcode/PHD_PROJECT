@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<config>
+    <modules>
+        <TWC_CGHandle>
+            <version>0.1.0</version>
+        </TWC_CGHandle>
+    </modules>
+    <global>
+        <models>
+            <twc_cghandle>
+                <class>TWC_CGHandle_Model</class>
+            </twc_cghandle>
+        </models>
+    </global>
+    <frontend>
+        <events>
+            <controller_action_layout_load_before>
+                <observers>
+                    <twc_cghandle>
+                        <type>singleton</type>
+                        <class>twc_cghandle/observer</class>
+                        <method>addCustomerGroupHandle</method>
+                    </twc_cghandle>
+                </observers>
+            </controller_action_layout_load_before>
+        </events>
+    </frontend>
+</config>

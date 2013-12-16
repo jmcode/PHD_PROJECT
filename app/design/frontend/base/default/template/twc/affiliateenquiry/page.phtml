@@ -1,0 +1,13 @@
+
+<div class="page-title">
+    <h1><?php echo Mage::helper('twc_affiliateenquiry')->__('Trade & Affiliate Enquiries') ?></h1>
+</div>
+<div id="messages_product_view"><?php echo $this->getMessagesBlock()->getGroupedHtml() ?></div>
+<div class="enquiry-form-page">
+    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('affiliate-enquiry-form-page')->toHtml() ?>
+</div>
+<div class="enquiry-form">
+    <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('affiliate-enquiry-form-text')->toHtml() ?>
+    <p><strong><?php echo Mage::helper('twc_affiliateenquiry')->__('Your Details') ?>: </strong><?php echo $this->__('* Required Fields') ?></p>
+    <?php echo $this->getChildHtml('enquiryForm'); ?>
+</div>

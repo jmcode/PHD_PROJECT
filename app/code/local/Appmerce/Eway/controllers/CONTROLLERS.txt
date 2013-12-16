@@ -1,0 +1,22 @@
+
+Available notifications
+-----------------------
+
+ - USER redirect to Return / Cancel (Hosted Payments)
+ - PULL [not implemented]
+
+Notification strategy
+---------------------
+ 
+ - USER: single status 0/1
+   If user does not return, status remains pending.
+ - PULL: single status 0/1
+   Pending statuses can be updated from 1 hour to 2 days afterwards.
+
+Implemented controller actions
+------------------------------
+
+ - ApiController.php: Basic user redirect actions 
+   @url eway/api/placement    Submits form fields to iDEAL Basic
+   @url eway/api/return       User redirect: Success
+   @url eway/api/cancel       User redirect: Cancel

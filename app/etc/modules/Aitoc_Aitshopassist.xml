@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Aitoc_Aitshopassist>
+            <active>true</active>
+            <codePool>local</codePool>
+            <self_name>Shopping Assistant</self_name>
+            <priority>4300</priority>
+        </Aitoc_Aitshopassist>
+    </modules>
+</config>
+<!--
+/**
+ * Shopping Assistant
+ *
+ * @category:    Aitoc
+ * @package:     Aitoc_Aitshopassist
+ * @version      1.0.17
+ * @license:     fEv8NRVUcfeWNj6fFopfiC6j0bkfeMCgY3lx8CzFS6
+ * @copyright:   Copyright (c) 2013 AITOC, Inc. (http://www.aitoc.com)
+ */
+-->

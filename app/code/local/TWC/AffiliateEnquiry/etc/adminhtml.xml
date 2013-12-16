@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <twc_affiliateenquiry translate="title" module="twc_affiliateenquiry">
+                                        <title>Affiliate Enquiry Form</title>
+                                    </twc_affiliateenquiry>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+
+</config>

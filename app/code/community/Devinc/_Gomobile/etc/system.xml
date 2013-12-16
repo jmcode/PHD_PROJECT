@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<config>
+    <tabs>
+		<dd translate="label" module="gomobile">
+            <label>Developers-inc</label>
+            <sort_order>200</sort_order>
+		</dd>
+    </tabs>
+	<sections>
+        <devinc_license translate="label" module="license">
+			<label>Licenses</label>
+			<tab>dd</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>100</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<gomobile translate="label">
+					<label>goMobile License</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+                        <domains_label translate="label">
+							<frontend_type>label</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_label</frontend_model>
+    						<sort_order>0</sort_order>
+						  	<show_in_default>1</show_in_default>
+						  	<show_in_website>1</show_in_website>
+						  	<show_in_store>1</show_in_store>
+						</domains_label>
+                        <domains translate="label">
+							<frontend_type>text</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_multiline</frontend_model>
+						  	<backend_model>license/system_config_backend_license</backend_model>
+    						<sort_order>1</sort_order>
+						  	<show_in_default>1</show_in_default>
+						  	<show_in_website>0</show_in_website>
+						  	<show_in_store>0</show_in_store>
+						</domains>
+					</fields>
+				</gomobile>
+			</groups>
+        </devinc_license>
+		<gomobile translate="label" module="gomobile">
+			<label>goMobile Theme</label>
+			<tab>dd</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>10</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<configuration translate="label">
+					<label>Configuration</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>10</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<enabled translate="label">
+							<label>Enable goMobile</label>
+							<frontend_type>select</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_select</frontend_model>
+							<source_model>adminhtml/system_config_source_yesno</source_model>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</enabled>
+						<modules translate="label">
+							<label>Extend goMobile with other Extensions</label>
+							<frontend_type>multiselect</frontend_type>
+							<frontend_model>license/adminhtml_system_config_form_multiselect</frontend_model>
+							<source_model>gomobile/source_modules</source_model>
+							<width>500</width>
+							<sort_order>2</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+							<comment>Select any custom extensions you want goMobile to use. Please note that enabling other custom extensions might mess up goMobiles layout or design, in which case customizations will be required on your end.</comment>
+						</modules>
+					</fields>
+				</configuration>
+			</groups>
+        </gomobile>
+    </sections>
+</config>

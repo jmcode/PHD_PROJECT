@@ -1,0 +1,112 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Yireo DeleteAnyOrder for Magento 
+ *
+ * @package     Yireo_DeleteAnyOrder
+ * @author      Yireo (http://www.yireo.com/)
+ * @copyright   Copyright (c) 2012 Yireo (http://www.yireo.com/)
+ * @license     Open Software License
+ */
+-->
+<config>
+
+    <modules>
+        <Yireo_DeleteAnyOrder>
+            <version>0.9.10</version>
+        </Yireo_DeleteAnyOrder>
+    </modules>
+
+    <global>
+        <blocks>
+            <deleteanyorder>
+                <class>Yireo_DeleteAnyOrder_Block</class>
+            </deleteanyorder>
+        </blocks>
+
+        <helpers>
+            <deleteanyorder>
+                <class>Yireo_DeleteAnyOrder_Helper</class>
+            </deleteanyorder>
+        </helpers>
+
+        <models>
+            <deleteanyorder>
+                <class>Yireo_DeleteAnyOrder_Model</class>
+            </deleteanyorder>
+        </models>
+	</global>
+
+    <adminhtml>
+        <menu>
+             <system>
+                <children>
+                    <tools>
+                        <children>
+                            <deleteanyorder translate="title" module="deleteanyorder">
+                                <title>Delete Any Order</title>
+                                <action>deleteanyorder/index/index</action>
+                            </deleteanyorder>
+                        </children>
+                    </tools>
+                </children>
+             </system>
+        </menu>
+        <translate>
+            <modules>
+                <Yireo_DeleteAnyOrder>
+                    <files>
+                        <default>Yireo_DeleteAnyOrder.csv</default>
+                    </files>
+                </Yireo_DeleteAnyOrder>
+            </modules>
+        </translate>
+        <acl>
+            <resources>
+                <admin>
+                    <children>
+                        <system>
+                            <children>
+                                <config>
+                                    <children>
+                                        <deleteanyorder translate="title" module="deleteanyorder">
+                                            <title>DeleteAnyOrder Section</title>
+                                        </deleteanyorder>
+                                    </children>
+                                </config>
+                                <tools>
+                                    <children>
+                                        <deleteanyorder translate="title" module="deleteanyorder">
+                                            <title>DeleteAnyOrder</title>
+                                        </deleteanyorder>
+                                    </children>
+                                </tools>
+                            </children>
+                        </system>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+    </adminhtml>
+
+    <admin>
+        <routers>
+            <deleteanyorder>
+                <use>admin</use>
+                <args>
+                    <module>Yireo_DeleteAnyOrder</module>
+                    <frontName>deleteanyorder</frontName>
+                </args>
+            </deleteanyorder>
+        </routers>
+    </admin>
+
+    <default>
+        <deleteanyorder>
+            <settings>
+                <resetstock>0</resetstock>
+                <resetincrements>0</resetincrements>
+            </settings>
+        </deleteanyorder>
+    </default>
+</config>

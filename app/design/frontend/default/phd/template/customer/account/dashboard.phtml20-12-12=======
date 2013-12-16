@@ -1,0 +1,198 @@
+<?php
+/**
+ * Magento
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Academic Free License (AFL 3.0)
+ * that is bundled with this package in the file LICENSE_AFL.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/afl-3.0.php
+ * If you did not receive a copy of the license and are unable to
+ * obtain it through the world-wide-web, please send an email
+ * to license@magentocommerce.com so we can send you a copy immediately.
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade Magento to newer
+ * versions in the future. If you wish to customize Magento for your
+ * needs please refer to http://www.magentocommerce.com for more information.
+ *
+ * @category    design
+ * @package     base_default
+ * @copyright   Copyright (c) 2011 Magento Inc. (http://www.magentocommerce.com)
+ * @license     http://opensource.org/licenses/afl-3.0.php  Academic Free License (AFL 3.0)
+ */
+?>
+<?php
+$customer = Mage::getSingleton('customer/session')->getCustomer();
+	
+	
+		$customerId=$customer->getId();
+if (isset($_POST['enter'])) 
+{
+	$region = $_POST['region_name'];
+	$sub_region = $_POST['sub_reg'];
+	editUserInfo($customerId, $region, $sub_region);
+	Mage::getModel('core/cookie')->set('region', $region, 0, '/');
+	Mage::getModel('core/cookie')->set('sub_region', $sub_region, 0, '/');
+	header("location:http://phddev.frontforge.com/index.php/customer/account/index/");
+}
+//print_r($_COOKIE);
+?>
+<div class="dashboard">
+   <div class="page-title">
+      <h1><?php echo $this->__('My Dashboard') ?></h1>
+   </div>
+   <?php
+    $user_reg_info = getUsersRegionInfo($customerId);
+   $reginfo = explode(",", $user_reg_info);
+   ?>
+   <div><b> Region:</b><?php echo $reginfo[0]; ?><br>
+      <b>Subregion:</b><?php echo $reginfo[1]; ?>
+      <span><a href="#edit_content" class="inline cboxElement">Edit</a></span>
+   </div>
+
+   <?php echo $this->getMessagesBlock()->getGroupedHtml() ?>
+   <?php echo $this->getChildHtml('hello') ?>
+<?php echo $this->getChildHtml('top') ?>
+   <div class="box-account box-info">
+      <div class="box-head">
+         <h2><?php echo $this->__('Account Information') ?></h2>
+      </div>
+      <?php echo $this->getChildHtml('info') ?>
+   <?php echo $this->getChildHtml('address') ?>
+   </div>
+   <?php echo $this->getChildHtml('info1') ?>
+<?php echo $this->getChildHtml('info2') ?>
+</div>
+
+<script>
+var j=jQuery.noConflict();
+   j(document).ready(function(){
+				
+      j(".inline").colorbox({inline:true, width:"50%"});
+				
+				
+      //Example of preserving a JavaScript event for inline calls.
+      j("#click").click(function(){ 
+         j('#click').css({"background-color":"#f00", "color":"#fff", "cursor":"inherit"}).text("Open this window again and this message will still be here.");
+         return false;
+      });
+   });
+</script>
+<?php
+$resource = Mage::getSingleton('core/resource');
+$readConnection = $resource->getConnection('core_read');
+$query = 'SELECT * FROM diji_salesregions_region';
+$results = $readConnection->fetchAll($query);
+$readselectedresion='SELECT  * from  diji_customer_region_info where customer_id='.$customerId;
+	$results_for_selected = $readConnection->fetchAll($readselectedresion);
+	foreach($results_for_selected as $selected){
+	 $sel_reg=$selected['regions_id']; 	 
+	 $sel_subreg=$selected['sub_regions_id'];
+	}
+?>
+<div style='display:none'>
+   <div id='edit_content' style='padding:10px; background:#fff;width:450px;'>
+      <div class='regons'style="width:450px;">
+
+         <?php $i = 1;
+         foreach ($results as $result) {?>
+		
+			<?php if(($result['region_id']==$sel_reg)){
+			$class="Select";
+			}
+			else{
+			$class="";
+			}?>
+            
+            <div class="left col<?php echo $class; ?>" style="width:200px;height:200px;border:1px solid #333;margin-right:10px;"> <?php echo $result['name']; ?>
+               <?php
+               $query_subr = 'SELECT * FROM diji_salesregions_subregion where region_id=' . $result['region_id'];
+               $results_subr = $readConnection->fetchAll($query_subr);
+               ?>
+               <div>
+                  <form name="edit_regions<?php echo $i ?>" id="regions<?php echo $i ?>" method="POST">
+                     <input type="hidden" name="region_name" value="<?php echo $result['region_id']; ?>" />
+                     <select name="sub_reg">
+                        <option name="sub" value="0">----Select----</option> 
+                        <?php foreach ($results_subr as $res_subr) { 
+						if($res_subr['subregion_id']==$sel_subreg){
+			$sel="selected";
+			}else{
+			$sel="";
+			}?>
+                           <option name="sub" value="<?php echo $res_subr['subregion_id']; ?>" <?php echo $sel ?>>
+      <?php echo $res_subr['name']; ?>
+                           </option>
+   <?php } ?>
+                     </select>
+                     <input type="submit" name="enter" value="Enter"/>
+                  </form>
+               </div>
+            </div>
+         <?php $i++;
+      } ?>
+
+      </div>
+<?php //print_r($_POST); ?>
+      <!--<p>Updating Content Example:<br />
+      <a class="ajax" href="../content/flash.html">Click here to load new content</a></p-->
+   </div>
+</div>
+
+<?php
+
+function editUserInfo($cust_id, $region_id, $subregion_id) 
+{
+
+   $write = Mage::getSingleton("core/resource")->getConnection("core_write");
+   $read1 = Mage::getSingleton('core/resource')->getConnection('core_read');
+   $readQuery1 = 'SELECT  * from diji_customer_region_info where customer_id=' . $cust_id;
+   $results = $read1->fetchAll($readQuery1);
+   if (count($results) > 0) {
+      $upquery = "UPDATE  diji_customer_region_info SET regions_id=$region_id,sub_regions_id=$subregion_id WHERE customer_id=$cust_id";
+      $write->query($upquery);
+		} else {
+      $query = "INSERT INTO diji_customer_region_info (id,regions_id,sub_regions_id,customer_id) VALUES ('',$region_id,$subregion_id,$cust_id)";
+      $write->query($query); 
+   }
+
+  
+}
+
+function getUsersRegionInfo($cust_id) 
+{
+if (isset($_POST['enter'])) 
+{
+
+	$read = Mage::getSingleton('core/resource')->getConnection('core_read');
+	$readQuery = 'SELECT  * from  diji_customer_region_info where customer_id='.$cust_id;
+	$results = $read->fetchAll($readQuery);
+	foreach ($results as $res) 
+	{
+		$region_id = $res['regions_id'];
+		$sub_region_id = $res['sub_regions_id'];
+	}
+
+	$reg_name = "SELECT name  from diji_salesregions_region where region_id=" . $region_id;
+	$reg_results = $read->fetchAll($reg_name);
+	$sub_name = "SELECT name  from diji_salesregions_subregion where subregion_id=" . $sub_region_id . " And region_id=" . $region_id;
+	$sub_results = $read->fetchAll($sub_name);
+	foreach ($reg_results as $reg) 
+	{
+		$region_name = $reg['name'];
+	}
+
+	foreach ($sub_results as $sub) 
+	{
+		$subr_name = $sub['name'];
+	}
+
+
+	return $region_name . "," . $subr_name;
+	}
+	}
+
+?>	

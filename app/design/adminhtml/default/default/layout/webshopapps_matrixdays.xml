@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!--
+/** Matrixdays
+ *
+ * @category   Webshopapps
+ * @package    Webshopapps_matrixdays
+ * @copyright  Copyright (c) 2011 Zowta Ltd (http://www.webshopapps.com)
+ * @license    http://www.webshopapps.com/license/license.txt - Commercial license
+ */-->
+<layout version="0.1.0">
+  <adminhtml_sales_order_create_index>
+     <reference name="shipping_method">
+      <reference name="form">
+          <action method="setTemplate">
+            <template>webshopapps/matrixdays/sales/order/create/shipping/method/form.phtml</template>
+          </action>
+      </reference>
+    </reference>
+  </adminhtml_sales_order_create_index>
+	
+  <adminhtml_sales_order_view>
+    <reference name="order_tab_info">
+        <action method="setTemplate">
+          <template>webshopapps/matrixdays/sales/order/view/tab/info.phtml</template>
+        </action>
+    </reference>
+  </adminhtml_sales_order_view>
+  
+  <adminhtml_sales_order_create_load_block_shipping_method>
+    <reference name="shipping_method">
+      <reference name="form">
+          <action method="setTemplate">
+            <template>webshopapps/matrixdays/sales/order/create/shipping/method/form.phtml</template>
+          </action>
+      </reference>
+    </reference>
+  </adminhtml_sales_order_create_load_block_shipping_method>
+  
+</layout> 

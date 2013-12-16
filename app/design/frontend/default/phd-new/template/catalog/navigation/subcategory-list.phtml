@@ -1,0 +1,60 @@
+<?php $_categories = $this->getCurrentChildCategories();
+$_helper    = $this->helper('catalog/output');
+?>
+<?php $_columnCount = 2; ?>
+<div class="category-products">
+    <ul class="products-grid list-detail">
+        <?php $i=0; foreach ($_categories as $_category): ?>
+            <?php
+            $_category->load();
+            $_imgHtml   = '';
+            if ($_imgUrl = $_category->getImageUrl()) {
+                $_imgHtml = '<div class="category-image">
+                                <a href="'.$this->getCategoryUrl($_category).'" title="'.$this->htmlEscape($_category->getName()).'">
+                                    <img width="400px" src="'.$_imgUrl.'" alt="'.$this->htmlEscape($_category->getName()).'" title="'.$this->htmlEscape($_category->getName()).'" />
+                                </a>
+                             </div>';
+                $_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
+            }
+            ?>
+            <?php if($_category->getIsActive() && $_category->getIncludeInMenu()): ?>
+                <?php $i++; ?>
+                <li class="item <?php if(($i-1)%$_columnCount==0): ?>first<?php elseif($i%$_columnCount==0): ?>last<?php endif; ?>">
+                    <?php if($_imgUrl): ?>
+                        <?php echo $_imgHtml ?>
+                    <?php endif; ?>
+
+                    <h2 class="product-name">
+                        <a href="<?php echo $this->getCategoryUrl($_category); ?>">
+                            <?php echo $this->htmlEscape($_category->getName()) ?>
+                        </a>
+                    </h2>
+                </li>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </ul>
+</div>
+
+<?php
+//$_thumbnail = $currentCategory->getThumbnail();
+/*
+<div class="cat-img">
+    <?php if($_thumbnail):
+        $url =  Mage::getBaseUrl(Mage_Core_Model_Store::URL_TYPE_MEDIA).'catalog/category/'.$_thumbnail;
+        ?>
+        <a class="category-image" href="<?php echo $this->getCategoryUrl($_category); ?>"><img src="<?php echo $url;?>" width="140"/></a>
+    <?php else: ?>
+        <a href="<?php echo $this->getCategoryUrl($_category)?>"><img class="watermark" src="<?php echo $this->getSkinUrl('images/watermark.jpg'); ?>" width="140"/></a>
+    <?php endif; ?>
+</div>
+
+if ($_category->getThumbnail()) {
+    $_imgUrl = Mage::getBaseUrl('media').'catalog/category/'.$_category->getThumbnail();
+    $_imgHtml = '<div class="product-image">
+                    <a href="'.$this->getCategoryUrl($_category).'" title="'.$this->htmlEscape($_category->getName()).'">
+                        <img width="400px" src="'.$_imgUrl.'" alt="'.$this->htmlEscape($_category->getName()).'" title="'.$this->htmlEscape($_category->getName()).'" />
+                    </a>
+                 </div>';
+    $_imgHtml = $_helper->categoryAttribute($_category, $_imgHtml, 'image');
+}
+ */
